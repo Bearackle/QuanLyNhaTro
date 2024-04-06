@@ -53,7 +53,8 @@ public class MainController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainMonitor.setForm(new Info());
+            InfoController infoController = new InfoController(new Info(),user);
+          
         }
           
       }

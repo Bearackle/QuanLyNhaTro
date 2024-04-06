@@ -8,8 +8,12 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.ListModel;
 import model.Room;
 import view.CustomControl.StyledButtonUI;
 
@@ -18,15 +22,23 @@ import view.CustomControl.StyledButtonUI;
  * @author Admin
  */
 public class Info extends javax.swing.JPanel {
-
+    private DefaultListModel<Contract> listModel;
     /**
      * Creates new form Info
      */
     public Info() {
         initComponents();
-        
     }
-    
+    public void initContract(List<Contract> contracts)
+    {
+        listModel = new DefaultListModel<>();
+        for(Contract contract : contracts)
+        {
+            jList1.add(contract);
+        }
+        jList1.setModel(listModel);
+        jList1.setCellRenderer(new ContractItemView());
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,7 +339,7 @@ public class Info extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JList<Room> jList1;
+    private javax.swing.JList<Contract> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

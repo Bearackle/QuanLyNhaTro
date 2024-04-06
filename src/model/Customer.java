@@ -8,18 +8,18 @@ package model;
  *
  * @author Admin
  */
-public class Customer {
+public class Customer extends User{
     private int CCCD;
     private String Name;
     private String Phone;
     private String Gender;
     private String Birthday;
-    private int Contract_id;
+    private int ContractId;
     private String BankAccount;
     private String RelativeName;
     private String RelativeNumber;
-    private String Enter_date;
-
+    private String EnterDate;
+    private int RoomIdMatch;
     public int getCCCD() {
         return CCCD;
     }
@@ -60,12 +60,12 @@ public class Customer {
         this.Birthday = Birthday;
     }
 
-    public int getContract_id() {
-        return Contract_id;
+    public int getContractId() {
+        return ContractId;
     }
 
-    public void setContract_id(int Contract_id) {
-        this.Contract_id = Contract_id;
+    public void setContractId(int Contract_id) {
+        this.ContractId = Contract_id;
     }
 
     public String getBankAccount() {
@@ -92,11 +92,20 @@ public class Customer {
         this.RelativeNumber = RelativeNumber;
     }
 
-    public String getEnter_date() {
-        return Enter_date;
+    public String getEnterDate() {
+        return EnterDate;
     }
 
-    public void setEnter_date(String Enter_date) {
-        this.Enter_date = Enter_date;
+    public void setEnterDate(String EnterDate) {
+        this.EnterDate = EnterDate;
     }
+
+    public int getRoomIdMatch() {
+        return RoomIdMatch;
+    }
+
+    public void setRoomIdMatch(int RoomIdMatch) {
+        this.RoomIdMatch = RoomIdMatch;
+    }
+    
 }
