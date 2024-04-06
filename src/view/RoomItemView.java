@@ -182,8 +182,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                 System.out.println("agg");
             }
         });
-        
-        
+        System.out.println(isSelected);
         return this;
     }
 }

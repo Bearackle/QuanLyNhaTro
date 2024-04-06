@@ -326,11 +326,6 @@ public class Post_Form extends javax.swing.JPanel {
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quận 1", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8", "Quận 10", "Quận 11", "Quận 12", "Quận Tân Bình", "Quận Bình Tân", "Quận Bình Thạnh", "Quận Tân Phú", "Quận Gò Vấp", "Quận Phú Nhuận" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -461,10 +456,6 @@ public class Post_Form extends javax.swing.JPanel {
     private void btn7to10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7to10ActionPerformed
       
     }//GEN-LAST:event_btn7to10ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void CustomButtonCode()
     {

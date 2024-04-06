@@ -8,6 +8,7 @@ import DAO.AccountDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import model.User;
 import view.loginAndRegister;
 
 /**
@@ -26,13 +27,14 @@ public class LoginController {
        public void getDataLogin()
        {
            accountDAO = new AccountDAO();
-           if (accountDAO.Authentication(logAndRegister.getDataInput()) != null)
-           {
-               new MainController(accountDAO.Authentication(logAndRegister.getDataInput()));
+           User authenticatedUser = logAndRegister.getDataInput();
+           authenticatedUser = accountDAO.Authentication(authenticatedUser);
+           if (authenticatedUser == null)
+               JOptionPane.showMessageDialog(logAndRegister, "Thông tin đăng nhập sai");
+           else {
+               new MainController(authenticatedUser);
                logAndRegister.setVisible(false);
            }
-           else 
-               JOptionPane.showMessageDialog(logAndRegister, "Thông tin đăng nhập sai");
        }
        class btnLogin implements ActionListener
        {
