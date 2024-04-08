@@ -34,19 +34,18 @@ public class InfoController {
         this.info = info;
         this.user = user;
         RenderInformation();
-   //     RenderContractList();
     }
     public void RenderInformation()
     {
         customer = customerDAO.getCustomer(user.getPhone());
         if (customer!=null)
         {
-        info.getCustomerInfo(customer);
+        info.setCustomerInfo(customer);
         RenderContractList();
         }
         else 
         {
-           info.getUserInfo(user);
+           info.setUserInfo(user);
         }
     }
     public void RenderContractList()

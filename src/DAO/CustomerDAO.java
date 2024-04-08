@@ -21,7 +21,9 @@ public class CustomerDAO {
     }
     public Customer getCustomer(String sdt)
     {
-        String query = "SELECT * FROM CUSTOMER INNER JOIN ACCOUNT ON CUSTOMER.PHONE = ACCOUNT.PHONE WHERE ACCOUNT.PHONE=?";
+        String query = """
+                       SELECT * FROM CUSTOMER INNER JOIN ACCOUNT ON CUSTOMER.PHONE = ACCOUNT.PHONE INNER JOIN CUSTOMER_LANDLORD_PROFILE
+        ON CUSTOMER_LANDLORD_PROFILE.CCCD = CUSTOMER.CCCD WHERE ACCOUNT.PHONE=?""";
         try 
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -41,6 +43,7 @@ public class CustomerDAO {
                 customer.setRelativeNumber(result.getString("RELATIVEPHONE"));
                 customer.setRoomIdMatch(result.getInt("ROOMIDMATCH"));
                 customer.setEmail(result.getString("EMAIL"));
+                customer.setImg(result.getString("PATH"));
                 return customer;
              }
         }catch(SQLException e)

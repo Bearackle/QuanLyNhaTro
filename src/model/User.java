@@ -14,6 +14,7 @@ public class User {
     private String Role;
     private String Email;
     private String Password;
+    private String Img;
     public String getPassword()
     {
         return Password;
@@ -52,4 +53,13 @@ public class User {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+    public String getImg() {
+        return Img;
+    }
+
+    public void setImg(String Img) {
+        this.Img = Img;
+    }
+    
 }

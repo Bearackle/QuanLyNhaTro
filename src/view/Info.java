@@ -41,7 +41,7 @@ public class Info extends javax.swing.JPanel {
         jList1.setModel(listModel);
         jList1.setCellRenderer(new ContractItemView());
     }
-    public void getCustomerInfo(Customer customer)
+    public void setCustomerInfo(Customer customer)
     {
         txtcccd.setText(String.valueOf(customer.getCCCD()));
         lblName.setText(customer.getName());
@@ -52,8 +52,10 @@ public class Info extends javax.swing.JPanel {
         txtsdtRelative.setText(customer.getRelativeNumber());
         lblEmail.setText(customer.getEmail());
         txtsdt.setText(customer.getPhone());
+        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(customer.getImg())).getImage().getScaledInstance(128,176,Image.SCALE_AREA_AVERAGING)));
+   
     }
-    public void getUserInfo (User user)
+    public void setUserInfo (User user)
     {
       lblName.setText(user.getName());
       lblsdt.setText(user.getPhone());
