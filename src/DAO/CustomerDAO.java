@@ -30,16 +30,17 @@ public class CustomerDAO {
             if (result.next())
             {
                 Customer customer = new Customer();
-                customer.setCCCD(result.getInt("CCCD"));
-                customer.setName(result.getString("CUSTOMER.NAME"));
-                customer.setPhone(result.getString("CUSTOMER.PHONE"));
+                customer.setCCCD(result.getLong("CCCD"));
+                customer.setName(result.getString("NAME"));
+                customer.setPhone(result.getString("PHONE"));
                 customer.setGender(result.getString("GENDER"));
                 customer.setBirthday(result.getString("BIRTHDAY"));
                 customer.setContractId(result.getInt("CONTRACTID"));
                 customer.setBankAccount(result.getString("BANKACCOUNT"));
                 customer.setRelativeName(result.getString("RELATIVENAME"));
-                customer.setRelativeNumber(result.getString("RELATIVEPHONENUMBER"));
+                customer.setRelativeNumber(result.getString("RELATIVEPHONE"));
                 customer.setRoomIdMatch(result.getInt("ROOMIDMATCH"));
+                customer.setEmail(result.getString("EMAIL"));
                 return customer;
              }
         }catch(SQLException e)

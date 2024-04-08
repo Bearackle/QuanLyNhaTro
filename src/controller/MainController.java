@@ -19,7 +19,6 @@ import view.Post_Form;
 public class MainController {
        private MainMonitor mainMonitor;
        private User user;
-       
        public MainController(User user)
        {
            this(new MainMonitor());
@@ -32,6 +31,7 @@ public class MainController {
             mainMonitor.setActionListenerForlblPostForm(new ClicklblPost());
             mainMonitor.setActionListenerForlblContract(new ClicklblContract());
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());
+             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
       {
@@ -39,7 +39,7 @@ public class MainController {
         public void actionPerformed(ActionEvent e) {
             PostController postController = new PostController(new Post_Form());
             mainMonitor.setForm(postController.renderForm());
-            mainMonitor.setVisible(true);
+           
         }     
       }
       class ClicklblContract implements ActionListener{

@@ -32,11 +32,14 @@ public class InfoController {
         contractDAO = new ContractDAO();
         roomDAO = new RoomDAO();
         this.info = info;
+        this.user = user;
+        RenderInformation();
+   //     RenderContractList();
     }
     public void RenderInformation()
     {
         customer = customerDAO.getCustomer(user.getPhone());
-        if (customer==null)
+        if (customer!=null)
         {
         info.getCustomerInfo(customer);
         RenderContractList();

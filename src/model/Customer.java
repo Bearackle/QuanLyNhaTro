@@ -9,7 +9,7 @@ package model;
  * @author Admin
  */
 public class Customer extends User{
-    private int CCCD;
+    private Long CCCD;
     private String Name;
     private String Phone;
     private String Gender;
@@ -20,11 +20,11 @@ public class Customer extends User{
     private String RelativeNumber;
     private String EnterDate;
     private int RoomIdMatch;
-    public int getCCCD() {
+    public Long getCCCD() {
         return CCCD;
     }
 
-    public void setCCCD(int CCCD) {
+    public void setCCCD(Long CCCD) {
         this.CCCD = CCCD;
     }
 

@@ -10,13 +10,13 @@ package model;
  */
 public class Contract {
     private int ID;
-    private int CustomerCCCD;
+    private Long CustomerCCCD;
     private String CustomerName;
     private int RoomID;
     private int Duration; //tinh bang thang thang
     private int Price;
     private String Signed_date;
-    private boolean Status;
+    private String Status;
     private int ElecticPrice;
     private int WaterPrice;
     private int Deposit;
@@ -47,11 +47,11 @@ public class Contract {
         this.ID = ID;
     }
 
-    public int getCustomerCCCD() {
+    public Long getCustomerCCCD() {
         return CustomerCCCD;
     }
 
-    public void setCustomerCCCD(int CustomerCCCD) {
+    public void setCustomerCCCD(Long CustomerCCCD) {
         this.CustomerCCCD = CustomerCCCD;
     }
 
@@ -95,11 +95,11 @@ public class Contract {
         this.Signed_date = Signed_date;
     }
 
-    public boolean isStatus() {
+    public String isStatus() {
         return Status;
     }
 
-    public void setStatus(boolean Status) {
+    public void setStatus(String Status) {
         this.Status = Status;
     }
 

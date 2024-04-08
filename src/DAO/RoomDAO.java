@@ -23,7 +23,7 @@ public class RoomDAO {
         connection = DataBaseConnection.getConnection();
         List<Room> allRoom = new ArrayList<>();
         String query = "SELECT * FROM ROOM";
-        String query2 = "SELECT * FROM ROOMIMAGE WHERE ID=?";
+        String query2 = "SELECT * FROM ROOMIMAGE WHERE ROOMID=?";
         try 
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -32,9 +32,9 @@ public class RoomDAO {
             while (result.next())
             {
                 Room room = new Room();
-                room.setId(result.getInt("ID"));
+                room.setId(result.getInt("ROOMID"));
                 room.setName(result.getString("NAME"));
-                room.setPrices(result.getInt("PRICES"));
+                room.setPrices(result.getInt("PRICE"));
                 room.setArea(result.getFloat("AREA"));
                 //
                 var tempRoom = new Room();

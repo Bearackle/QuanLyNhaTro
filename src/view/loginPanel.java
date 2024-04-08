@@ -123,7 +123,6 @@ public class loginPanel extends javax.swing.JPanel {
         btnRegisNewUser.setBorder(null);
         btnRegisNewUser.setBorderPainted(false);
         btnRegisNewUser.setContentAreaFilled(false);
-        btnRegisNewUser.setUI(new StyledButtonUI());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

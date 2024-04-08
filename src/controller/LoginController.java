@@ -32,7 +32,7 @@ public class LoginController {
            if (authenticatedUser == null)
                JOptionPane.showMessageDialog(logAndRegister, "Thông tin đăng nhập sai");
            else {
-               new MainController(authenticatedUser);
+               var mainMonitor = new MainController(authenticatedUser);
                logAndRegister.setVisible(false);
            }
        }

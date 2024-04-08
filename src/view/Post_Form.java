@@ -180,7 +180,6 @@ public class Post_Form extends javax.swing.JPanel {
 
         jList1.setBorder(null);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setPreferredSize(new java.awt.Dimension(400, 350));
         jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         jScrollPane1.setViewportView(jList1);
 

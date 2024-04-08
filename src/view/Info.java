@@ -43,14 +43,15 @@ public class Info extends javax.swing.JPanel {
     }
     public void getCustomerInfo(Customer customer)
     {
-        lblCCCD.setText(String.valueOf(customer.getCCCD()));
+        txtcccd.setText(String.valueOf(customer.getCCCD()));
         lblName.setText(customer.getName());
-        lblBirthDay.setText(customer.getBirthday());
-        lblContract.setText(String.valueOf(customer.getContractId()));
-        lblBankAccount.setText(customer.getBankAccount());
-        lblrelative.setText(customer.getRelativeName());
-        lblRelativesdt.setText(customer.getRelativeNumber());
+        txtBirthday.setText(customer.getBirthday());
+        txtContractid.setText(String.valueOf(customer.getContractId()));
+        txtBankaccount.setText(customer.getBankAccount());
+        txtRelativeName.setText(customer.getRelativeName());
+        txtsdtRelative.setText(customer.getRelativeNumber());
         lblEmail.setText(customer.getEmail());
+        txtsdt.setText(customer.getPhone());
     }
     public void getUserInfo (User user)
     {
