@@ -54,7 +54,7 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             InfoController infoController = new InfoController(new Info(),user);
-          
+            mainMonitor.setForm(infoController.Render());
         }
           
       }

@@ -131,7 +131,7 @@ public class Contract {
 
 class ContractOwner extends Contract
 {
-     private int numberofRoom;
+    private int numberofRoom;
     public int getNumberofRoom() {
         return numberofRoom;
     }

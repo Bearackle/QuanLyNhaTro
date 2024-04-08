@@ -15,7 +15,7 @@ public class DataBaseConnection {
     public static Connection getConnection()
     {
         try {
-            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl21","SYS as sysdba","1");
+            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl21","C##DOANJAVA","123");
         } catch (SQLException e)
         {
             e.printStackTrace();

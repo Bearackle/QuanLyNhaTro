@@ -176,13 +176,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         this.lblPrice.setText(String.valueOf(room.getPrices()));
         this.lblLocation.setText(String.valueOf(room.getLocation().getDistrict()));
         this.lblRoomName.setText(String.valueOf(room.getName()));
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.out.println("agg");
-            }
-        });
-        System.out.println(isSelected);
         return this;
     }
 }

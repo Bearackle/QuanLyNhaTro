@@ -14,7 +14,9 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.ListModel;
-import model.Room;
+import model.Contract;
+import model.Customer;
+import model.User;
 import view.CustomControl.StyledButtonUI;
 
 /**
@@ -34,12 +36,28 @@ public class Info extends javax.swing.JPanel {
         listModel = new DefaultListModel<>();
         for(Contract contract : contracts)
         {
-            jList1.add(contract);
+            listModel.addElement(contract);
         }
         jList1.setModel(listModel);
         jList1.setCellRenderer(new ContractItemView());
     }
-    
+    public void getCustomerInfo(Customer customer)
+    {
+        lblCCCD.setText(String.valueOf(customer.getCCCD()));
+        lblName.setText(customer.getName());
+        lblBirthDay.setText(customer.getBirthday());
+        lblContract.setText(String.valueOf(customer.getContractId()));
+        lblBankAccount.setText(customer.getBankAccount());
+        lblrelative.setText(customer.getRelativeName());
+        lblRelativesdt.setText(customer.getRelativeNumber());
+        lblEmail.setText(customer.getEmail());
+    }
+    public void getUserInfo (User user)
+    {
+      lblName.setText(user.getName());
+      lblsdt.setText(user.getPhone());
+      lblEmail.setText(user.getEmail());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

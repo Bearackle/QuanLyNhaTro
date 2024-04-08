@@ -7,7 +7,7 @@ package view;
 import java.awt.Component;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import model.Room;
+import model.Contract;
 
 /**
  *
@@ -30,39 +30,27 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblAnh = new javax.swing.JLabel();
+        lblRoomId = new javax.swing.JLabel();
+        lblgia = new javax.swing.JLabel();
         lblEnter_date = new javax.swing.JLabel();
         lblDuration = new javax.swing.JLabel();
-        lblnumberPeople = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setBackground(new java.awt.Color(255, 153, 255));
-        jLabel1.setOpaque(true);
+        lblAnh.setBackground(new java.awt.Color(255, 153, 255));
+        lblAnh.setOpaque(true);
 
-        jLabel2.setText("ten phong");
+        lblRoomId.setText("Ma phong");
 
-        jLabel3.setText("gia");
-
-        jLabel4.setText("vi tri");
-
-        jLabel5.setText("Area");
+        lblgia.setText("gia");
 
         lblEnter_date.setText("Ngày chuyển vào:");
 
         lblDuration.setText("Kỳ Hạn");
-
-        lblnumberPeople.setText("so nguoi");
-
-        jButton1.setText("Thêm Bạn");
 
         jButton2.setText("Tra phong");
 
@@ -76,24 +64,18 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblRoomId, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(lblgia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblnumberPeople, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblEnter_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 130, Short.MAX_VALUE)))))
                 .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -106,24 +88,16 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)))
+                        .addComponent(lblgia)))
                 .addGap(18, 18, 18)
                 .addComponent(lblEnter_date)
                 .addGap(12, 12, 12)
                 .addComponent(lblDuration)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnumberPeople)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -133,22 +107,21 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Contract> list, Contract value, int index, boolean isSelected, boolean cellHasFocus) {
-            
+            lblRoomId.setText(String.valueOf(value.getRoomID()));
+            lblgia.setText(String.valueOf(value.getPrice()));
+            lblDuration.setText(String.valueOf(value.getDuration()));
+            lblEnter_date.setText(String.valueOf(value.getEnterDate()));
             return this;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblAnh;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblEnter_date;
-    private javax.swing.JLabel lblnumberPeople;
+    private javax.swing.JLabel lblRoomId;
+    private javax.swing.JLabel lblgia;
     // End of variables declaration//GEN-END:variables
 }

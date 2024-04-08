@@ -15,7 +15,7 @@ public class AccountDAO {
     {
         connection = DataBaseConnection.getConnection();
         try{
-        String query = "SELECT * FROM SYS.ACCOUNT WHERE PHONE=?";
+        String query = "SELECT * FROM ACCOUNT WHERE PHONE=?";
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1,user.getPhone());
         ResultSet resultSet = ps.executeQuery();

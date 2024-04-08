@@ -7,6 +7,9 @@ package controller;
 import DAO.ContractDAO;
 import DAO.CustomerDAO;
 import DAO.RoomDAO;
+import java.util.ArrayList;
+import java.util.List;
+import model.Contract;
 import model.Customer;
 import model.Room;
 import model.User;
@@ -32,11 +35,26 @@ public class InfoController {
     }
     public void RenderInformation()
     {
-        
+        customer = customerDAO.getCustomer(user.getPhone());
+        if (customer==null)
+        {
+        info.getCustomerInfo(customer);
+        RenderContractList();
+        }
+        else 
+        {
+           info.getUserInfo(user);
+        }
     }
     public void RenderContractList()
     {
-        
+        List<Contract> contracts;
+        contracts = contractDAO.getAllContractByCustomer(customer.getCCCD());
+        info.initContract(contracts);
+    }
+    public Info Render()
+    {
+        return info;
     }
     public Room getRoomByContract(int id)
     {
