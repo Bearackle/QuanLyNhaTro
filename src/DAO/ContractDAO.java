@@ -87,7 +87,7 @@ public class ContractDAO {
     }
     public ContractDetail contractDetailCustomer(int contractID)
     {
-        String query = "SELECT CONTRACT.CONTRACTID,CONTRACT.SIGN_DATE,CUSTOMER.BIRTHDAY, CUSTOMER.NAME,RESIDENT_REGISTRATION.PERMANENT_RESIDENT,CUSTOMER.PHONE,ROOM.LOCATION,CONTRACT.PRICE,CONTRACT.ELECTRICPRICE,CONTRACT.WATERPRICE,CONTRACT.DEPOSIT FROM CONTRACT INNER JOIN ROOM ON CONTRACT.ROOM_ID=ROOM.ROOMID INNER JOIN RESIDENT_REGISTRATION ON CONTRACT.CUSTOMER_ID=RESIDENT_REGISTRATION.CCCD INNER JOIN CUSTOMER ON CUSTOMER.CONTRACTID=CONTRACT.CONTRACTID WHERE CONTRACT.CONTRACTID=?";
+        String query = "SELECT CONTRACT.CONTRACTID,CONTRACT.SIGN_DATE, CUSTOMER.CCCD,BIRTHDAY, CONTRACT.DURATION, CUSTOMER.NAME,RESIDENT_REGISTRATION.PERMANENT_RESIDENT,CUSTOMER.PHONE,ROOM.LOCATION,CONTRACT.PRICE,CONTRACT.ELECTRICPRICE,CONTRACT.WATERPRICE,CONTRACT.DEPOSIT FROM CONTRACT INNER JOIN ROOM ON CONTRACT.ROOM_ID=ROOM.ROOMID INNER JOIN RESIDENT_REGISTRATION ON CONTRACT.CUSTOMER_ID=RESIDENT_REGISTRATION.CCCD INNER JOIN CUSTOMER ON CUSTOMER.CONTRACTID=CONTRACT.CONTRACTID WHERE CONTRACT.CONTRACTID=?";
        try {
            PreparedStatement ps = connection.prepareStatement(query);
            ps.setInt(1, contractID);
@@ -95,19 +95,19 @@ public class ContractDAO {
            ContractDetail contractDetail = new ContractDetail();
            while (resultSet.next())
            {
+               contractDetail.setCustomer_ID(resultSet.getLong("CCCD"));
                contractDetail.setSign_date(resultSet.getDate("SIGN_DATE"));
-               contractDetail.setBirthDay(resultSet.getDate(""));
-               contractDetail.setBirthDay(resultSet.getDate("CUSTOMER.BIRTHDAY"));
+               contractDetail.setBirthDay(resultSet.getDate("BIRTHDAY"));
                contractDetail.setPermanent_resident(resultSet.getString("permanent_resident"));
-               contractDetail.setPhone(resultSet.getString("CUSTOMER.PHONE"));
-               String[] location = resultSet.getString("ROOM.LOCATION").split(",");
+               contractDetail.setPhone(resultSet.getString("PHONE"));
+               String[] location = resultSet.getString("LOCATION").split(",");
                contractDetail.setLocation(new Location(location[0],location[1],location[2],location[3]));
                contractDetail.setPrice(resultSet.getInt("PRICE"));
-               contractDetail.setElectricPrice(resultSet.getInt("CONTRACT.ELECTRICPRICE"));
-               contractDetail.setWaterPrice(resultSet.getInt("CONTRACT.WATERPRICE"));
-               contractDetail.setDeposit(resultSet.getInt("CONTRACT.DEPOSIT"));
-               contractDetail.setCustomer_Name(resultSet.getString("CUSTOMER.NAME"));
-              
+               contractDetail.setElectricPrice(resultSet.getInt("ELECTRICPRICE"));
+               contractDetail.setWaterPrice(resultSet.getInt("WATERPRICE"));
+               contractDetail.setDeposit(resultSet.getInt("DEPOSIT"));
+               contractDetail.setCustomer_Name(resultSet.getString("NAME"));   
+               contractDetail.setDuration(resultSet.getInt("DURATION"));
            }
             return contractDetail;
         } catch (SQLException e) {

@@ -5,6 +5,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import view.CustomControl.StyledButtonUI;
 import view.CustomControl.CustomScrollBarUI;
 import java.awt.event.ActionListener;
@@ -40,12 +42,47 @@ public class Post_Form extends javax.swing.JPanel {
     {
         btnLower2M.addActionListener(listener);
     }
-    public void addToFilter(String filter)
+    public void setActionListenerforlbl2to4(ActionListener listener)
     {
-        JButton newButton = new JButton("filer");
+        btn2to4.addActionListener(listener);
+    }
+    public void setActionListenerforlbl4to7(ActionListener listener)
+    {
+        btn4to7.addActionListener(listener);
+    }
+    public void setActionListnerforlbl7(ActionListener listener)
+    {
+        btn7.addActionListener(listener);
+    }
+    public void setActionListenerforlblAllPrice(ActionListener listener)
+    {
+        btnAllPrice.addActionListener(listener);
+    }
+    public void addToFilter(String filterString)
+    {
+        JButton newButton = new JButton(filterString);
         newButton.setUI(new StyledButtonUI());
         newButton.setBackground(new Color(0,204,0));
-        this.filter.add(newButton);
+        newButton.setForeground(Color.WHITE);
+        newButton.setFont(new Font("Cascadia Code",Font.PLAIN,12));
+        newButton.addActionListener(new ActionListener()
+                {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filter.remove(newButton);
+                filter.repaint();
+                filter.revalidate();
+            }
+        });
+        filter.add(newButton);
+        repaint();
+        revalidate();
+    }
+    public void initOverviewData(int[] arr)
+    {
+        lblPhongTrong.setText(String.valueOf(arr[0]));
+        lblMatch_Room.setText(String.valueOf(arr[1]));
+        lblShortTerm.setText(String.valueOf(arr[2]));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +114,7 @@ public class Post_Form extends javax.swing.JPanel {
         btnLower2M = new javax.swing.JButton();
         btn2to4 = new javax.swing.JButton();
         btn4to7 = new javax.swing.JButton();
-        btn7to10 = new javax.swing.JButton();
+        btn7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel6 = new javax.swing.JLabel();
@@ -250,15 +287,10 @@ public class Post_Form extends javax.swing.JPanel {
         btn4to7.setForeground(new java.awt.Color(255, 255, 255));
         btn4to7.setText("Từ 4-7 triệu");
 
-        btn7to10.setBackground(new java.awt.Color(0, 204, 0));
-        btn7to10.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
-        btn7to10.setForeground(new java.awt.Color(255, 255, 255));
-        btn7to10.setText("Từ 7 - 10 triệu");
-        btn7to10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn7to10ActionPerformed(evt);
-            }
-        });
+        btn7.setBackground(new java.awt.Color(0, 204, 0));
+        btn7.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
+        btn7.setForeground(new java.awt.Color(255, 255, 255));
+        btn7.setText("Trên 7 triệu");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -268,7 +300,7 @@ public class Post_Form extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAllPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn7to10)
+                    .addComponent(btn7)
                     .addComponent(btn4to7)
                     .addComponent(btn2to4)
                     .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +324,7 @@ public class Post_Form extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn4to7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn7to10)
+                .addComponent(btn7)
                 .addGap(3, 3, 3))
         );
 
@@ -412,7 +444,7 @@ public class Post_Form extends javax.swing.JPanel {
         );
 
         filter.setBackground(new java.awt.Color(255, 255, 255));
-        filter.setLayout(new javax.swing.BoxLayout(filter, javax.swing.BoxLayout.LINE_AXIS));
+        filter.setPreferredSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -421,18 +453,18 @@ public class Post_Form extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(filter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -463,22 +495,18 @@ public class Post_Form extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn7to10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7to10ActionPerformed
-
-    }//GEN-LAST:event_btn7to10ActionPerformed
-
     private void CustomButtonCode()
     {
         btn2to4.setUI(new StyledButtonUI());
         btn4to7.setUI(new StyledButtonUI());
-        btn7to10.setUI(new StyledButtonUI());
+        btn7.setUI(new StyledButtonUI());
         btnAllPrice.setUI(new StyledButtonUI());
         btnLower2M.setUI(new StyledButtonUI());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2to4;
     private javax.swing.JButton btn4to7;
-    private javax.swing.JButton btn7to10;
+    private javax.swing.JButton btn7;
     private javax.swing.JButton btnAllPrice;
     private javax.swing.JButton btnLower2M;
     private view.EmptyRoom emptyRoom1;

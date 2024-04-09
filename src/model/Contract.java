@@ -148,5 +148,4 @@ class ContractOwner extends Contract
     public void setNumberofRoom(int numberofRoom) {
         this.numberofRoom = numberofRoom;
     }
-   
 }

@@ -4,12 +4,9 @@
  */
 package DAO;
 
-import java.lang.reflect.AccessFlag;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import model.Location;
 import model.Room;
@@ -83,6 +80,34 @@ public class RoomDAO {
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public int[] getDataRoom()
+    {
+        String query = "SELECT COUNT(*) AS CNT FROM ROOM WHERE STATUS=?";
+        String query1 = "SELECT COUNT(*) AS CNTMATCH FROM ROOM WHERE ISALLOWMATCH=?";
+        int[] arr = new int[3];
+        try
+            {
+                PreparedStatement ps1 = connection.prepareStatement(query);
+                PreparedStatement ps2 = connection.prepareStatement(query1);
+                ps1.setString(1, "TRỐNG");
+                ps2.setString(1, "CÓ");
+                ResultSet resultSet = ps1.executeQuery();
+                ResultSet resultSet1 = ps2.executeQuery();
+                if(resultSet.next())
+                {
+                    arr[0]=resultSet.getInt("CNT");
+                }
+                if (resultSet1.next())
+                {
+                    arr[1] = resultSet1.getInt("CNTMATCH");
+                }
+                arr[2] = 0;
+                return arr;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

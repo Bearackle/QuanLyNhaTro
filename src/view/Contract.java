@@ -75,7 +75,7 @@ public class Contract extends javax.swing.JPanel {
         <p>Tiền điện %dđ/kwh tính theo chỉ số công tơ, thanh toán vào cuối các tháng.</p>
 
         <p>Tiền nước: %dđ/người thanh toán vào đầu các tháng.</p>
-        <p>Hợp đồng có giá trị kể từ ngày %s tháng %s năm 20%s đến ngày %s tháng %s năm 20%s</p>                
+        <p>Hợp đồng có giá trị %d tháng kể từ ngày ký</p>                
         <p>Tiền đặt cọc: %dp>
         </body>
         </html>""".formatted(model.Contract.getCalendar(contract.getSign_date()).get(Calendar.DAY_OF_MONTH),
@@ -86,9 +86,10 @@ public class Contract extends javax.swing.JPanel {
                 model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.DAY_OF_MONTH),
                 model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.MONTH),
                 model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.YEAR),
-                contract.getPermanent_resident(), contract.getCustomer_ID(),contract.getPhone(),contract.getLocation(),
+                contract.getPermanent_resident(), String.valueOf(contract.getCustomer_ID()),contract.getPhone(),contract.getLocation(),
                 contract.getPrice(),contract.getElectricPrice(),
-                contract.getWaterPrice(),contract.getDeposit());
+                contract.getWaterPrice(), contract.getDuration(),
+                contract.getDeposit());
         jTextPane1.setText(ContractHtml);
         jTextPane1.setEditable(false);
         jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());

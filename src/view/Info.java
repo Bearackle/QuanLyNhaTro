@@ -15,6 +15,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 import model.Contract;
 import model.Customer;
 import model.User;
@@ -26,11 +27,20 @@ import view.CustomControl.StyledButtonUI;
  */
 public class Info extends javax.swing.JPanel {
     private DefaultListModel<Contract> listModel;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form Info
      */
     public Info() {
         initComponents();
+        initTable();
+    }
+    private void initTable()
+    {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Số điện thoại");
+        tableModel.addColumn("Tên");
+        jTable1.setModel(tableModel);
     }
     public void initContract(List<Contract> contracts)
     {

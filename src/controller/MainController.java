@@ -11,6 +11,7 @@ import view.Contract;
 import view.Info;
 import view.MainMonitor;
 import view.Post_Form;
+import view.Welcompage;
 
 /**
  *
@@ -28,6 +29,7 @@ public class MainController {
        public MainController(MainMonitor monitor)
        {
             this.mainMonitor = monitor;
+            mainMonitor.setForm(new Welcompage());
             mainMonitor.setActionListenerForlblPostForm(new ClicklblPost());
             mainMonitor.setActionListenerForlblContract(new ClicklblContract());
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());

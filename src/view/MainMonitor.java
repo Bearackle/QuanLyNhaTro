@@ -5,9 +5,14 @@
 package view;
 
 
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 import javax.swing.JComponent;
 import model.Room;

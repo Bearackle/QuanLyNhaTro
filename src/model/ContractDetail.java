@@ -23,7 +23,15 @@ public class ContractDetail {
     private int Deposit;
     private Date Enter_date;
     private String Customer_Name;
+    private int Duration;
+    public int getDuration() {
+        return Duration;
+    }
 
+    public void setDuration(int Duration) {
+        this.Duration = Duration;
+    }
+    
     public String getCustomer_Name() {
         return Customer_Name;
     }
