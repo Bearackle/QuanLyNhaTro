@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -15,27 +18,27 @@ public class Contract {
     private int RoomID;
     private int Duration; //tinh bang thang thang
     private int Price;
-    private String Signed_date;
+    private Date Signed_date;
     private String Status;
     private int ElecticPrice;
     private int WaterPrice;
     private int Deposit;
-    private String EnterDate;
-    private String CancelDate;
+    private Date EnterDate;
+    private Date CancelDate;
 
-    public String getEnterDate() {
+    public Date getEnterDate() {
         return EnterDate;
     }
 
-    public void setEnterDate(String EnterDate) {
+    public void setEnterDate(Date EnterDate) {
         this.EnterDate = EnterDate;
     }
 
-    public String getCancelDate() {
+    public Date getCancelDate() {
         return CancelDate;
     }
 
-    public void setCancelDate(String CancelDate) {
+    public void setCancelDate(Date CancelDate) {
         this.CancelDate = CancelDate;
     }
     
@@ -87,11 +90,11 @@ public class Contract {
         this.Price = Price;
     }
 
-    public String getSigned_date() {
+    public Date getSigned_date() {
         return Signed_date;
     }
 
-    public void setSigned_date(String Signed_date) {
+    public void setSigned_date(Date Signed_date) {
         this.Signed_date = Signed_date;
     }
 
@@ -126,7 +129,13 @@ public class Contract {
     public void setDeposit(int Deposit) {
         this.Deposit = Deposit;
     }
-    
+     public static Calendar getCalendar(Date date)
+     {
+         Calendar calendar = Calendar.getInstance();
+         calendar.setTime(date);
+         return calendar;
+         
+     }
 }
 
 class ContractOwner extends Contract
@@ -139,4 +148,5 @@ class ContractOwner extends Contract
     public void setNumberofRoom(int numberofRoom) {
         this.numberofRoom = numberofRoom;
     }
+   
 }

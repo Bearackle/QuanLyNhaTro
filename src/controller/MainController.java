@@ -31,7 +31,7 @@ public class MainController {
             mainMonitor.setActionListenerForlblPostForm(new ClicklblPost());
             mainMonitor.setActionListenerForlblContract(new ClicklblContract());
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());
-             mainMonitor.setVisible(true);
+            mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
       {
@@ -45,12 +45,13 @@ public class MainController {
       class ClicklblContract implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            mainMonitor.setForm(new Contract());
+            ContractController contractController = new ContractController(new Contract(), user);
+            mainMonitor.setForm(contractController.RenderForm());
+         //   mainMonitor.setForm();
         }
       }
       class ClickInfo implements ActionListener
       {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             InfoController infoController = new InfoController(new Info(),user);

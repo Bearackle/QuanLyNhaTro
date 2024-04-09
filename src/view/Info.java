@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -45,14 +46,14 @@ public class Info extends javax.swing.JPanel {
     {
         txtcccd.setText(String.valueOf(customer.getCCCD()));
         lblName.setText(customer.getName());
-        txtBirthday.setText(customer.getBirthday());
+        txtBirthday.setText(String.valueOf(customer.getBirthday()));
         txtContractid.setText(String.valueOf(customer.getContractId()));
         txtBankaccount.setText(customer.getBankAccount());
         txtRelativeName.setText(customer.getRelativeName());
         txtsdtRelative.setText(customer.getRelativeNumber());
         lblEmail.setText(customer.getEmail());
         txtsdt.setText(customer.getPhone());
-        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(customer.getImg())).getImage().getScaledInstance(128,176,Image.SCALE_AREA_AVERAGING)));
+        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(customer.getImg())).getImage().getScaledInstance(176,128,Image.SCALE_REPLICATE)));
    
     }
     public void setUserInfo (User user)
@@ -328,7 +329,12 @@ public class Info extends javax.swing.JPanel {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jList1.setBorder(null);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -352,6 +358,11 @@ public class Info extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+            Point p = jList1.indexToLocation(0);
+            System.out.println(p);
+    }//GEN-LAST:event_jList1MouseClicked
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;

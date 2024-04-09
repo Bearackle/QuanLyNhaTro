@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
@@ -13,7 +15,7 @@ public class Customer extends User{
     private String Name;
     private String Phone;
     private String Gender;
-    private String Birthday;
+    private Date Birthday;
     private int ContractId;
     private String BankAccount;
     private String RelativeName;
@@ -52,11 +54,11 @@ public class Customer extends User{
         this.Gender = Gender;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return Birthday;
     }
 
-    public void setBirthday(String Birthday) {
+    public void setBirthday(Date Birthday) {
         this.Birthday = Birthday;
     }
 

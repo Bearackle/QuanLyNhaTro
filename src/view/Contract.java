@@ -5,11 +5,14 @@
 package view;
 
 import java.awt.Image;
+import java.time.LocalDate;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.plaf.ScrollPaneUI;
 import javax.swing.tree.DefaultTreeCellEditor;
+import model.ContractDetail;
+import model.Room;
 import view.CustomControl.CustomScrollBarUI;
-
 /**
  *
  * @author Admin
@@ -21,10 +24,9 @@ public class Contract extends javax.swing.JPanel {
      */
     public Contract() {
         initComponents();
-        LoadContract();
     }
-    private void LoadContract()
-    {
+    public void LoadContract(ContractDetail contract)
+    {        
        String ContractHtml = """
         <!DOCTYPE html>
         <html lang="vi">
@@ -33,13 +35,12 @@ public class Contract extends javax.swing.JPanel {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hợp đồng thuê phòng trọ</title>
         <style>
-            p{margin:20px}
-                                     
+            p{margin:20px}                       
         </head>
         <body>
         <h1 style="text-align: center;">HỢP ĐỒNG THUÊ PHÒNG TRỌ</h1>
 
-        <p style="text-align: center;">Hôm nay ngày …… tháng …. năm ……..; tại địa chỉ: …………….............</p>
+        <p style="text-align: center;">Hôm nay ngày %d tháng %d năm %d; tại địa chỉ: %s</p>
 
         <p style="text-align: center;">………………………………………………………………………………</p>
 
@@ -47,40 +48,47 @@ public class Contract extends javax.swing.JPanel {
 
         <p><strong>1. Đại diện bên cho thuê phòng trọ (Bên A):</strong></p>
         <p>Ông/bà: Cty Quản Lý Nhà Trọ  NDH</p>
-        <p>Số điện thoại:……………………………………………………………………...</p>
+        <p>Số điện thoại: 086 270 3740</p>
 
         <p><strong>2. Bên thuê phòng trọ (Bên B):</strong></p>
 
-        <p>Ông/bà: ………………………………………………. Sinh ngày: ……………..</p>
+        <p>Ông/bà: %s Sinh ngày:%d-%d-%d</p>
 
-        <p>Nơi đăng ký HK thường trú: …………………………………………………….. </p>
+        <p>Nơi đăng ký HK thường trú: %s </p>
 
-        <p>Số CMND: …………………</p>
+        <p>Số CCCD: %s </p>
 
-        <p>Số điện thoại:……………………………………………………………………...</p>
+        <p>Số điện thoại: %s  </p>
 
         <p>Sau khi bàn bạc trên tinh thần dân chủ, hai bên cùng có lợi, cùng thống nhất như sau:</p>
 
-        <p>Bên A đồng ý cho bên B thuê 01 phòng ở tại địa chỉ: …………………………</p>
+        <p>Bên A đồng ý cho bên B thuê 01 phòng ở tại địa chỉ: %s </p>
 
         <p>………………………………………………………………………………………</p>
 
-        <p>Giá thuê: …………………. đ/tháng</p>
+        <p>Giá thuê: %d đ/tháng</p>
 
         <p>Hình thức thanh toán: Chuyển Khoản qua ngân hàng VietComBank</p>
 
         <p>………………………………………………………………………………………</p>
 
-        <p>Tiền điện …………..….đ/kwh tính theo chỉ số công tơ, thanh toán vào cuối các tháng.</p>
+        <p>Tiền điện %dđ/kwh tính theo chỉ số công tơ, thanh toán vào cuối các tháng.</p>
 
-        <p>Tiền nước: ………….đ/người thanh toán vào đầu các tháng.</p>
-
-        <p>Tiền đặt cọc:……………………………………………………………………….</p>
-
-        <p>Hợp đồng có giá trị kể từ ngày …… tháng …… năm 20…. đến ngày ….. tháng …. năm 20….</p>
-
+        <p>Tiền nước: %dđ/người thanh toán vào đầu các tháng.</p>
+        <p>Hợp đồng có giá trị kể từ ngày %s tháng %s năm 20%s đến ngày %s tháng %s năm 20%s</p>                
+        <p>Tiền đặt cọc: %dp>
         </body>
-        </html>""";
+        </html>""".formatted(model.Contract.getCalendar(contract.getSign_date()).get(Calendar.DAY_OF_MONTH),
+                model.Contract.getCalendar(contract.getSign_date()).get(Calendar.MONTH),
+                model.Contract.getCalendar(contract.getSign_date()).get(Calendar.YEAR),
+                contract.getLocation(), 
+                contract.getCustomer_Name(),
+                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.DAY_OF_MONTH),
+                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.MONTH),
+                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.YEAR),
+                contract.getPermanent_resident(), contract.getCustomer_ID(),contract.getPhone(),contract.getLocation(),
+                contract.getPrice(),contract.getElectricPrice(),
+                contract.getWaterPrice(),contract.getDeposit());
         jTextPane1.setText(ContractHtml);
         jTextPane1.setEditable(false);
         jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());

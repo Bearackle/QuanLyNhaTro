@@ -4,9 +4,9 @@
  */
 package view;
 
+import java.awt.Color;
 import view.CustomControl.StyledButtonUI;
 import view.CustomControl.CustomScrollBarUI;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -35,6 +35,17 @@ public class Post_Form extends javax.swing.JPanel {
         }
         jList1.setModel(defaultListModel);
         jList1.setCellRenderer(new RoomItemView());
+    }
+    public void setActionListenerforlbl2M(ActionListener listener)
+    {
+        btnLower2M.addActionListener(listener);
+    }
+    public void addToFilter(String filter)
+    {
+        JButton newButton = new JButton("filer");
+        newButton.setUI(new StyledButtonUI());
+        newButton.setBackground(new Color(0,204,0));
+        this.filter.add(newButton);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +78,6 @@ public class Post_Form extends javax.swing.JPanel {
         btn2to4 = new javax.swing.JButton();
         btn4to7 = new javax.swing.JButton();
         btn7to10 = new javax.swing.JButton();
-        btn10M = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLayeredPane5 = new javax.swing.JLayeredPane();
         jLabel6 = new javax.swing.JLabel();
@@ -76,6 +86,7 @@ public class Post_Form extends javax.swing.JPanel {
         jLayeredPane4 = new javax.swing.JLayeredPane();
         lblCategory = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        filter = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -249,11 +260,6 @@ public class Post_Form extends javax.swing.JPanel {
             }
         });
 
-        btn10M.setBackground(new java.awt.Color(0, 204, 0));
-        btn10M.setFont(new java.awt.Font("Cascadia Mono", 0, 12)); // NOI18N
-        btn10M.setForeground(new java.awt.Color(255, 255, 255));
-        btn10M.setText("Trên 10 triệu");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,7 +271,6 @@ public class Post_Form extends javax.swing.JPanel {
                     .addComponent(btn7to10)
                     .addComponent(btn4to7)
                     .addComponent(btn2to4)
-                    .addComponent(btn10M, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -278,19 +283,17 @@ public class Post_Form extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAllPrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLower2M)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(btn2to4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn4to7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn7to10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn10M)
-                .addContainerGap())
+                .addGap(3, 3, 3))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -392,7 +395,7 @@ public class Post_Form extends javax.swing.JPanel {
                 .addGap(6, 6, 6))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox2, 0, 176, Short.MAX_VALUE)
+                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -408,21 +411,29 @@ public class Post_Form extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        filter.setBackground(new java.awt.Color(255, 255, 255));
+        filter.setLayout(new javax.swing.BoxLayout(filter, javax.swing.BoxLayout.LINE_AXIS));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,17 +459,16 @@ public class Post_Form extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn7to10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7to10ActionPerformed
-      
+
     }//GEN-LAST:event_btn7to10ActionPerformed
 
     private void CustomButtonCode()
     {
-        btn10M.setUI(new StyledButtonUI());
         btn2to4.setUI(new StyledButtonUI());
         btn4to7.setUI(new StyledButtonUI());
         btn7to10.setUI(new StyledButtonUI());
@@ -466,13 +476,13 @@ public class Post_Form extends javax.swing.JPanel {
         btnLower2M.setUI(new StyledButtonUI());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn10M;
     private javax.swing.JButton btn2to4;
     private javax.swing.JButton btn4to7;
     private javax.swing.JButton btn7to10;
     private javax.swing.JButton btnAllPrice;
     private javax.swing.JButton btnLower2M;
     private view.EmptyRoom emptyRoom1;
+    private javax.swing.JPanel filter;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

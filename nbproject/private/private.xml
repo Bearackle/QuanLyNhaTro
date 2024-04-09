@@ -9,7 +9,6 @@
             <file>file:/E:/java/DoAn/src/view/MatchRoom.java</file>
             <file>file:/E:/java/DoAn/src/view/ContractItemView.java</file>
             <file>file:/E:/java/DoAn/src/view/ShortTermRoom.java</file>
-            <file>file:/E:/java/DoAn/src/doan/DoAn.java</file>
             <file>file:/E:/java/DoAn/src/view/gradientBackground.java</file>
             <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
             <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
@@ -27,8 +26,8 @@
             <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
             <file>file:/E:/java/DoAn/src/model/Customer.java</file>
             <file>file:/E:/java/DoAn/src/controller/PostController.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ContractController.java</file>
             <file>file:/E:/java/DoAn/src/view/MainMonitor.java</file>
-            <file>file:/E:/java/DoAn/src/view/loginPanel.java</file>
             <file>file:/E:/java/DoAn/src/view/Contract.java</file>
             <file>file:/E:/java/DoAn/src/model/User.java</file>
         </group>

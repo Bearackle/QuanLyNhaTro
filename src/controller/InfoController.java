@@ -21,9 +21,9 @@ import view.Info;
  */
 public class InfoController {
     private Info info;
-    private ContractDAO contractDAO;
-    private RoomDAO roomDAO;
-    private CustomerDAO customerDAO;
+    private final ContractDAO contractDAO;
+    private final RoomDAO roomDAO;
+    private final CustomerDAO customerDAO;
     private Customer customer;
     private User user;
     public InfoController(Info info,User user)

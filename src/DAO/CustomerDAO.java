@@ -36,7 +36,7 @@ public class CustomerDAO {
                 customer.setName(result.getString("NAME"));
                 customer.setPhone(result.getString("PHONE"));
                 customer.setGender(result.getString("GENDER"));
-                customer.setBirthday(result.getString("BIRTHDAY"));
+                customer.setBirthday(result.getDate("BIRTHDAY"));
                 customer.setContractId(result.getInt("CONTRACTID"));
                 customer.setBankAccount(result.getString("BANKACCOUNT"));
                 customer.setRelativeName(result.getString("RELATIVENAME"));

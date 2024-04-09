@@ -48,7 +48,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         btnThue = new javax.swing.JButton();
         lblVote = new javax.swing.JLabel();
         numberPeople = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblarea = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(650, 205));
@@ -72,7 +72,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         lblLocation.setPreferredSize(new java.awt.Dimension(128, 50));
 
         lblCustomer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCustomer.setText("lblCustomer");
 
         btnInfo.setBackground(new java.awt.Color(51, 204, 0));
         btnInfo.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
@@ -88,9 +87,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
 
         lblVote.setText("Vote");
 
-        numberPeople.setText("numberOfpeople");
-
-        jLabel1.setText("Area");
+        lblarea.setText("Area");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,7 +110,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(numberPeople)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblarea, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +136,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblCustomer)
-                                    .addComponent(jLabel1))
+                                    .addComponent(lblarea))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblVote, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +156,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnThue;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblImage;
@@ -167,6 +163,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblRoomName;
     private javax.swing.JLabel lblVote;
+    private javax.swing.JLabel lblarea;
     private javax.swing.JLabel numberPeople;
     // End of variables declaration//GEN-END:variables
 
@@ -177,6 +174,8 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         this.lblPrice.setText(String.valueOf(room.getPrices()));
         this.lblLocation.setText(String.valueOf(room.getLocation().getDistrict()));
         this.lblRoomName.setText(String.valueOf(room.getName()));
+        this.lblarea.setText(String.valueOf(room.getArea())+" m2");
+        this.lblVote.setText(String.valueOf(room.getVote()) + "/5");
         return this;
     }
 }

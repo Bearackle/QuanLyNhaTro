@@ -21,6 +21,8 @@ public class Room {
     private double WifiPrices;
     private String CustomerName;
     private String IconList;
+    private int Vote;
+    
     public void setIconList(String IconList)
     {
         this.IconList = IconList;
@@ -37,11 +39,11 @@ public class Room {
     {
         this.CustomerName = CustomerName;
     }
-    public int getId() {
+    public int getID() {
         return ID;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.ID = id;
     }
 
@@ -116,42 +118,12 @@ public class Room {
     public void setWifiPrices(double WifiPrices) {
         this.WifiPrices = WifiPrices;
     }
-   public class Location {
-    private String Cty;
-    private String District;
-    private String Ward;
-    private String Street;
 
-    public String getCty() {
-        return Cty;
+    public int getVote() {
+        return Vote;
     }
 
-    public void setCty(String Cty) {
-        this.Cty = Cty;
+    public void setVote(int Vote) {
+        this.Vote = Vote;
     }
-
-    public String getDistrict() {
-        return District;
-    }
-
-    public void setDistrict(String District) {
-        this.District = District;
-    }
-
-    public String getWard() {
-        return Ward;
-    }
-
-    public void setWard(String Ward) {
-        this.Ward = Ward;
-    }
-
-    public String getStreet() {
-        return Street;
-    }
-
-    public void setStreet(String Street) {
-        this.Street = Street;
-    }   
-}
 }

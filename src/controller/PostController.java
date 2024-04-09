@@ -5,6 +5,8 @@
 package controller;
 
 import DAO.RoomDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import model.Room;
 import view.Post_Form;
@@ -20,6 +22,7 @@ public class PostController {
     {
         this.post = post_Form;
         roomDAO = new RoomDAO();
+        post.setActionListenerforlbl2M(new clickforlbl2M());
     }
     public Post_Form renderForm()
     {
@@ -27,5 +30,11 @@ public class PostController {
         post.initList(allRoom);
         return post;
     }
-    
+    class clickforlbl2M implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            post.addToFilter("<2");
+        }
+    }
 }

@@ -4,12 +4,14 @@
  */
 package DAO;
 
+import java.lang.reflect.AccessFlag;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Location;
 import model.Room;
 
 /**
@@ -32,21 +34,16 @@ public class RoomDAO {
             while (result.next())
             {
                 Room room = new Room();
-                room.setId(result.getInt("ROOMID"));
+                room.setID(result.getInt("ROOMID"));
                 room.setName(result.getString("NAME"));
                 room.setPrices(result.getInt("PRICE"));
                 room.setArea(result.getFloat("AREA"));
                 //
-                var tempRoom = new Room();
-                var newLocation = tempRoom.new Location();
+                
                 String[] dblocation = result.getString("LOCATION").split(",");
-                newLocation.setStreet(dblocation[0]);
-                newLocation.setWard(dblocation[1]);
-                newLocation.setDistrict(dblocation[2]);
-                newLocation.setCty(dblocation[3]);
-                room.setLocation(newLocation);
+                room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
                 //
-                ps2.setInt(1,room.getId());
+                ps2.setInt(1,room.getID());
                 String iconList ="";
                 ResultSet allOfthisRoomIcon = ps2.executeQuery();
                 while(allOfthisRoomIcon.next())
@@ -73,19 +70,14 @@ public class RoomDAO {
         if (result.next())
         {
             Room room = new Room();
-               room.setId(result.getInt("ID"));
+               room.setID(result.getInt("ID"));
                 room.setName(result.getString("NAME"));
                 room.setPrices(result.getInt("PRICES"));
                 room.setArea(result.getFloat("AREA"));
                 //
-                var tempRoom = new Room();
-                var newLocation = tempRoom.new Location();
+
                 String[] dblocation = result.getString("LOCATION").split(",");
-                newLocation.setStreet(dblocation[0]);
-                newLocation.setWard(dblocation[1]);
-                newLocation.setDistrict(dblocation[2]);
-                newLocation.setCty(dblocation[3]);
-                room.setLocation(newLocation);  
+                room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
             return room;
         }
         }
