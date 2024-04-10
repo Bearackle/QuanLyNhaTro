@@ -48,10 +48,10 @@ package model;
 
         @Override
         public String toString() {
-            return "%s,%s,%s,%s".formatted(Street,Ward,District,Cty);
+            return "%s, %s, %s, %s".formatted(Street,Ward,District,Cty);
         }
 
-        public Location(String Cty, String District, String Ward, String Street) {
+        public Location( String Street, String Ward, String District, String Cty) {
             this.Cty = Cty;
             this.District = District;
             this.Ward = Ward;

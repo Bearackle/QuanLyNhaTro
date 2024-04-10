@@ -35,7 +35,8 @@ public class Contract extends javax.swing.JPanel {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hợp đồng thuê phòng trọ</title>
         <style>
-            p{margin:20px}                       
+            p{margin:20px;
+             font-size: 14;}                       
         </head>
         <body>
         <h1 style="text-align: center;">HỢP ĐỒNG THUÊ PHÒNG TRỌ</h1>
@@ -66,17 +67,17 @@ public class Contract extends javax.swing.JPanel {
 
         <p>………………………………………………………………………………………</p>
 
-        <p>Giá thuê: %d đ/tháng</p>
+        <p>Giá thuê: %d vnd/tháng</p>
 
         <p>Hình thức thanh toán: Chuyển Khoản qua ngân hàng VietComBank</p>
 
         <p>………………………………………………………………………………………</p>
 
-        <p>Tiền điện %dđ/kwh tính theo chỉ số công tơ, thanh toán vào cuối các tháng.</p>
+        <p>Tiền điện %d vnd/kwh tính theo chỉ số công tơ, thanh toán vào cuối các tháng.</p>
 
-        <p>Tiền nước: %dđ/người thanh toán vào đầu các tháng.</p>
+        <p>Tiền nước: %d vnd/người thanh toán vào đầu các tháng.</p>
         <p>Hợp đồng có giá trị %d tháng kể từ ngày ký</p>                
-        <p>Tiền đặt cọc: %dp>
+        <p>Tiền đặt cọc: %d (vnd)<p>
         </body>
         </html>""".formatted(model.Contract.getCalendar(contract.getSign_date()).get(Calendar.DAY_OF_MONTH),
                 model.Contract.getCalendar(contract.getSign_date()).get(Calendar.MONTH),
