@@ -45,7 +45,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         lblLocation = new javax.swing.JLabel();
         lblCustomer = new javax.swing.JLabel();
         btnInfo = new javax.swing.JButton();
-        btnThue = new javax.swing.JButton();
         lblVote = new javax.swing.JLabel();
         numberPeople = new javax.swing.JLabel();
         lblarea = new javax.swing.JLabel();
@@ -76,17 +75,13 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         btnInfo.setBackground(new java.awt.Color(51, 204, 0));
         btnInfo.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
         btnInfo.setForeground(new java.awt.Color(255, 255, 255));
-        btnInfo.setText("Xem");
+        btnInfo.setText("Trống");
         btnInfo.setUI(new StyledButtonUI());
 
-        btnThue.setBackground(new java.awt.Color(51, 204, 0));
-        btnThue.setFont(new java.awt.Font("Cascadia Code", 0, 12)); // NOI18N
-        btnThue.setForeground(new java.awt.Color(255, 255, 255));
-        btnThue.setText("Thuê");
-        btnThue.setUI(new StyledButtonUI());
-
+        lblVote.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblVote.setText("Vote");
 
+        lblarea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblarea.setText("Area");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -111,12 +106,9 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(numberPeople)
                                     .addComponent(lblarea, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,21 +121,16 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInfo)
                             .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblCustomer)
-                                    .addComponent(lblarea))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblVote, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(numberPeople)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(btnThue)))))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCustomer)
+                            .addComponent(lblarea))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblVote, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numberPeople)
+                            .addComponent(btnInfo))))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -155,7 +142,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnThue;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblImage;

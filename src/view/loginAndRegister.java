@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.JLabel;
 import model.User;
 
@@ -28,6 +29,10 @@ public class loginAndRegister extends javax.swing.JFrame {
     public void setActionBtnLogin(ActionListener listener)
     {
         loginPanel2.setActionListenerButtonLogin(listener);
+    }
+    public void setKeyListenerForthis(KeyListener list)
+    {
+        loginPanel2.setActionListenenrForEnterKey(list);
     }
     /**
      * This method is called from within the constructor to initialize the form.

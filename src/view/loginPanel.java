@@ -9,6 +9,7 @@ import java.awt.TextField;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import model.User;
 import view.CustomControl.StyledButtonUI;
 
@@ -51,6 +52,10 @@ public class loginPanel extends javax.swing.JPanel {
       public void setActionListenerButtonLogin(ActionListener listener)
       {
           btnlogin.addActionListener(listener);
+      }
+      public void setActionListenenrForEnterKey (KeyListener listener)
+      {
+          this.addKeyListener(listener);
       }
     /**
      * This method is called from within the constructor to initialize the form.

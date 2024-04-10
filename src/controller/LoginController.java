@@ -7,6 +7,8 @@ package controller;
 import DAO.AccountDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import model.User;
 import view.loginAndRegister;
@@ -23,6 +25,7 @@ public class LoginController {
            this.logAndRegister = logAndRegister;
            logAndRegister.setVisible(true);
            logAndRegister.setActionBtnLogin(new btnLogin());
+           logAndRegister.setKeyListenerForthis(new EnterLogin());
        }
        public void getDataLogin()
        {
@@ -43,4 +46,19 @@ public class LoginController {
              getDataLogin();
         }
        }
+        class EnterLogin implements KeyListener{
+               @Override
+               public void keyTyped(KeyEvent e) {       
+               }
+               @Override
+               public void keyPressed(KeyEvent e) {
+                   if ( e.getKeyCode() == KeyEvent.VK_ENTER)
+                   {
+                       getDataLogin();
+                   }
+               }
+               @Override
+               public void keyReleased(KeyEvent e) {
+               }
+        }
 }

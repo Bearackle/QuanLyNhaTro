@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import model.Location;
 import model.Room;
 
@@ -35,6 +36,7 @@ public class RoomDAO {
                 room.setName(result.getString("NAME"));
                 room.setPrices(result.getInt("PRICE"));
                 room.setArea(result.getFloat("AREA"));
+                room.setCategoryId(result.getInt("CATEGORYID"));
                 //
                 
                 String[] dblocation = result.getString("LOCATION").split(",");

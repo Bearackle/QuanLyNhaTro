@@ -27,14 +27,40 @@ public class PostController {
         post.setActionListenerforlbl4to7(new clickforlbl4to7());
         post.setActionListnerforlbl7(new clickforlbl7());
         post.setActionListenerforlblAllPrice(new clickForlblAllPrice());
-       
+        renderList(0, "Tất cả", "Tất cả");
     }
     public Post_Form renderForm()
     {
+        return post;
+    }
+    private void renderList(int codePrice, String codeLocation,String codeCategory)
+    {
         List<Room> allRoom = roomDAO.getAllRoom();
+        filterPrice(allRoom, codePrice);
+        filterCategory(allRoom, codeCategory);
+        filterCategory(allRoom, codeCategory);
         post.initList(allRoom);
         post.initOverviewData(roomDAO.getDataRoom());
-        return post;
+    }
+    public void filterPrice(List<Room> list, int codePrice)
+    {
+        switch (codePrice){
+            case 1 -> list.removeIf(r -> r.getPrices() > 2000000);
+            case 2 -> list.removeIf(r -> r.getPrices() < 2000000 && r.getPrices() > 4000000);
+            case 3 -> list.removeIf(r -> r.getPrices() < 4000000 && r.getPrices() > 7000000);
+            case 4 -> list.removeIf(r -> r.getPrices() < 7000000);
+            default -> list.removeIf(r -> r.getPrices() < 0);
+        }
+    }
+    public void filterLocation(List<Room> list, String codeLocation)
+    {
+        list.removeIf(r -> !r.getLocation().getDistrict().equalsIgnoreCase(codeLocation));
+    }
+    public void filterCategory(List<Room> list, String Category)
+    {
+        list.removeIf(r -> {int temp = r.getCategoryId()/100;
+            return !Category.contains(String.valueOf(temp));
+            });
     }
     class clickforlbl2M implements ActionListener{
 

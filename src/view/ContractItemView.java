@@ -45,7 +45,6 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
         lblEnter_date = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setPreferredSize(new java.awt.Dimension(630, 213));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -64,12 +63,16 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Ngày dọn vào:");
 
+        lblRoomId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRoomId.setText("jLabel6");
 
+        lblPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPrice.setText("jLabel7");
 
+        lblduration.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblduration.setText("jLabel8");
 
+        lblEnter_date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEnter_date.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -104,11 +107,11 @@ public class ContractItemView extends javax.swing.JPanel implements ListCellRend
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblRoomId))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(lblPrice))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblduration))

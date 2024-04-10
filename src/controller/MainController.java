@@ -41,7 +41,6 @@ public class MainController {
         public void actionPerformed(ActionEvent e) {
             PostController postController = new PostController(new Post_Form());
             mainMonitor.setForm(postController.renderForm());
-           
         }     
       }
       class ClicklblContract implements ActionListener{
@@ -58,7 +57,6 @@ public class MainController {
         public void actionPerformed(ActionEvent e) {
             InfoController infoController = new InfoController(new Info(),user);
             mainMonitor.setForm(infoController.Render());
-        }
-          
+        }         
       }
 }
