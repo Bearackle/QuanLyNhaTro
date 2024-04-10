@@ -37,7 +37,7 @@ public class PostController {
     {
         List<Room> allRoom = roomDAO.getAllRoom();
         filterPrice(allRoom, codePrice);
-        filterCategory(allRoom, codeCategory);
+        filterCategory(allRoom, codeLocation);
         filterCategory(allRoom, codeCategory);
         post.initList(allRoom);
         post.initOverviewData(roomDAO.getDataRoom());
@@ -54,12 +54,12 @@ public class PostController {
     }
     public void filterLocation(List<Room> list, String codeLocation)
     {
-        list.removeIf(r -> !r.getLocation().getDistrict().equalsIgnoreCase(codeLocation));
+        list.removeIf(r -> r.getLocation().getDistrict().equalsIgnoreCase(codeLocation));
     }
     public void filterCategory(List<Room> list, String Category)
     {
         list.removeIf(r -> {int temp = r.getCategoryId()/100;
-            return !Category.contains(String.valueOf(temp));
+            return Category.contains(String.valueOf(temp));
             });
     }
     class clickforlbl2M implements ActionListener{
@@ -68,6 +68,7 @@ public class PostController {
         public void actionPerformed(ActionEvent e) {
            //
             post.addToFilter("2 Triệu");
+            
         }
     }
     class clickforlbl2to4 implements ActionListener

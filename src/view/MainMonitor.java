@@ -48,6 +48,15 @@ public class MainMonitor extends javax.swing.JFrame {
     {
         btninfo.addActionListener(listener);
     }
+    public void setActionListenerForbtnLogout(ActionListener listener)
+    {
+        btnlogout.addActionListener(listener);
+    }
+    public void DisposeFrame()
+    {
+        this.setVisible(false);
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,7 +76,7 @@ public class MainMonitor extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnlogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,7 +144,7 @@ public class MainMonitor extends javax.swing.JFrame {
         jButton4.setContentAreaFilled(false);
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Thông báo");
         jButton5.setBorderPainted(false);
@@ -143,12 +152,12 @@ public class MainMonitor extends javax.swing.JFrame {
         jButton5.setDefaultCapable(false);
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 51, 51));
-        jButton6.setText("Báo lỗi");
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnlogout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnlogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogout.setText("Đăng xuất");
+        btnlogout.setBorder(null);
+        btnlogout.setBorderPainted(false);
+        btnlogout.setContentAreaFilled(false);
 
         javax.swing.GroupLayout menu1Layout = new javax.swing.GroupLayout(menu1);
         menu1.setLayout(menu1Layout);
@@ -176,17 +185,16 @@ public class MainMonitor extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menu1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(menu1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(btnContract, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menu1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menu1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menu1Layout.setVerticalGroup(
@@ -208,11 +216,11 @@ public class MainMonitor extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(btninfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         getContentPane().add(menu1, java.awt.BorderLayout.WEST);
@@ -264,12 +272,12 @@ public class MainMonitor extends javax.swing.JFrame {
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnPost;
     private javax.swing.JButton btninfo;
+    private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private view.Menu menu1;

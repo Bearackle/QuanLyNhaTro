@@ -6,12 +6,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import model.User;
 import view.Contract;
 import view.Info;
 import view.MainMonitor;
 import view.Post_Form;
 import view.Welcompage;
+import view.loginAndRegister;
 
 /**
  *
@@ -33,6 +35,7 @@ public class MainController {
             mainMonitor.setActionListenerForlblPostForm(new ClicklblPost());
             mainMonitor.setActionListenerForlblContract(new ClicklblContract());
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());
+            mainMonitor.setActionListenerForbtnLogout(new ClickLogout());
             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
@@ -59,4 +62,16 @@ public class MainController {
             mainMonitor.setForm(infoController.Render());
         }         
       }
+      class ClickLogout implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int i = JOptionPane.showConfirmDialog(mainMonitor, "Bạn có chắc muốn đăng xuất?","Đăng xuất", JOptionPane.YES_NO_OPTION);
+            if(i==JOptionPane.YES_OPTION)
+            {
+            mainMonitor.DisposeFrame();
+            new LoginController(new loginAndRegister());
+            }
+      }
+    }  
 }

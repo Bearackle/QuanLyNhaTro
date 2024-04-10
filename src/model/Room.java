@@ -22,6 +22,15 @@ public class Room {
     private String CustomerName;
     private String IconList;
     private int Vote;
+    private int CategoryId;
+
+    public int getCategoryId() {
+        return CategoryId;
+    }
+
+    public void setCategoryId(int CategoryId) {
+        this.CategoryId = CategoryId;
+    }
     
     public void setIconList(String IconList)
     {

@@ -28,7 +28,7 @@ public class loginPanel extends javax.swing.JPanel {
         addPlaceHolder(txtLoginName);
         addPlaceHolder(pwf);
     }
-    public void addPlaceHolder(JTextField txtf)
+    private void addPlaceHolder(JTextField txtf)
     {
         Font font = txtf.getFont();
         font = font.deriveFont(Font.ITALIC);
