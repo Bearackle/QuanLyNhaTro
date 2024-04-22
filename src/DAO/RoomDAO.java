@@ -23,7 +23,7 @@ public class RoomDAO {
         connection = DataBaseConnection.getConnection();
         List<Room> allRoom = new ArrayList<>();
         String query = "SELECT * FROM ROOM";
-        String query2 = "SELECT * FROM ROOMIMAGE WHERE ROOMID=?";
+        String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
         try 
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -38,18 +38,12 @@ public class RoomDAO {
                 room.setArea(result.getFloat("AREA"));
                 room.setCategoryId(result.getInt("CATEGORYID"));
                 //
-                
                 String[] dblocation = result.getString("LOCATION").split(",");
                 room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
                 //
                 ps2.setInt(1,room.getID());
-                String iconList ="";
-                ResultSet allOfthisRoomIcon = ps2.executeQuery();
-                while(allOfthisRoomIcon.next())
-                {
-                    iconList = allOfthisRoomIcon.getString("PATH");
-                }
-                room.setIconList(iconList);
+                ResultSet thisRoomIcon = ps2.executeQuery();
+                room.setIconList(thisRoomIcon.next() ? thisRoomIcon.getString("PATH") : "NOT FOUND");
                 allRoom.add(room);
             }
           return allRoom;
@@ -111,6 +105,25 @@ public class RoomDAO {
                 return arr;
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+    public String[] getRoomImages(int RoomId)
+    {
+        try {
+            String query = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=?";
+            String str = new String();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, RoomId);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next())
+            {
+                str = String.join(" ",resultSet.getString("PATH"));
+            }
+           return str.split(" ");
+        } catch (SQLException exception)
+        {
+            exception.printStackTrace();
         }
         return null;
     }

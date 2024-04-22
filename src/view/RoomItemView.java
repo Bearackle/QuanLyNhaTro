@@ -138,7 +138,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
 
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
-
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInfo;

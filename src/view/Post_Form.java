@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import view.CustomControl.StyledButtonUI;
 import view.CustomControl.CustomScrollBarUI;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -57,6 +59,14 @@ public class Post_Form extends javax.swing.JPanel {
     public void setActionListenerforlblAllPrice(ActionListener listener)
     {
         btnAllPrice.addActionListener(listener);
+    }
+    public void setMouseEventForJlist(MouseListener listener)
+    {
+        jList1.addMouseListener(listener);
+    }
+    public int getIndexofSelectedItem()
+    {
+        return jList1.getSelectedIndex();
     }
     public void addToFilter(String filterString)
     {
@@ -494,7 +504,7 @@ public class Post_Form extends javax.swing.JPanel {
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void CustomButtonCode()
     {
         btn2to4.setUI(new StyledButtonUI());

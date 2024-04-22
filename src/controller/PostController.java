@@ -7,6 +7,8 @@ package controller;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import model.Room;
 import view.Post_Form;
@@ -16,8 +18,8 @@ import view.Post_Form;
  * @author Admin
  */
 public class PostController {
-    private Post_Form post;
-    private RoomDAO roomDAO;
+    private final Post_Form post;
+    private final RoomDAO roomDAO;
     public PostController(Post_Form post_Form)
     {
         this.post = post_Form;
@@ -27,6 +29,7 @@ public class PostController {
         post.setActionListenerforlbl4to7(new clickforlbl4to7());
         post.setActionListnerforlbl7(new clickforlbl7());
         post.setActionListenerforlblAllPrice(new clickForlblAllPrice());
+        post.setMouseEventForJlist(new clickforItem());
         renderList(0, "Tất cả", "Tất cả");
     }
     public Post_Form renderForm()
@@ -100,5 +103,12 @@ public class PostController {
         public void actionPerformed(ActionEvent e) {
             post.addToFilter("Tất cả");
         }
+    }
+    class clickforItem extends MouseAdapter{
+        public void mouseClicked(MouseEvent evt)
+        {
+           
+        }
+        
     }
 }
