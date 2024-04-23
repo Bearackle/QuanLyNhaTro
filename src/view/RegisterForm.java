@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import model.User;
+
 /**
  *
  * @author Admin
@@ -16,7 +19,14 @@ public class RegisterForm extends javax.swing.JFrame {
     public RegisterForm() {
         initComponents();
     }
-
+    public User getUser()
+    {
+        return registerPanel2.getUser();
+    }
+    public void setActionListenerForRegisterButton(ActionListener listener)
+    {
+        registerPanel2.setActionListenerbtnSumbit(listener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

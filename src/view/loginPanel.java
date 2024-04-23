@@ -57,6 +57,10 @@ public class loginPanel extends javax.swing.JPanel {
       {
           this.addKeyListener(listener);
       }
+      public void setActionListenerforRegisterBtn(ActionListener listener)
+      {
+          btnRegisNewUser.addActionListener(listener);
+      }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

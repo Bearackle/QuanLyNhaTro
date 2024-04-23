@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import model.User;
 import view.CustomControl.SonoFont;
+import view.RegisterForm;
 import view.loginAndRegister;
 
 /**
@@ -23,11 +24,11 @@ public class LoginController {
        private AccountDAO accountDAO;
        public LoginController(loginAndRegister logAndRegister)
        {
-           SonoFont.setSonoFontForAllComponent();
            this.logAndRegister = logAndRegister;
            logAndRegister.setVisible(true);
            logAndRegister.setActionBtnLogin(new btnLogin());
            logAndRegister.setKeyListenerForthis(new EnterLogin());
+           logAndRegister.setActionListenerforRegisterBtn(new btnNewRegister());
        }
        public void getDataLogin()
        {
@@ -62,5 +63,13 @@ public class LoginController {
                @Override
                public void keyReleased(KeyEvent e) {
                }
+        }
+        class btnNewRegister implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             logAndRegister.setVisible(false);
+             RegisterController register = new RegisterController(new RegisterForm());
+             
+        }
         }
 }

@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import model.Room;
 import view.Post_Form;
+import view.loginAndRegister;
 
 /**
  *
@@ -108,8 +109,12 @@ public class PostController {
     class clickforItem extends MouseAdapter{
         public void mouseClicked(MouseEvent evt)
         {
-           RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem()));
-        }
-        
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() 
+            {
+               RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem())); 
+            }
+        });
+       }
     }
 }

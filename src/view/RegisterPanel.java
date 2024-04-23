@@ -5,11 +5,11 @@
 package view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
-
+import model.User;
 /**
  *
  * @author Admin
@@ -36,6 +36,16 @@ public class RegisterPanel extends javax.swing.JPanel {
         font = font.deriveFont(Font.PLAIN|Font.BOLD);
         txtf.setFont(font);
         txtf.setForeground(Color.black);
+    }
+    public User getUser()
+    {
+        User user = new User();
+        user.setName(txthoten.getText());
+        user.setPhone(txtsdt.getText());
+        user.setEmail(txtemail.getText());
+        user.setRole(String.valueOf(jComboBox2.getSelectedItem()));
+        user.setPassword(String.valueOf(new String(pwf.getPassword()))); 
+        return user;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -281,7 +291,10 @@ public class RegisterPanel extends javax.swing.JPanel {
             txtemail.setText("email không hợp lệ...");
         }
     }//GEN-LAST:event_txtemailFocusLost
-
+    public void setActionListenerbtnSumbit(ActionListener listener)
+    {
+        jButton1.addActionListener(listener);
+    }
     private void txthotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthotenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txthotenActionPerformed

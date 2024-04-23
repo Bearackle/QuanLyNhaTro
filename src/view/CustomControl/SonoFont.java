@@ -4,7 +4,6 @@
  */
 package view.CustomControl;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import javax.swing.UIManager;
@@ -13,17 +12,25 @@ import javax.swing.UIManager;
  *
  * @author Admin
  */
-public class SonoFont {
-    public static void setSonoFontForAllComponent()
-    {
-         try {
-            File file = new File("src/resource/Sono-Regular.ttf");
-           Font font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(44f).deriveFont(Font.BOLD);
-            UIManager.put("Label.font", font);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
+    public class SonoFont {
+        public static void setSonoFontForAllComponent()
+        {
+             try {
+               File file = new File("src/resource/Sono-Regular.ttf");
+               Font font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(18f).deriveFont(Font.BOLD);
+               setUIFont(new javax.swing.plaf.FontUIResource(font));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
         }
-        
+        public static void setUIFont (javax.swing.plaf.FontUIResource f){
+        java.util.Enumeration keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+          Object key = keys.nextElement();
+          Object value = UIManager.get(key);
+          if (value instanceof javax.swing.plaf.FontUIResource)
+            UIManager.put(key, f);
+          }
+        } 
     }
-}

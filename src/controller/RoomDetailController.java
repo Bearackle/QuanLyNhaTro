@@ -7,8 +7,11 @@ package controller;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Room;
 import view.CustomControl.BufferedImageCreator;
 import view.RoomDetail;
@@ -23,21 +26,15 @@ public class RoomDetailController {
     private Room room;
     public RoomDetailController(RoomDetail roomDetail){
         this.roomDetail = roomDetail;
+        roomDetail.setDefaultCloseOperation(RoomDetail.DISPOSE_ON_CLOSE);
         roomDAO = new RoomDAO();
     }
     public RoomDetailController(Room room)
     {
         this(new RoomDetail());
         this.room = room;
+        roomDetail.initImage(roomDAO.getRoomImages(room.getID()));
         roomDetail.initData(this.room);
     }
     
-    
-    class clickForNextBtn implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-                
-        }
-        
-    }
 }

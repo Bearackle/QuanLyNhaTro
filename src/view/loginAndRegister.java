@@ -34,6 +34,10 @@ public class loginAndRegister extends javax.swing.JFrame {
     {
         loginPanel2.setActionListenenrForEnterKey(list);
     }
+    public void setActionListenerforRegisterBtn(ActionListener listener)
+    {
+        loginPanel2.setActionListenerforRegisterBtn(listener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
