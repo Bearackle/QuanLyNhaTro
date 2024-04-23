@@ -20,6 +20,7 @@ import view.Post_Form;
 public class PostController {
     private final Post_Form post;
     private final RoomDAO roomDAO;
+    private List<Room> allRoom;
     public PostController(Post_Form post_Form)
     {
         this.post = post_Form;
@@ -38,7 +39,7 @@ public class PostController {
     }
     private void renderList(int codePrice, String codeLocation,String codeCategory)
     {
-        List<Room> allRoom = roomDAO.getAllRoom();
+        allRoom = roomDAO.getAllRoom();
         filterPrice(allRoom, codePrice);
         filterCategory(allRoom, codeLocation);
         filterCategory(allRoom, codeCategory);
@@ -107,7 +108,7 @@ public class PostController {
     class clickforItem extends MouseAdapter{
         public void mouseClicked(MouseEvent evt)
         {
-           
+           RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem()));
         }
         
     }

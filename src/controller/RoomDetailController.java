@@ -5,7 +5,12 @@
 package controller;
 
 import DAO.RoomDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import model.Room;
+import view.CustomControl.BufferedImageCreator;
 import view.RoomDetail;
 
 /**
@@ -18,14 +23,21 @@ public class RoomDetailController {
     private Room room;
     public RoomDetailController(RoomDetail roomDetail){
         this.roomDetail = roomDetail;
+        roomDAO = new RoomDAO();
     }
     public RoomDetailController(Room room)
     {
         this(new RoomDetail());
         this.room = room;
+        roomDetail.initData(this.room);
     }
-    public void initData()
-    {
+    
+    
+    class clickForNextBtn implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                
+        }
         
     }
 }

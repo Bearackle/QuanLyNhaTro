@@ -18,9 +18,12 @@ import model.Room;
  */
 public class RoomDAO {
     private Connection connection;
-    public List<Room> getAllRoom()
+    public RoomDAO()
     {
         connection = DataBaseConnection.getConnection();
+    }
+    public List<Room> getAllRoom()
+    {
         List<Room> allRoom = new ArrayList<>();
         String query = "SELECT * FROM ROOM";
         String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
@@ -37,6 +40,8 @@ public class RoomDAO {
                 room.setPrices(result.getInt("PRICE"));
                 room.setArea(result.getFloat("AREA"));
                 room.setCategoryId(result.getInt("CATEGORYID"));
+                room.setIsAllowMatch(result.getString("ISALLOWMATCH"));
+                room.setDescription(result.getString("DECRIPTION"));
                 //
                 String[] dblocation = result.getString("LOCATION").split(",");
                 room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
@@ -67,6 +72,7 @@ public class RoomDAO {
                 room.setName(result.getString("NAME"));
                 room.setPrices(result.getInt("PRICES"));
                 room.setArea(result.getFloat("AREA"));
+                room.setIsAllowMatch(result.getString("ISALLOWMATCH"));
                 //
 
                 String[] dblocation = result.getString("LOCATION").split(",");
@@ -118,8 +124,9 @@ public class RoomDAO {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next())
             {
-                str = String.join(" ",resultSet.getString("PATH"));
+                str = String.join(" ",str,resultSet.getString("PATH"));
             }
+            str = str.trim();
            return str.split(" ");
         } catch (SQLException exception)
         {

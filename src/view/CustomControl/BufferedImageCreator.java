@@ -18,7 +18,7 @@ public class BufferedImageCreator {
     public static BufferedImage getBufferedImage(String path) 
     {
         try {
-        BufferedImage input = ImageIO.read(new File(path));
+        BufferedImage input = ImageIO.read(new File("src/"+path));
         BufferedImage image = new BufferedImage(input.getWidth(), input.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = image.createGraphics();
         g.fillRect(0, 0, image.getWidth(), image.getHeight());

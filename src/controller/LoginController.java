@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import model.User;
+import view.CustomControl.SonoFont;
 import view.loginAndRegister;
 
 /**
@@ -22,6 +23,7 @@ public class LoginController {
        private AccountDAO accountDAO;
        public LoginController(loginAndRegister logAndRegister)
        {
+           SonoFont.setSonoFontForAllComponent();
            this.logAndRegister = logAndRegister;
            logAndRegister.setVisible(true);
            logAndRegister.setActionBtnLogin(new btnLogin());

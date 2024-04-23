@@ -14,7 +14,7 @@ public class Room {
     private int Prices;
     private double Area;
     private Location location;
-    private String Decription;
+    private String Description;
     private double ElecticPrices;
     private double WaterPrices;
     private double GarbagePrices;
@@ -23,7 +23,16 @@ public class Room {
     private String IconList;
     private int Vote;
     private int CategoryId;
+    private String isAllowMatch;
 
+    public String isIsAllowMatch() {
+        return isAllowMatch;
+    }
+
+    public void setIsAllowMatch(String isAllowMatch) {
+        this.isAllowMatch = isAllowMatch;
+    }
+    
     public int getCategoryId() {
         return CategoryId;
     }
@@ -88,12 +97,12 @@ public class Room {
         this.location = location;
     }
 
-    public String getDecription() {
-        return Decription;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setDecription(String Decription) {
-        this.Decription = Decription;
+    public void setDescription(String Decription) {
+        this.Description = Decription;
     }
 
     public double getElecticPrices() {

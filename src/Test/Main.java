@@ -38,7 +38,8 @@ public class Main {
         //</editor-fold>  
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() 
+                
                 new LoginController(new loginAndRegister());
             }
         });

@@ -8,32 +8,23 @@
             <file>file:/E:/java/DoAn/src/DAO/CustomerDAO.java</file>
             <file>file:/E:/java/DoAn/src/view/ContractItemView.java</file>
             <file>file:/E:/java/DoAn/src/view/ShortTermRoom.java</file>
-            <file>file:/E:/java/DoAn/src/view/gradientBackground.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
-            <file>file:/E:/java/DoAn/src/resource/data.sql</file>
-            <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
-            <file>file:/E:/java/DoAn/src/model/Room.java</file>
-            <file>file:/E:/java/DoAn/src/view/RegisterPanel.java</file>
-            <file>file:/E:/java/DoAn/src/model/Location.java</file>
-            <file>file:/E:/java/DoAn/src/view/Post_Form.java</file>
-            <file>file:/E:/java/DoAn/src/Test/Main.java</file>
-            <file>file:/E:/java/DoAn/src/view/RegisterForm.java</file>
-            <file>file:/E:/java/DoAn/src/model/ContractDetail.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/AccountDAO.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/ContractDAO.java</file>
             <file>file:/E:/java/DoAn/src/controller/LoginController.java</file>
-            <file>file:/E:/java/DoAn/src/view/RoomItemView.java</file>
             <file>file:/E:/java/DoAn/src/view/Info.java</file>
+            <file>file:/E:/java/DoAn/src/view/RoomItemView.java</file>
+            <file>file:/E:/java/DoAn/src/view/gradientBackground.java</file>
             <file>file:/E:/java/DoAn/src/DAO/DataBaseConnection.java</file>
+            <file>file:/E:/java/DoAn/src/view/RoomDetail.java</file>
             <file>file:/E:/java/DoAn/src/view/loginAndRegister.java</file>
+            <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
             <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
+            <file>file:/E:/java/DoAn/src/resource/data.sql</file>
             <file>file:/E:/java/DoAn/src/model/Customer.java</file>
             <file>file:/E:/java/DoAn/src/controller/PostController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/ContractController.java</file>
-            <file>file:/E:/java/DoAn/src/view/MainMonitor.java</file>
-            <file>file:/E:/java/DoAn/src/view/loginPanel.java</file>
-            <file>file:/E:/java/DoAn/src/view/Contract.java</file>
+            <file>file:/E:/java/DoAn/src/view/RegisterPanel.java</file>
+            <file>file:/E:/java/DoAn/src/view/CustomControl/BufferedImageCreator.java</file>
+            <file>file:/E:/java/DoAn/src/view/Post_Form.java</file>
             <file>file:/E:/java/DoAn/src/model/User.java</file>
+            <file>file:/E:/java/DoAn/src/Test/Main.java</file>
         </group>
     </open-files>
 </project-private>
