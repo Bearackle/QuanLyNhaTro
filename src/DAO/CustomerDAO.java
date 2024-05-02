@@ -52,4 +52,24 @@ public class CustomerDAO {
         }
         return null;
     }
+    public void CreeateNewCustomer(Customer customer){
+         String query = "INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?)";
+         try {
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setLong(1,customer.getCCCD());
+             ps.setString(2, customer.getName());
+             ps.setString(3, customer.getPhone());
+             ps.setString(4, customer.getGender());
+             ps.setDate(5,new java.sql.Date(customer.getBirthday().getTime()));
+             ps.setNull(6,Types.INTEGER);
+             ps.setString(7, customer.getBankAccount());
+             ps.setString(8, customer.getRelativeName());
+             ps.setString(9, customer.getRelativeNumber());
+             ps.setNull(10, Types.INTEGER);
+             ps.executeUpdate();
+         } catch (SQLException e)
+         {
+             e.printStackTrace();
+         }
+    }
 }

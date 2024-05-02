@@ -52,6 +52,10 @@ public class MainMonitor extends javax.swing.JFrame {
     {
         btnlogout.addActionListener(listener);
     }
+    public void setActionListenerForbtnSearchMatch(ActionListener listener)
+    {
+        btnSearchMatch.addActionListener(listener);
+    }
     public void DisposeFrame()
     {
         this.setVisible(false);
@@ -72,7 +76,7 @@ public class MainMonitor extends javax.swing.JFrame {
         btnContract = new javax.swing.JButton();
         btninfo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSearchMatch = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -123,12 +127,12 @@ public class MainMonitor extends javax.swing.JFrame {
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jButton2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Tìm bạn ở ghép");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSearchMatch.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnSearchMatch.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearchMatch.setText("Tìm bạn ở ghép");
+        btnSearchMatch.setBorderPainted(false);
+        btnSearchMatch.setContentAreaFilled(false);
+        btnSearchMatch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,7 +183,7 @@ public class MainMonitor extends javax.swing.JFrame {
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2))
+                        .addComponent(btnSearchMatch))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,7 +211,7 @@ public class MainMonitor extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btnContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearchMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -271,10 +275,10 @@ public class MainMonitor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnSearchMatch;
     private javax.swing.JButton btninfo;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

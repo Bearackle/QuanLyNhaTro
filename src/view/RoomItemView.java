@@ -39,7 +39,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblImage = new javax.swing.JLabel();
         lblRoomName = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
@@ -48,6 +47,7 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         lblVote = new javax.swing.JLabel();
         numberPeople = new javax.swing.JLabel();
         lblarea = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(650, 205));
@@ -56,8 +56,6 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 180));
-
-        lblImage.setPreferredSize(new java.awt.Dimension(100, 100));
 
         lblRoomName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblRoomName.setText("RoomName");
@@ -89,9 +87,9 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblRoomName, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -108,15 +106,14 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                                     .addComponent(lblarea, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addComponent(lblRoomName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -130,8 +127,11 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblVote, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(numberPeople)
-                            .addComponent(btnInfo))))
-                .addGap(0, 13, Short.MAX_VALUE))
+                            .addComponent(btnInfo)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
 
         add(jPanel1);

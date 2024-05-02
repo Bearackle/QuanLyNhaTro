@@ -35,6 +35,15 @@ public class RoomDetailController {
         this.room = room;
         roomDetail.initImage(roomDAO.getRoomImages(room.getID()));
         roomDetail.initData(this.room);
+        roomDetail.setListenerForbtnThue(new ClickBtnThue());
     }
-    
+    class ClickBtnThue implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             
+             JOptionPane.showMessageDialog(roomDetail, "Đã gửi yêu cầu đến admin!");
+        }
+        
+    }
 }

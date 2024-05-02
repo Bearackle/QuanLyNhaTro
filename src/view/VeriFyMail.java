@@ -27,6 +27,10 @@ public class VeriFyMail extends javax.swing.JPanel {
     {
         jButton1.addActionListener(listener);
     }
+    public void setActionListenerForEnterButton(ActionListener listener)
+    {
+        jButton1.addActionListener(listener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

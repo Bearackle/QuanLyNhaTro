@@ -11,9 +11,12 @@ import model.User;
  */
 public class AccountDAO {
     private Connection connection;
-    public User Authentication(User user)
+    public AccountDAO()
     {
-        connection = DataBaseConnection.getConnection();
+       connection = DataBaseConnection.getConnection();
+    }
+    public User Authentication(User user)
+    { 
         try{
         String query = "SELECT * FROM ACCOUNT WHERE PHONE=?";
         PreparedStatement ps = connection.prepareStatement(query);
@@ -36,5 +39,56 @@ public class AccountDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public void CreateUser(User user)
+    {
+        String query = "INSERT INTO ACCOUNT VALUES(?,?,?,?,?)";
+        try
+        {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, user.getPhone());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getRole());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getPassword());
+            ps.execute();
+        } catch (SQLException e){
+             e.printStackTrace();
+         }
+    }
+    public User getUserByPhoneNumber(String Phone)
+    {
+        User user = new User();
+        String query = "SELECT PHONE, NAME, EMAIL FROM ACCOUNT WHERE PHONE=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, Phone);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                user.setPhone(rs.getString(1));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setImg("icon/PROFILE_IMAGE/PR0E4.jpg");
+                return user;
+            }         
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean isCustomer (String phone)
+    {
+        String query = "SELECT CCCD FROM CUSTOMER WHERE PHONE=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, phone);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

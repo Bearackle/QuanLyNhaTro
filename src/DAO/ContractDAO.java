@@ -115,4 +115,7 @@ public class ContractDAO {
         }
       return null;
     }
+    public void CreateNewContract(Contract contract){
+        
+    }
 }

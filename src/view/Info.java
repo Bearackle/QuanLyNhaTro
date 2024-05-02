@@ -6,6 +6,7 @@ package view;
 
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,20 +28,11 @@ import view.CustomControl.StyledButtonUI;
  */
 public class Info extends javax.swing.JPanel {
     private DefaultListModel<Contract> listModel;
-    private DefaultTableModel tableModel;
     /**
      * Creates new form Info
      */
     public Info() {
         initComponents();
-        initTable();
-    }
-    private void initTable()
-    {
-        tableModel = new DefaultTableModel();
-        tableModel.addColumn("Số điện thoại");
-        tableModel.addColumn("Tên");
-        jTable1.setModel(tableModel);
     }
     public void initContract(List<Contract> contracts)
     {
@@ -64,13 +56,20 @@ public class Info extends javax.swing.JPanel {
         lblEmail.setText(customer.getEmail());
         txtsdt.setText(customer.getPhone());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(customer.getImg())).getImage().getScaledInstance(176,128,Image.SCALE_REPLICATE)));
-   
     }
     public void setUserInfo (User user)
     {
       lblName.setText(user.getName());
-      lblsdt.setText(user.getPhone());
+      txtsdt.setText(user.getPhone());
       lblEmail.setText(user.getEmail());
+    }
+    public void setUpdateBtn(ActionListener listener)
+    {
+        btnUpdate.addActionListener(listener);
+    }
+    public void setBecomeCustomerBtn(ActionListener listener)
+    {
+        btnBecomeCustomer.addActionListener(listener);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,10 +106,8 @@ public class Info extends javax.swing.JPanel {
         txtRelativeName = new javax.swing.JTextField();
         txtsdtRelative = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
+        btnBecomeCustomer = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -168,7 +165,7 @@ public class Info extends javax.swing.JPanel {
                             .addComponent(lblName)
                             .addComponent(lblEmail)
                             .addComponent(lblRoomId))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +184,7 @@ public class Info extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblRoomId))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
@@ -238,39 +235,46 @@ public class Info extends javax.swing.JPanel {
         btnUpdate.setText("Cập nhật");
         btnUpdate.setUI(new StyledButtonUI());
 
+        btnBecomeCustomer.setBackground(new java.awt.Color(0, 204, 0));
+        btnBecomeCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBecomeCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnBecomeCustomer.setText("Trở thành khách hàng");
+        btnBecomeCustomer.setUI(new StyledButtonUI());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCCCD)
-                                    .addComponent(lblsdt)
-                                    .addComponent(lblBirthDay)
-                                    .addComponent(lblContract)
-                                    .addComponent(lblBankAccount)
-                                    .addComponent(lblrelative))
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblRelativesdt)
-                                .addGap(18, 18, 18)))
+                            .addComponent(lblCCCD)
+                            .addComponent(lblsdt)
+                            .addComponent(lblBirthDay)
+                            .addComponent(lblContract)
+                            .addComponent(lblBankAccount)
+                            .addComponent(lblrelative))
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtsdtRelative)
+                            .addComponent(txtsdtRelative, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                             .addComponent(txtcccd)
                             .addComponent(txtsdt)
                             .addComponent(txtBirthday)
                             .addComponent(txtContractid)
                             .addComponent(txtBankaccount)
-                            .addComponent(txtRelativeName))))
+                            .addComponent(txtRelativeName)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBecomeCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblRelativesdt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -280,60 +284,41 @@ public class Info extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCCCD)
                     .addComponent(txtcccd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsdt)
                     .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBirthDay)
                     .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContract)
                     .addComponent(txtContractid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBankAccount)
                     .addComponent(txtBankaccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblrelative)
                     .addComponent(txtRelativeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRelativesdt, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtsdtRelative, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(btnBecomeCustomer))
+                .addContainerGap())
         );
 
         jPanel2.add(jPanel1);
 
         jLayeredPane2.setLayout(new javax.swing.BoxLayout(jLayeredPane2, javax.swing.BoxLayout.LINE_AXIS));
         jPanel2.add(jLayeredPane2);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setPreferredSize(new java.awt.Dimension(300, 252));
-        jPanel5.setLayout(new java.awt.BorderLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel5.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel5);
 
         jLayeredPane1.add(jPanel2);
 
@@ -375,6 +360,7 @@ public class Info extends javax.swing.JPanel {
     }//GEN-LAST:event_jList1MouseClicked
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBecomeCustomer;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -386,10 +372,7 @@ public class Info extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBankAccount;
     private javax.swing.JLabel lblBirthDay;
     private javax.swing.JLabel lblCCCD;

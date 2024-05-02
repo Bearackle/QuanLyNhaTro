@@ -12,6 +12,7 @@ import view.Contract;
 import view.Info;
 import view.MainMonitor;
 import view.Post_Form;
+import view.SearchMatch;
 import view.Welcompage;
 import view.loginAndRegister;
 
@@ -36,6 +37,7 @@ public class MainController {
             mainMonitor.setActionListenerForlblContract(new ClicklblContract());
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());
             mainMonitor.setActionListenerForbtnLogout(new ClickLogout());
+            mainMonitor.setActionListenerForbtnSearchMatch(new ClickSearchMatch());
             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
@@ -74,4 +76,12 @@ public class MainController {
             }
       }
     }  
+    class ClickSearchMatch implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SearchMatchController searchMatchController = new SearchMatchController(new SearchMatch(),user);
+            mainMonitor.setForm(searchMatchController.Renderer());
+        }
+    }
 }

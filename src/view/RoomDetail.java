@@ -4,9 +4,11 @@
  */
 package view;
 
+import com.sun.jdi.connect.spi.TransportService;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
@@ -94,7 +96,9 @@ public class RoomDetail extends javax.swing.JFrame {
        jXMapViewer1.addMouseMotionListener(listener);
        jXMapViewer1.addMouseWheelListener(new ZoomMouseWheelListenerCenter(jXMapViewer1));
    }
-    
+   public void setListenerForbtnThue(ActionListener listener){
+       btnThue.addActionListener(listener);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

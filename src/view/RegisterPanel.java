@@ -187,7 +187,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
         add(jComboBox1, gridBagConstraints);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vai trò", "Người thuê phòng", "Người cho thuê" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ROLE", "CUSTOMER", "OWNER" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;

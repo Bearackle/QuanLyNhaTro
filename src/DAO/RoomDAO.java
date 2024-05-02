@@ -86,6 +86,22 @@ public class RoomDAO {
         }
         return null;
     }
+    public boolean getRoomIsAllowMatch(int ID)
+    {
+         String query  = "SELECT ISALLOWMATCH FROM ROOM WHERE ROOMID=?";
+         try {
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setInt(1, ID);
+             ResultSet rs = ps.executeQuery();
+             if (rs.next()){
+                 return "CÓ".equals(rs.getString(1));
+             }
+         }catch (SQLException e)
+         {
+             e.printStackTrace();
+         }
+         return false;
+    }
     public int[] getDataRoom()
     {
         String query = "SELECT COUNT(*) AS CNT FROM ROOM WHERE STATUS=?";
