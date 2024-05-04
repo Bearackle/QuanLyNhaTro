@@ -11,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import model.User;
-import view.CustomControl.SonoFont;
 import view.RegisterForm;
 import view.loginAndRegister;
 

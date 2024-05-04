@@ -207,7 +207,7 @@ public class Post_Form extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Phòng qua đêm");
+        jLabel3.setText("Phòng ngắn hạn");
 
         javax.swing.GroupLayout shortTermRoom1Layout = new javax.swing.GroupLayout(shortTermRoom1);
         shortTermRoom1.setLayout(shortTermRoom1Layout);
@@ -218,7 +218,7 @@ public class Post_Form extends javax.swing.JPanel {
                 .addGroup(shortTermRoom1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(lblShortTerm, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         shortTermRoom1Layout.setVerticalGroup(
             shortTermRoom1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

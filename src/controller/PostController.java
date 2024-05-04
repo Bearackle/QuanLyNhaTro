@@ -40,7 +40,7 @@ public class PostController {
     }
     private void renderList(int codePrice, String codeLocation,String codeCategory)
     {
-        allRoom = roomDAO.getAllRoom();
+        allRoom = roomDAO.getAllRoom("TRỐNG");
         filterPrice(allRoom, codePrice);
         filterCategory(allRoom, codeLocation);
         filterCategory(allRoom, codeCategory);
@@ -107,6 +107,7 @@ public class PostController {
         }
     }
     class clickforItem extends MouseAdapter{
+        @Override
         public void mouseClicked(MouseEvent evt)
         {
             java.awt.EventQueue.invokeLater(new Runnable() {

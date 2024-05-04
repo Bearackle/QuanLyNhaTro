@@ -5,17 +5,8 @@
 package view;
 
 
-import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.List;
 import javax.swing.JComponent;
-import model.Room;
 
 /**
  *
@@ -56,6 +47,12 @@ public class MainMonitor extends javax.swing.JFrame {
     {
         btnSearchMatch.addActionListener(listener);
     }
+    public void setActionListenerForbtnRegistration(ActionListener listener){
+        btnResident.addActionListener(listener);  
+    }
+    public void setActionListenerforBtnBill(ActionListener listener){
+        btnBill.addActionListener(listener);
+    }
     public void DisposeFrame()
     {
         this.setVisible(false);
@@ -75,10 +72,10 @@ public class MainMonitor extends javax.swing.JFrame {
         btnPost = new javax.swing.JButton();
         btnContract = new javax.swing.JButton();
         btninfo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBill = new javax.swing.JButton();
         btnSearchMatch = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnResident = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -119,13 +116,13 @@ public class MainMonitor extends javax.swing.JFrame {
         btninfo.setBorderPainted(false);
         btninfo.setContentAreaFilled(false);
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Hóa Đơn");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnBill.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnBill.setForeground(new java.awt.Color(255, 255, 255));
+        btnBill.setText("Hóa Đơn");
+        btnBill.setBorderPainted(false);
+        btnBill.setContentAreaFilled(false);
+        btnBill.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBill.setPreferredSize(new java.awt.Dimension(100, 30));
 
         btnSearchMatch.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnSearchMatch.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,12 +138,12 @@ public class MainMonitor extends javax.swing.JFrame {
         jButton3.setContentAreaFilled(false);
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Đăng ký Tạm trú");
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnResident.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnResident.setForeground(new java.awt.Color(255, 255, 255));
+        btnResident.setText("Đăng ký Tạm trú");
+        btnResident.setBorderPainted(false);
+        btnResident.setContentAreaFilled(false);
+        btnResident.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,7 +174,7 @@ public class MainMonitor extends javax.swing.JFrame {
                         .addComponent(btninfo))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4))
+                        .addComponent(btnResident))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -186,7 +183,7 @@ public class MainMonitor extends javax.swing.JFrame {
                         .addComponent(btnSearchMatch))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnContract, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,11 +210,11 @@ public class MainMonitor extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btnSearchMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnResident, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(btninfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -273,14 +270,14 @@ public class MainMonitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBill;
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnPost;
+    private javax.swing.JButton btnResident;
     private javax.swing.JButton btnSearchMatch;
     private javax.swing.JButton btninfo;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

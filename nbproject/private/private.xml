@@ -11,8 +11,10 @@
             <file>file:/E:/java/DoAn/src/view/VeriFyMail.java</file>
             <file>file:/E:/java/DoAn/src/view/RoomDetail.java</file>
             <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
+            <file>file:/E:/java/DoAn/src/resource/data.sql</file>
             <file>file:/E:/java/DoAn/src/view/SearchMatch.java</file>
             <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
+            <file>file:/E:/java/DoAn/src/view/BillPanel.java</file>
             <file>file:/E:/java/DoAn/src/view/Menu.java</file>
             <file>file:/E:/java/DoAn/src/model/Room.java</file>
             <file>file:/E:/java/DoAn/src/view/RegisterPanel.java</file>
@@ -28,6 +30,7 @@
             <file>file:/E:/java/DoAn/src/controller/LoginController.java</file>
             <file>file:/E:/java/DoAn/src/view/Info.java</file>
             <file>file:/E:/java/DoAn/src/icon/PROFILE_IMAGE/PR05.jpg</file>
+            <file>file:/E:/java/DoAn/src/view/loginAndRegister.java</file>
             <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
             <file>file:/E:/java/DoAn/src/view/Welcompage.java</file>
             <file>file:/E:/java/DoAn/src/model/Customer.java</file>
@@ -36,8 +39,10 @@
             <file>file:/E:/java/DoAn/src/view/CustomControl/TableCellAction.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/tableCellRenderForSearchMatch.java</file>
             <file>file:/E:/java/DoAn/src/view/NewCustomer.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ContractController.java</file>
             <file>file:/E:/java/DoAn/src/view/MainMonitor.java</file>
             <file>file:/E:/java/DoAn/src/view/ResidentRegistration.java</file>
+            <file>file:/E:/java/DoAn/src/view/Contract.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/ActionBtnDelete.java</file>
             <file>file:/E:/java/DoAn/src/view/Notify.java</file>
             <file>file:/E:/java/DoAn/src/model/User.java</file>

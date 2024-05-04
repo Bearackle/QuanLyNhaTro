@@ -34,7 +34,7 @@ public class ActionPanel extends javax.swing.JPanel {
 
         actionBtnDelete1 = new view.CustomControl.ActionBtnDelete();
 
-        actionBtnDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-exclamation-mark-24.png"))); // NOI18N
+        actionBtnDelete1.setPreferredSize(new java.awt.Dimension(40, 40));
         add(actionBtnDelete1);
     }// </editor-fold>//GEN-END:initComponents
 

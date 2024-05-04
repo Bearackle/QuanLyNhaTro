@@ -166,7 +166,7 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblShortTerm" min="-2" pref="88" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -202,7 +202,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ph&#xf2;ng qua &#x111;&#xea;m"/>
+                <Property name="text" type="java.lang.String" value="Ph&#xf2;ng ng&#x1eaf;n h&#x1ea1;n"/>
               </Properties>
             </Component>
           </SubComponents>

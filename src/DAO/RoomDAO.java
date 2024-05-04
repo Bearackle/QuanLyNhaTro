@@ -22,15 +22,16 @@ public class RoomDAO {
     {
         connection = DataBaseConnection.getConnection();
     }
-    public List<Room> getAllRoom()
+    public List<Room> getAllRoom(String status)
     {
         List<Room> allRoom = new ArrayList<>();
-        String query = "SELECT * FROM ROOM";
+        String query = "SELECT * FROM ROOM WHERE STATUS=?";
         String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
         try 
         {
             PreparedStatement ps = connection.prepareStatement(query);
             PreparedStatement ps2 = connection.prepareStatement(query2);
+            ps.setString(1, status);
             ResultSet result = ps.executeQuery();
             while (result.next())
             {
@@ -104,26 +105,31 @@ public class RoomDAO {
     }
     public int[] getDataRoom()
     {
-        String query = "SELECT COUNT(*) AS CNT FROM ROOM WHERE STATUS=?";
-        String query1 = "SELECT COUNT(*) AS CNTMATCH FROM ROOM WHERE ISALLOWMATCH=?";
+        String query1 = "SELECT COUNT(*) AS CNT FROM ROOM WHERE STATUS=?";
+        String query2 = "SELECT COUNT(*) AS CNTMATCH FROM ROOM WHERE ISALLOWMATCH=?";
+        String query3 = "SELECT COUNT(*) AS CNTSHORT FROM ROOM WHERE CATEGORYID=600";
         int[] arr = new int[3];
         try
             {
-                PreparedStatement ps1 = connection.prepareStatement(query);
-                PreparedStatement ps2 = connection.prepareStatement(query1);
+                PreparedStatement ps1 = connection.prepareStatement(query1);
+                PreparedStatement ps2 = connection.prepareStatement(query2);
+                PreparedStatement ps3 = connection.prepareStatement(query3);
                 ps1.setString(1, "TRỐNG");
                 ps2.setString(1, "CÓ");
-                ResultSet resultSet = ps1.executeQuery();
-                ResultSet resultSet1 = ps2.executeQuery();
-                if(resultSet.next())
+                ResultSet resultSet1 = ps1.executeQuery();
+                ResultSet resultSet2 = ps2.executeQuery();
+                ResultSet resultSet3 = ps3.executeQuery();
+                if(resultSet1.next())
                 {
-                    arr[0]=resultSet.getInt("CNT");
+                    arr[0]=resultSet1.getInt("CNT");
                 }
-                if (resultSet1.next())
+                if (resultSet2.next())
                 {
-                    arr[1] = resultSet1.getInt("CNTMATCH");
+                    arr[1] = resultSet2.getInt("CNTMATCH");
                 }
-                arr[2] = 0;
+                if (resultSet3.next()){
+                    arr[2] = resultSet3.getInt(1);
+                }
                 return arr;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,5 +155,18 @@ public class RoomDAO {
             exception.printStackTrace();
         }
         return null;
+    }
+    public boolean UpdatePolicy (Long ID,String state){
+        String query = "UPDATE ROOM SET ISALLOWMATCH=? WHERE ROOMID=(SELECT ROOM_ID FROM CONTRACT WHERE CUSTOMER_ID=?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, state);
+            ps.setLong(2, ID);
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

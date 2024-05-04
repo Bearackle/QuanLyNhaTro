@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import model.User;
 import view.CustomControl.TableCellAction;
 import view.CustomControl.tableCellRenderForSearchMatch;
@@ -49,6 +50,9 @@ public class SearchMatch extends javax.swing.JPanel {
     {
         table.getColumnModel().getColumn(2).setCellEditor(new TableCellAction(listener));
     }
+    public int getSelecteditem(){
+        return table.getSelectedRow();
+    }
     
     // setActionListener
     public void setActionForSearchingButton(ActionListener listener)
@@ -59,15 +63,19 @@ public class SearchMatch extends javax.swing.JPanel {
     {
         btnAdd.addActionListener(listener);
     }
-    public void setToggleBtnState(boolean State)
+    public void setToggleBtnListener(ItemListener itemListener)
     {
-        if (State)  //state: true la cho phep , false nguoc lai
+        tggbtn.addItemListener(itemListener);
+    }
+    public void setToggleBtnState (boolean state){
+        if (state)  //state: true la cho phep , false nguoc lai
         {
             tggbtn.setText("Cho phép");
         } else{
             tggbtn.setText("Không cho phép");
         } 
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,7 +151,7 @@ public class SearchMatch extends javax.swing.JPanel {
                     .addComponent(lblsdt)
                     .addComponent(lblten)
                     .addComponent(lblemail))
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,10 +194,7 @@ public class SearchMatch extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Số điện thoại", "Họ và tên", ""
@@ -243,7 +248,7 @@ public class SearchMatch extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSearch))))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()

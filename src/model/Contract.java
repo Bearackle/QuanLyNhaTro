@@ -129,7 +129,7 @@ public class Contract {
     public void setDeposit(int Deposit) {
         this.Deposit = Deposit;
     }
-     public static Calendar getCalendar(Date date)
+    public static Calendar getCalendar(Date date)
      {
          Calendar calendar = Calendar.getInstance();
          calendar.setTime(date);
@@ -144,7 +144,6 @@ class ContractOwner extends Contract
     public int getNumberofRoom() {
         return numberofRoom;
     }
-
     public void setNumberofRoom(int numberofRoom) {
         this.numberofRoom = numberofRoom;
     }

@@ -11,15 +11,18 @@ import java.sql.*;
  * @author Admin
  */
 public class DataBaseConnection {
-    
-    public static Connection getConnection()
+    private static Connection connection;
+    public static Connection CreateConnection()
     {
         try {
-            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl21","C##DOANJAVA","123");
+            connection =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl21","C##DOANJAVA","123");
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
         return null;
+    }
+    public static Connection getConnection(){
+        return connection;
     }
 }

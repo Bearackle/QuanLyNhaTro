@@ -4,6 +4,7 @@
  */
 package view.CustomControl;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,10 +18,17 @@ import javax.swing.border.EmptyBorder;
  * @author Admin
  */
 public class ActionBtnDelete extends JButton{
+    private FlatSVGIcon svgIcon;
+    private void setSVGImage(String image, int width,int height)
+    {
+        svgIcon = new FlatSVGIcon(image,width,height);
+        this.setIcon(svgIcon);
+    }
     public ActionBtnDelete()
     {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3,3,3,3));
+        setSVGImage("icon/detail2.svg",20, 20);
     }
 
     @Override
@@ -32,7 +40,7 @@ public class ActionBtnDelete extends JButton{
         int size = Math.min(width,height);
         int x = (width - size) /2;
         int y = (height - size) /2;
-        g2.setColor(new Color(158,158,158));
+        g2.setColor(new Color(255,255,255));
         g2.fill(new Ellipse2D.Double(x,y,size,size));
         g2.dispose();
         super.paintComponent(g);

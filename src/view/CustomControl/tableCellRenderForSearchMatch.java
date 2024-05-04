@@ -28,6 +28,4 @@ public class tableCellRenderForSearchMatch extends DefaultTableCellRenderer{
         }       
         return actionPanel;
     }
-    
-    
 }

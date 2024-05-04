@@ -13,6 +13,7 @@ public class AccountDAO {
     private Connection connection;
     public AccountDAO()
     {
+       DataBaseConnection.CreateConnection();
        connection = DataBaseConnection.getConnection();
     }
     public User Authentication(User user)

@@ -4,14 +4,19 @@
  */
 package controller;
 
+import DAO.AccountDAO;
+import DAO.CustomerDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import model.Customer;
 import model.User;
+import view.BillPanel;
 import view.Contract;
 import view.Info;
 import view.MainMonitor;
 import view.Post_Form;
+import view.ResidentRegistration;
 import view.SearchMatch;
 import view.Welcompage;
 import view.loginAndRegister;
@@ -23,10 +28,14 @@ import view.loginAndRegister;
 public class MainController {
        private MainMonitor mainMonitor;
        private User user;
+       private Customer customer;
+       private CustomerDAO customerDAO;
        public MainController(User user)
        {
            this(new MainMonitor());
            this.user = user;
+           this.customerDAO = new CustomerDAO();
+           this.customer = customerDAO.getCustomer(user.getPhone());
            mainMonitor.setVisible(true);
        }
        public MainController(MainMonitor monitor)
@@ -38,6 +47,9 @@ public class MainController {
             mainMonitor.setActionListenerForbtnInfo(new ClickInfo());
             mainMonitor.setActionListenerForbtnLogout(new ClickLogout());
             mainMonitor.setActionListenerForbtnSearchMatch(new ClickSearchMatch());
+            mainMonitor.setActionListenerForbtnRegistration(new ClickResidentRegistration());
+            mainMonitor.setActionListenerforBtnBill(new ClickBtnBill());
+            
             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
@@ -76,12 +88,29 @@ public class MainController {
             }
       }
     }  
-    class ClickSearchMatch implements ActionListener{
+    class ClickResidentRegistration implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SearchMatchController searchMatchController = new SearchMatchController(new SearchMatch(),user);
+           RegistrationResidentController controller = new RegistrationResidentController(new ResidentRegistration(),customer);
+           mainMonitor.setForm(controller.Render());
+        }
+        
+    }
+    class ClickSearchMatch implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SearchMatchController searchMatchController = new SearchMatchController(new SearchMatch(),user,customer);
             mainMonitor.setForm(searchMatchController.Renderer());
         }
+    }
+    class ClickBtnBill implements  ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            BillController billController = new BillController(new BillPanel(), customer);
+            mainMonitor.setForm(billController.Render());
+        }
+        
     }
 }

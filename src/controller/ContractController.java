@@ -32,11 +32,10 @@ public class ContractController {
     }
     public void RenderContract(Customer customer)
     {
-        contractView.LoadContract(contractDAO.contractDetailCustomer(customer.getContractId()));
+        contractView.LoadContract(contractDAO.contractDetailCustomer(customer.getCCCD()));
     }
     public void RenderContractNoInfo()
     {
-        
     }
     public Contract RenderForm()
     {
