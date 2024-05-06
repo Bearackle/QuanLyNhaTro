@@ -72,7 +72,8 @@ public class AccountDAO {
                 user.setEmail(rs.getString(3));
                 user.setImg("icon/PROFILE_IMAGE/PR0E4.jpg");
                 return user;
-            }         
+            }
+            return null;
         } catch (SQLException e)
         {
             e.printStackTrace();

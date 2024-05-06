@@ -188,7 +188,7 @@ public class RoomDAO {
         return false;
     }
     public ArrayList<RoomService> GetAllRoomService(int RoomID){
-        String query = "Select * FROM ROOMID=?";
+        String query = "SELECT * FROM ROOMSERVICE WHERE ROOM_ID=?";
         ArrayList<RoomService> allServices = new ArrayList<>();
         try{
             PreparedStatement ps = connection.prepareStatement(query);
@@ -197,7 +197,7 @@ public class RoomDAO {
             while(rs.next()){
                 RoomService roomService = new RoomService();
                 roomService.setID(rs.getInt(1));
-                roomService.setRoomID(2);
+                roomService.setRoomID(rs.getInt(2));
                 roomService.setDescription(rs.getString(3));
                 roomService.setPrice(rs.getInt(4));
                 roomService.setCreateDate(rs.getDate(5));
@@ -210,7 +210,7 @@ public class RoomDAO {
         return null;
     }
     public boolean RequestRoomService(RoomService roomService){
-        String query = "INSERT INTO ROOMSERVICE(ROOM_ID,DECRIPTION,PRICE,CREATED_DATE)  VALUES (?,?,?,?)";
+        String query = "INSERT INTO ROOMSERVICE(ROOM_ID,DESCRIPTION,PRICE,CREATED_DATE) VALUES (?,?,?,?)";
         try{
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1,roomService.getRoomID());

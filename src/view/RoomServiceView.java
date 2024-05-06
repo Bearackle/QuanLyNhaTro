@@ -5,24 +5,45 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.RoomService;
+import view.CustomControl.TableCellAction;
+import view.CustomControl.tableCellRenderForSearchMatch;
 
 /**
  *
  * @author Admin
  */
 public class RoomServiceView extends javax.swing.JPanel {
-
+    private DefaultTableModel model;
     /**
      * Creates new form RoomServiceView
      */
     public RoomServiceView() {
         initComponents();
     }
+    public void initTable(ArrayList<RoomService> roomServices){
+        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch());
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        for (RoomService roomService : roomServices){
+            model.addRow(new Object[]{"#"+roomService.getRoomID(),roomService.getDescription(),roomService.getPrice(),LocalDate.parse(roomService.getCreateDate().toString())});
+        }
+    }
+     public void setActionListenerForbtnPay(ActionListener listener)
+    {
+        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener));
+    }
     public void setActionListenerForFix(ActionListener listener){
         btnFix.addActionListener(listener);
     }
     public void setActionListenerForClean(ActionListener listener){
         btnClean.addActionListener(listener);
+    }
+    public int getSelectedItemTable(){
+        return table.getSelectedRow();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,7 +66,7 @@ public class RoomServiceView extends javax.swing.JPanel {
         btnClean = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setText("Dịch vụ");
@@ -73,18 +94,16 @@ public class RoomServiceView extends javax.swing.JPanel {
 
         jLabel9.setText("Giá: 200.000/ lần");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Mã Phòng", "Mô tả", "Giá", "Ngày thực hiện", "Trạng thái", "Thanh toán"
+                "Mã Phòng", "Mô tả", "Giá", "Ngày thực hiện", "Thanh toán"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table.setRowHeight(45);
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,6 +189,6 @@ public class RoomServiceView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

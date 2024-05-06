@@ -4,9 +4,16 @@
  */
 package view;
 
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import model.Customer;
 import model.User;
+import view.CustomControl.StyledButtonUI;
 import view.CustomControl.TableCellAction;
 import view.CustomControl.tableCellRenderForSearchMatch;
 
@@ -15,36 +22,44 @@ import view.CustomControl.tableCellRenderForSearchMatch;
  * @author Admin
  */
 public class SearchMatch extends javax.swing.JPanel {
-
+    private DefaultTableModel model;
     /**
      * Creates new form SearchMatch
      */
     public SearchMatch() {
         initComponents();
-        initInfoSearch(false);
-        initTable();
-    }
-    public void initInfoSearch(boolean state)
-    {
-        lblemail.setVisible(state);
-        lblsdt.setVisible(state);
-        lblten.setVisible(state);
-        sVGimage1.setVisible(state);
+        SetEmptyContent("Tìm kiếm bạn bè, người thân, hàng xóm...");
     }
     public String getPhoneNumber()
     {
         return String.valueOf(txtSdt.getText());
     }
-    public void setDataInfoSearch(User user)
-    {
-        lblemail.setText(user.getEmail());
-        lblsdt.setText(user.getPhone());
-        lblten.setText(user.getName());
-        sVGimage1.setSVGImage("icon/PROFILE_IMAGE/profileicon.svg",135,135);
+    public void SetEmptyContent(String value){
+            searchInfoPanel.removeAll();
+            JLabel lblNoUserFound = new JLabel(value);
+            lblNoUserFound.setBounds(150, 10, 500, 30);
+            lblNoUserFound.setFont(new Font("Segoe UI", Font.BOLD,30));
+            searchInfoPanel.add(lblNoUserFound);
+            searchInfoPanel.repaint();
+            searchInfoPanel.revalidate();
     }
-    public void initTable()
+    public void setDataInfoSearch(User user){
+            searchInfoPanel.removeAll();
+            panelInfoSearch newPanel = new panelInfoSearch();
+            newPanel.setDataInfoSearch(user);
+            searchInfoPanel.add(newPanel);
+            searchInfoPanel.validate();
+            searchInfoPanel.repaint();
+            newPanel.initInfoSearch(true);
+    }
+    public void initTable(ArrayList<Customer> list)
     {
+        model = (DefaultTableModel) table.getModel();
         table.getColumnModel().getColumn(2).setCellRenderer(new tableCellRenderForSearchMatch());
+        model.setRowCount(0);
+        for (Customer cus : list){
+            model.addRow(new Object[]{cus.getPhone(), cus.getName()});
+        }
     }
     public void setActionListenerForReportbtn(ActionListener listener)
     {
@@ -92,19 +107,16 @@ public class SearchMatch extends javax.swing.JPanel {
         txtSdt = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         searchInfoPanel = new javax.swing.JPanel();
-        sVGimage1 = new view.CustomControl.SVGimage();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        lblsdt = new javax.swing.JLabel();
-        lblten = new javax.swing.JLabel();
-        lblemail = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnAdd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         tggbtn = new javax.swing.JToggleButton();
+        jLayeredPane3 = new javax.swing.JLayeredPane();
+        btnAdd = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,69 +136,30 @@ public class SearchMatch extends javax.swing.JPanel {
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.setOpaque(true);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Tìm kiếm bạn ở ghép");
 
+        btnSearch.setBackground(new java.awt.Color(51, 153, 255));
+        btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Tìm Kiếm");
+        btnSearch.setUI(new StyledButtonUI());
 
         searchInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
         searchInfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lblsdt.setText("jLabel4");
-
-        lblten.setText("jLabel5");
-
-        lblemail.setText("jLabel6");
-
-        jLayeredPane2.setLayer(lblsdt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(lblten, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(lblemail, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblsdt)
-                    .addComponent(lblten)
-                    .addComponent(lblemail))
-                .addContainerGap(446, Short.MAX_VALUE))
+            .addGap(0, 496, Short.MAX_VALUE)
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblsdt)
-                .addGap(31, 31, 31)
-                .addComponent(lblten)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblemail)
-                .addGap(20, 20, 20))
+            .addGap(0, 135, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout searchInfoPanelLayout = new javax.swing.GroupLayout(searchInfoPanel);
-        searchInfoPanel.setLayout(searchInfoPanelLayout);
-        searchInfoPanelLayout.setHorizontalGroup(
-            searchInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchInfoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane2)
-                .addContainerGap())
-        );
-        searchInfoPanelLayout.setVerticalGroup(
-            searchInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchInfoPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(searchInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sVGimage1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addComponent(jLayeredPane2))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        btnAdd.setText("Thêm bạn");
+        searchInfoPanel.add(jLayeredPane2);
 
         jLabel2.setText("Cho phép mọi người tìm kiếm phòng bạn: ");
 
@@ -219,16 +192,25 @@ public class SearchMatch extends javax.swing.JPanel {
 
         tggbtn.setText("Trang thai");
 
+        jLayeredPane3.setLayout(new java.awt.FlowLayout());
+
+        btnAdd.setBackground(new java.awt.Color(255, 204, 102));
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setText("Thêm bạn");
+        btnAdd.setUI(new StyledButtonUI());
+        jLayeredPane3.add(btnAdd);
+
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtSdt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(searchInfoPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(btnAdd, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(tggbtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -236,63 +218,52 @@ public class SearchMatch extends javax.swing.JPanel {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator1)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSearch))))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 560, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 523, Short.MAX_VALUE))
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tggbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tggbtn)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))))
+                    .addComponent(searchInfoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnAdd)
-                .addGap(282, 282, 282))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(btnAdd)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tggbtn))
+                    .addComponent(tggbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -308,15 +279,12 @@ public class SearchMatch extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblemail;
-    private javax.swing.JLabel lblsdt;
-    private javax.swing.JLabel lblten;
-    private view.CustomControl.SVGimage sVGimage1;
     private javax.swing.JPanel searchInfoPanel;
     private javax.swing.JTable table;
     private javax.swing.JToggleButton tggbtn;

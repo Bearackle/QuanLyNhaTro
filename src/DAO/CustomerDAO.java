@@ -5,6 +5,7 @@
 package DAO;
 
 import java.sql.*;
+import java.util.ArrayList;
 import model.Customer;
 import model.ResidentDetail;
 
@@ -104,5 +105,37 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    public boolean UpdateRoomIDMatch(String phone,int RoomID){
+        String query = "UPDATE CUSTOMER SET ROOMIDMATCH=? WHERE PHONE=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, RoomID);
+            ps.setString(2, phone);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public ArrayList<Customer> getAllRoommate(int RoomID){
+        String query = "SELECT NAME,PHONE FROM CUSTOMER WHERE ROOMIDMATCH=?";
+        ArrayList <Customer> Roommates = new ArrayList<>();
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, RoomID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Customer roommate = new Customer();
+                roommate.setName(rs.getString(1));
+                roommate.setPhone(rs.getString(2));
+                Roommates.add(roommate);
+            }
+            return Roommates;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

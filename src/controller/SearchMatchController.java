@@ -5,13 +5,14 @@
 package controller;
 
 import DAO.AccountDAO;
+import DAO.CustomerDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import model.Customer;
 import model.User;
 import view.SearchMatch;
@@ -22,10 +23,12 @@ import view.SearchMatch;
  */
 public class SearchMatchController {
     private final AccountDAO userDAO;
+    private final CustomerDAO customerDAO;
     private User user;
     private Customer customer;
     private RoomDAO roomDAO;
     private final SearchMatch searchMatch;
+    private ArrayList<Customer> Roommates;
     public SearchMatchController(SearchMatch view, User user,Customer customer)
     {
         this.searchMatch = view;
@@ -33,9 +36,12 @@ public class SearchMatchController {
         this.customer = customer;
         roomDAO = new RoomDAO();
         userDAO = new AccountDAO();
+        customerDAO = new CustomerDAO();
         searchMatch.setActionForSearchingButton( new ClickSearching());
         searchMatch.setActionListenerForReportbtn(new ReportClick());
+        searchMatch.setActionListenerForAddButton(new ClickAddBtn());
         searchMatch.setToggleBtnListener(new ClickItem());
+        initDataTable();
     }
     public User SearchForUser(String phone)
     {
@@ -45,14 +51,22 @@ public class SearchMatchController {
     {
         return searchMatch;
     }
-    
+    public void initDataTable(){
+         Roommates = customerDAO.getAllRoommate(roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID());
+         searchMatch.initTable(Roommates);
+    }
     //Listener
     class ClickSearching implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e) {
-            searchMatch.setDataInfoSearch(SearchForUser(searchMatch.getPhoneNumber()));
-            searchMatch.initInfoSearch(true);
+            User user = SearchForUser(searchMatch.getPhoneNumber());
+            if(user != null){
+                searchMatch.setDataInfoSearch(user);
+            }
+            else{
+                searchMatch.SetEmptyContent("Không tìm thấy người dùng, vui lòng nhập lại thông tin");
+            }
         }   
     }
     class ReportClick implements ActionListener{
@@ -82,5 +96,24 @@ public class SearchMatchController {
                     searchMatch.setToggleBtnState(false);
                 }
         } 
+    }
+    class ClickAddBtn implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (userDAO.isCustomer(searchMatch.getPhoneNumber())){
+                if(customerDAO.UpdateRoomIDMatch(searchMatch.getPhoneNumber(),
+                        roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID())){
+                    JOptionPane.showMessageDialog(searchMatch, "Thêm bạn thành cônng!");
+                    initDataTable();
+                }
+                else 
+                JOptionPane.showMessageDialog(searchMatch, "Không thể thêm bạn cùng phòng, Do đối tượng muốn thêm không phải khách hàng của hệ thống");
+            }
+             else {
+                JOptionPane.showMessageDialog(searchMatch, "Không thể thêm bạn cùng phòng, vui lòng liên hệ admin hoặc thử lại sau!");
+            }
+            
+        }
+        
     }
 }
