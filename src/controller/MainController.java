@@ -6,6 +6,7 @@ package controller;
 
 import DAO.AccountDAO;
 import DAO.CustomerDAO;
+import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import view.Info;
 import view.MainMonitor;
 import view.Post_Form;
 import view.ResidentRegistration;
+import view.RoomServiceView;
 import view.SearchMatch;
 import view.Welcompage;
 import view.loginAndRegister;
@@ -49,7 +51,7 @@ public class MainController {
             mainMonitor.setActionListenerForbtnSearchMatch(new ClickSearchMatch());
             mainMonitor.setActionListenerForbtnRegistration(new ClickResidentRegistration());
             mainMonitor.setActionListenerforBtnBill(new ClickBtnBill());
-            
+            mainMonitor.setActionListenerforBtnService(new ClickService());
             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
@@ -110,6 +112,13 @@ public class MainController {
         public void actionPerformed(ActionEvent e) {
             BillController billController = new BillController(new BillPanel(), customer);
             mainMonitor.setForm(billController.Render());
+        }
+    }
+    class ClickService implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ServicesController serviceController = new ServicesController(new RoomServiceView(),customer);
+            mainMonitor.setForm(serviceController.Render());
         }
         
     }

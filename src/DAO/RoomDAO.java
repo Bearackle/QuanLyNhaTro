@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import model.Location;
 import model.Room;
+import model.RoomService;
 
 /**
  *
@@ -55,6 +56,23 @@ public class RoomDAO {
           return allRoom;
         } catch (SQLException e)
         {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Room getDataRoomWithCustomerID(Long ID){
+        String query = "SELECT ROOM.ROOMID, CATEGORYID ROOM_ FROM CUSTOMER INNER JOIN CONTRACT ON CUSTOMER.CCCD=CONTRACT.CUSTOMER_ID INNER JOIN ROOM ON ROOM.ROOMID=CONTRACT.ROOM_ID WHERE CUSTOMER.CCCD=? AND CONTRACT.STATUS='ĐÃ DUYỆT'";
+        try {
+            Room falseRoom = new Room();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, ID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                falseRoom.setID(rs.getInt(1));
+                falseRoom.setCategoryId(rs.getInt(2)); 
+            }
+            return falseRoom;
+        } catch(SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -165,6 +183,43 @@ public class RoomDAO {
             ps.executeUpdate();
             return true;
         } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public ArrayList<RoomService> GetAllRoomService(int RoomID){
+        String query = "Select * FROM ROOMID=?";
+        ArrayList<RoomService> allServices = new ArrayList<>();
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, RoomID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                RoomService roomService = new RoomService();
+                roomService.setID(rs.getInt(1));
+                roomService.setRoomID(2);
+                roomService.setDescription(rs.getString(3));
+                roomService.setPrice(rs.getInt(4));
+                roomService.setCreateDate(rs.getDate(5));
+                allServices.add(roomService);
+            }
+            return allServices;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean RequestRoomService(RoomService roomService){
+        String query = "INSERT INTO ROOMSERVICE(ROOM_ID,DECRIPTION,PRICE,CREATED_DATE)  VALUES (?,?,?,?)";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1,roomService.getRoomID());
+            ps.setString(2,roomService.getDescription());
+            ps.setInt(3,roomService.getPrice());
+            ps.setDate(4,new java.sql.Date(roomService.getCreateDate().getTime()));
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
             e.printStackTrace();
         }
         return false;
