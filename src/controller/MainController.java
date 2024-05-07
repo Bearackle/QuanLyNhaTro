@@ -6,11 +6,13 @@ package controller;
 
 import DAO.AccountDAO;
 import DAO.CustomerDAO;
+import DAO.LandLordDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Customer;
+import model.LandLord;
 import model.User;
 import view.BillPanel;
 import view.Contract;
@@ -32,12 +34,17 @@ public class MainController {
        private User user;
        private Customer customer;
        private CustomerDAO customerDAO;
+       private LandLordDAO landLordDAO;
+       private LandLord landLord;
        public MainController(User user)
        {
            this(new MainMonitor());
            this.user = user;
            this.customerDAO = new CustomerDAO();
+           this.landLordDAO = new LandLordDAO();
            this.customer = customerDAO.getCustomer(user.getPhone());
+           this.landLord = landLordDAO.getLandLord(user.getPhone());
+           if(landLord == null) mainMonitor.setLandlordBtn(false);
            mainMonitor.setVisible(true);
        }
        public MainController(MainMonitor monitor)
@@ -120,6 +127,5 @@ public class MainController {
             ServicesController serviceController = new ServicesController(new RoomServiceView(),customer);
             mainMonitor.setForm(serviceController.Render());
         }
-        
     }
 }

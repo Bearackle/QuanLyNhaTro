@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.RoomService;
+import view.CustomControl.StyledButtonUI;
 import view.CustomControl.TableCellAction;
 import view.CustomControl.tableCellRenderForSearchMatch;
 
@@ -68,6 +69,8 @@ public class RoomServiceView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setText("Dịch vụ");
 
@@ -81,7 +84,11 @@ public class RoomServiceView extends javax.swing.JPanel {
 
         jLabel5.setText("Nhà cung cấp: công ty ndh");
 
+        btnFix.setBackground(new java.awt.Color(51, 153, 255));
+        btnFix.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnFix.setForeground(new java.awt.Color(255, 255, 255));
         btnFix.setText("Yêu cầu");
+        btnFix.setUI(new StyledButtonUI());
 
         jLabel6.setText("Giá : Tùy theo cơ sở vật chất hư hại");
 
@@ -90,7 +97,11 @@ public class RoomServiceView extends javax.swing.JPanel {
 
         jLabel8.setText("Nhà cung cấp: Công ty ndh");
 
+        btnClean.setBackground(new java.awt.Color(0, 153, 255));
+        btnClean.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClean.setForeground(new java.awt.Color(255, 255, 255));
         btnClean.setText("Yêu cầu");
+        btnClean.setUI(new StyledButtonUI());
 
         jLabel9.setText("Giá: 200.000/ lần");
 

@@ -27,6 +27,7 @@ public class RegistrationResidentController {
         RenderData();
     }
     private void RenderData(){
+         if (model == null) return;
          view.RenderData(DAO.getResidentDetail(model.getCCCD()));
     }
     public ResidentRegistration Render(){

@@ -61,6 +61,11 @@ public class MainMonitor extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }
+    public void setLandlordBtn(boolean state){
+        btnLandLord.setVisible(state);
+        this.repaint();
+        this.revalidate();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,7 +84,7 @@ public class MainMonitor extends javax.swing.JFrame {
         btnSearchMatch = new javax.swing.JButton();
         btnService = new javax.swing.JButton();
         btnResident = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnLandLord = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
@@ -148,13 +153,13 @@ public class MainMonitor extends javax.swing.JFrame {
         btnResident.setContentAreaFilled(false);
         btnResident.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Thông báo");
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setDefaultCapable(false);
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLandLord.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnLandLord.setForeground(new java.awt.Color(255, 255, 255));
+        btnLandLord.setText("Chủ nhà");
+        btnLandLord.setBorderPainted(false);
+        btnLandLord.setContentAreaFilled(false);
+        btnLandLord.setDefaultCapable(false);
+        btnLandLord.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnlogout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnlogout.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,7 +200,7 @@ public class MainMonitor extends javax.swing.JFrame {
                         .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLandLord, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -221,7 +226,7 @@ public class MainMonitor extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btninfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(btnLandLord)
                 .addGap(18, 18, 18)
                 .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -275,13 +280,13 @@ public class MainMonitor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBill;
     private javax.swing.JButton btnContract;
+    private javax.swing.JButton btnLandLord;
     private javax.swing.JButton btnPost;
     private javax.swing.JButton btnResident;
     private javax.swing.JButton btnSearchMatch;
     private javax.swing.JButton btnService;
     private javax.swing.JButton btninfo;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private view.Menu menu1;

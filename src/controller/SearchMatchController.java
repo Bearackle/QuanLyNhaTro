@@ -9,12 +9,11 @@ import DAO.CustomerDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Customer;
 import model.User;
+import view.CustomControl.toggle.ToggleListener;
 import view.SearchMatch;
 
 /**
@@ -40,8 +39,9 @@ public class SearchMatchController {
         searchMatch.setActionForSearchingButton( new ClickSearching());
         searchMatch.setActionListenerForReportbtn(new ReportClick());
         searchMatch.setActionListenerForAddButton(new ClickAddBtn());
-        searchMatch.setToggleBtnListener(new ClickItem());
+        searchMatch.setToggleBtnListener(new ClickPolicy());
         initDataTable();
+        initPolicy();
     }
     public User SearchForUser(String phone)
     {
@@ -51,9 +51,15 @@ public class SearchMatchController {
     {
         return searchMatch;
     }
-    public void initDataTable(){
+    private void initDataTable(){
+        if (customer == null) return;
          Roommates = customerDAO.getAllRoommate(roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID());
          searchMatch.initTable(Roommates);
+    }
+    private void initPolicy(){
+        if (customer == null) return;
+        searchMatch.setToggleBtnState(roomDAO.getRoomIsAllowMatch
+        (roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID()));
     }
     //Listener
     class ClickSearching implements ActionListener
@@ -76,26 +82,23 @@ public class SearchMatchController {
             JOptionPane.showMessageDialog(searchMatch, "Cảm ơn bạn đã báo cáo, Chúng tôi sẽ xem xét báo cáo của bạn");
         }
     }
-    class ClickItem implements ItemListener{
+    class ClickPolicy implements ToggleListener{
         @Override
-        public void itemStateChanged(ItemEvent e) {
-                if (customer == null){
-                    JOptionPane.showMessageDialog(searchMatch, "Bạn cần thuê phòng trước đã");
+        public void onSelected(boolean selected) {
+           if (customer == null){
+                    JOptionPane.showMessageDialog(searchMatch, "Bạn cần thuê phòng trước!!");
                 }else 
                 {
-                int state = e.getStateChange();
-                boolean UpdatePolicy = roomDAO.UpdatePolicy(customer.getCCCD(),state == ItemEvent.SELECTED ? "CÓ" : "KHÔNG");
+                boolean UpdatePolicy = roomDAO.UpdatePolicy(customer.getCCCD(),selected ? "CÓ" : "KHÔNG");
                 if(UpdatePolicy == false) {
                     JOptionPane.showConfirmDialog(searchMatch, "Cập nhật không thành công, vui lòng thử lại");
-                    return;
+                    }
                 }
-                if (state ==  ItemEvent.SELECTED){
-                    searchMatch.setToggleBtnState(true);
-                }
-                else
-                    searchMatch.setToggleBtnState(false);
-                }
-        } 
+        }
+        @Override
+        public void onAnimated(float animated) {
+            
+        }
     }
     class ClickAddBtn implements ActionListener{
         @Override

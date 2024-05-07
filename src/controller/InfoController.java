@@ -6,6 +6,7 @@ package controller;
 
 import DAO.ContractDAO;
 import DAO.CustomerDAO;
+import DAO.LandLordDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,23 +24,26 @@ import view.NewCustomer;
  * @author Admin
  */
 public class InfoController {
-    private Info info;
-    private final ContractDAO contractDAO;
+    private final Info info;
+    private  final ContractDAO contractDAO;
     private final RoomDAO roomDAO;
     private final CustomerDAO customerDAO;
     private Customer customer;
-    private User user;
+    private final User user;
     private NewCustomer newCustomer;
+    private final LandLordDAO landLordDAO;
     public InfoController(Info info,User user)
     {
         customerDAO = new CustomerDAO();
         contractDAO = new ContractDAO();
         roomDAO = new RoomDAO();
+        landLordDAO = new LandLordDAO();
         this.info = info;
         this.user = user;
         RenderInformation();
         info.setUpdateBtn(new clickUpdateBtn());
         info.setBecomeCustomerBtn(new clickNewCustomer());
+        info.setActionListenerBtnlandlord(new clickLandlord());
         
     }
     public void RenderInformation()
@@ -82,14 +86,28 @@ public class InfoController {
             newCustomer = new NewCustomer(user);
             newCustomer.setDefaultCloseOperation(NewCustomer.DISPOSE_ON_CLOSE);
             newCustomer.setVisible(true);
-            newCustomer.setActionListenerForBtn(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                     customerDAO.CreeateNewCustomer(newCustomer.CreateCustomer()); 
-                     newCustomer.dispose();
-                     JOptionPane.showMessageDialog(info,"Đã Đăng ký khách hàng thành công!!");
-                }
-        });
+            newCustomer.setActionListenerForBtn((ActionEvent e1) -> {
+                customerDAO.CreeateNewCustomer(newCustomer.CreateCustomer());
+                newCustomer.dispose();
+                JOptionPane.showMessageDialog(info,"Đã Đăng ký khách hàng thành công!!");
+            });
+        }     
+    }
+    class clickLandlord implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            newCustomer = new NewCustomer(user);
+            newCustomer.setDefaultCloseOperation(NewCustomer.DISPOSE_ON_CLOSE);
+            newCustomer.setVisible(true);
+            newCustomer.setLandLordRegisteriView();
+            newCustomer.setActionListenerForBtn((ActionEvent e1) -> {
+                boolean createLandlord = landLordDAO.CreateNewLandLord(newCustomer.CreateLandLord());
+                if (createLandlord == true) JOptionPane.showMessageDialog(newCustomer, "Đã đăng ký thành công, cảm ơn bạn!");
+                else JOptionPane.showMessageDialog(newCustomer, "Đăng ký thất bại, vui lòng thử lại sau");
+                newCustomer.dispose();
+                JOptionPane.showMessageDialog(info,"Đã Đăng ký khách hàng thành công!!");
+            });
         }     
     }
 }

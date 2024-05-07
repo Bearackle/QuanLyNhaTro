@@ -6,9 +6,7 @@ package DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import model.Location;
 import model.Room;
 import model.RoomService;
@@ -223,5 +221,19 @@ public class RoomDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    public boolean isAllowmatch(int ID){
+         String query = "SELECT ISALLOWMATCH FROM ROOM WHERE ROOMID=?";
+         try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                return rs.getString(1).equalsIgnoreCase("Có");
+            }
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
+         return false;
     }
 }
