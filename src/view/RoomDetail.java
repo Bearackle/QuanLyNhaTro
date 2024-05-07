@@ -4,18 +4,14 @@
  */
 package view;
 
-import com.sun.jdi.connect.spi.TransportService;
-import java.awt.FlowLayout;
+
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 import model.Room;

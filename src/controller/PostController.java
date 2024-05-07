@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import model.Room;
 import view.Post_Form;
-import view.loginAndRegister;
 
 /**
  *

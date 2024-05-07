@@ -41,7 +41,7 @@ public class RoomDAO {
                 room.setArea(result.getFloat("AREA"));
                 room.setCategoryId(result.getInt("CATEGORYID"));
                 room.setIsAllowMatch(result.getString("ISALLOWMATCH"));
-                room.setDescription(result.getString("DECRIPTION"));
+                room.setDescription(result.getString("DESCRIPTION"));
                 //
                 String[] dblocation = result.getString("LOCATION").split(",");
                 room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
