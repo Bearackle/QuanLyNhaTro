@@ -16,16 +16,19 @@ import javax.swing.JTable;
  */
 public class TableCellAction extends DefaultCellEditor{
     private ActionListener listener;
-      public TableCellAction(ActionListener listener)
+    private String img;
+      public TableCellAction(ActionListener listener,String img)
       {
           super(new JCheckBox());
           this.listener = listener;
+          this.img = img;
       }
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         ActionPanel actionPanel = new ActionPanel();
         actionPanel.setBackground(table.getSelectionBackground());
-        actionPanel.setActionListener(listener);    
+        actionPanel.setImageForActionPanel(img);
+        actionPanel.setActionListener(listener);
         return actionPanel;
     }
       

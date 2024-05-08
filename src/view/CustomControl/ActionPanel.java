@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
  * @author Admin
  */
 public class ActionPanel extends javax.swing.JPanel {
-
     /**
      * Creates new form ActionPanel
      */
@@ -22,7 +21,9 @@ public class ActionPanel extends javax.swing.JPanel {
     {
         actionBtnDelete1.addActionListener(listener);
     }
-
+    public void setImageForActionPanel(String img){
+         actionBtnDelete1.setImage(img);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

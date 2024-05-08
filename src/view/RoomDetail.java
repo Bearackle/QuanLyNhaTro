@@ -199,6 +199,7 @@ public class RoomDetail extends javax.swing.JFrame {
 
         lbldiachi2.setText("jLabel2");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);

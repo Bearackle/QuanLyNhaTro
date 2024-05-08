@@ -28,9 +28,10 @@ public class ActionBtnDelete extends JButton{
     {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(3,3,3,3));
-        setSVGImage("icon/detail2.svg",20, 20);
     }
-
+    public void setImage(String image){
+         setSVGImage(image,20, 20);
+    }
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();

@@ -84,7 +84,7 @@
                     <Column editable="true" title="Chi ti&#x1ebf;t" type="java.lang.Object"/>
                   </Table>
                 </Property>
-                <Property name="rowHeight" type="int" value="45"/>
+                <Property name="rowHeight" type="int" value="50"/>
               </Properties>
             </Component>
           </SubComponents>

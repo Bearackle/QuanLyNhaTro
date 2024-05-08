@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import java.util.Date;
 import model.Contract_Landlord;
 import model.LandLord;
@@ -26,11 +27,19 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     public Room CreateRoomInfo(){
         Room room = new Room();
         room.setName(String.valueOf(txtName.getText()));
-        String[] dblocation = String.valueOf(txtLocation).split(",");
+        String[] dblocation = String.valueOf(txtLocation.getText()).split(",");
         room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
         room.setPrices(Integer.parseInt(txtGia.getText()));
         room.setArea(Double.parseDouble(txtArea.getText()));
         room.setDescription(String.valueOf(txtMota.getText()));
+        room.setStatus("CHỜ DUYỆT");
+        room.setVote(0);
+        room.setIsAllowMatch("KHÔNG");
+        try {
+        room.setCategoryId(Integer.parseInt(cmbCategory.getSelectedItem().toString())*100);
+        } catch (NumberFormatException e) { 
+            room.setCategoryId(600);
+        }
         return room;
     }
     public Contract_Landlord CreateContract_Landlord(LandLord value){
@@ -38,7 +47,11 @@ public class RequestCreateRoom extends javax.swing.JFrame {
          con.setLandlordID(value.getCCCD());
          con.setSigned_date(new Date());
          con.setStatus("CHỜ DUYỆT");
+         con.setDuration(Integer.parseInt(txtDuration.getText()));
          return con;
+    }
+    public void setActionlistenerforBtnRequest(ActionListener listener){
+        btnRequest.addActionListener(listener);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,13 +74,17 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         txtGia = new javax.swing.JTextField();
         txtLocation = new javax.swing.JTextField();
+        cmbCategory = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtDuration = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMota = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         sVGimage1 = new view.CustomControl.SVGimage();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnRequest = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,6 +102,12 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         jLabel4.setText("Địa chỉ");
 
         jLabel5.setText("Giá");
+
+        cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "ngắn hạn" }));
+
+        jLabel8.setText("Loại phòng:");
+
+        jLabel9.setText("Kỳ Hạn");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,9 +130,18 @@ public class RequestCreateRoom extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtLocation, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtName)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(37, 37, 37))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,19 +150,21 @@ public class RequestCreateRoom extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -145,8 +179,8 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Yêu Cầu");
+        btnRequest.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRequest.setText("Yêu Cầu");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -154,7 +188,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 296, 0, 291);
-        jPanel2.add(jButton1, gridBagConstraints);
+        jPanel2.add(btnRequest, gridBagConstraints);
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -261,15 +295,14 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RequestCreateRoom().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RequestCreateRoom().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRequest;
+    private javax.swing.JComboBox<String> cmbCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,6 +310,8 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -284,6 +319,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private view.CustomControl.SVGimage sVGimage1;
     private javax.swing.JTextField txtArea;
+    private javax.swing.JTextField txtDuration;
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextArea txtMota;

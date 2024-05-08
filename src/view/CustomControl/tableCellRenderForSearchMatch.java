@@ -14,11 +14,15 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Admin
  */
 public class tableCellRenderForSearchMatch extends DefaultTableCellRenderer{
-
+    private String image;
+    public tableCellRenderForSearchMatch(String image){
+        this.image = image;
+    }
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         ActionPanel actionPanel = new ActionPanel();
+        actionPanel.setImageForActionPanel(image);
         if (isSelected == false && row%2==0)
         {
             actionPanel.setBackground(Color.WHITE);

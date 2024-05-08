@@ -19,12 +19,30 @@ public class Room {
     private double WaterPrices;
     private double GarbagePrices;
     private double WifiPrices;
+    private int LandLordContractID;
+    private String status;
     private String CustomerName;
     private String IconList;
     private int Vote;
     private int CategoryId;
     private String isAllowMatch;
 
+    public int getLandLordContractID() {
+        return LandLordContractID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public void setLandLordContractID(int LandLordContractID) {
+        this.LandLordContractID = LandLordContractID;
+    }
+    
     public String isIsAllowMatch() {
         return isAllowMatch;
     }

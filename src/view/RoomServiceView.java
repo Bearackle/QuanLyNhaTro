@@ -26,7 +26,7 @@ public class RoomServiceView extends javax.swing.JPanel {
         initComponents();
     }
     public void initTable(ArrayList<RoomService> roomServices){
-        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch());
+        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
         model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         for (RoomService roomService : roomServices){
@@ -35,7 +35,7 @@ public class RoomServiceView extends javax.swing.JPanel {
     }
      public void setActionListenerForbtnPay(ActionListener listener)
     {
-        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener));
+        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener,"icon/detail2.svg"));
     }
     public void setActionListenerForFix(ActionListener listener){
         btnFix.addActionListener(listener);

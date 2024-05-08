@@ -5,13 +5,21 @@
 package view;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.ContractLandLordDetail;
+import view.CustomControl.StyledButtonUI;
+import view.CustomControl.TableCellAction;
+import view.CustomControl.TableCellAction2;
+import view.CustomControl.tableCellRenderForSearchMatch;
+import view.CustomControl.tablecellRenderForLandlordContract;
 
 /**
  *
  * @author Admin
  */
 public class LandLordView extends javax.swing.JPanel {
-
+    private DefaultTableModel tableModel;
     /**
      * Creates new form LandLordView
      */
@@ -21,6 +29,20 @@ public class LandLordView extends javax.swing.JPanel {
     }
     public void setActionListenerForBtnCreateRoom(ActionListener listener){
         btnCreateRoom.addActionListener(listener);
+    }
+    public void initTable(ArrayList<ContractLandLordDetail> contracts){
+         table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderForLandlordContract());
+         tableModel =(DefaultTableModel) table.getModel();
+         tableModel.setRowCount(0);
+         for (ContractLandLordDetail Detail : contracts){
+             tableModel.addRow(new Object[]{"#"+Detail.getID(),Detail.getRoomName(),Detail.getSigned_Date(),Detail.getStatus()});
+         }
+    }
+    public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1){
+         table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction2(listener,listener1));
+    }
+    public int getSelectedItemTable(){
+        return table.getSelectedRow();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,7 +56,7 @@ public class LandLordView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnCreateRoom = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         sVGimage1 = new view.CustomControl.SVGimage();
 
@@ -43,21 +65,30 @@ public class LandLordView extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Bạn có phòng cần tìm người thuê?");
 
+        btnCreateRoom.setBackground(new java.awt.Color(51, 204, 0));
         btnCreateRoom.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCreateRoom.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateRoom.setText("cho thuê ngay");
+        btnCreateRoom.setUI(new StyledButtonUI());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã hợp đồng", "Tên phòng", "Ngày ký hợp đồng", "Trạng thái", "Xóa/gia hạn hợp đồng"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table.setRowHeight(45);
+        jScrollPane1.setViewportView(table);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Danh sách phòng bạn đang cho thuê");
@@ -68,15 +99,15 @@ public class LandLordView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(66, 66, 66)
-                .addComponent(btnCreateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnCreateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -88,21 +119,18 @@ public class LandLordView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addContainerGap()
+                        .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 4, Short.MAX_VALUE))
-                            .addComponent(btnCreateRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(69, 69, 69)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCreateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,7 +140,7 @@ public class LandLordView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private view.CustomControl.SVGimage sVGimage1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

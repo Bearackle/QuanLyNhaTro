@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Bill;
 import view.CustomControl.TableCellAction;
@@ -23,12 +25,12 @@ public class BillPanel extends javax.swing.JPanel {
      * Creates new form BillPanel
      */
     public BillPanel() {
-        initComponents();
+        initComponents();       
     }
     
      public void initTable(ArrayList<Bill> bills)
     {
-        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch());
+        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
         model = (DefaultTableModel) table.getModel();
         for (Bill bill : bills){
             model.addRow(new Object[]{"#"+bill.getID(),"Biên lai điện nước",LocalDate.parse(bill.getDateCreated().toString()).plusDays(5),bill.getStatus()});
@@ -36,11 +38,12 @@ public class BillPanel extends javax.swing.JPanel {
     }
     public void setActionListenerForDetailbtn(ActionListener listener)
     {
-        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener));
+        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener,"icon/detail2.svg"));
     }
     public int getSelectedItemTable(){
         return table.getSelectedRow();
     }
+            
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +74,7 @@ public class BillPanel extends javax.swing.JPanel {
                 "Mã hóa đơn", "Nội dung", "Hạn", "Trạng thái", "Chi tiết"
             }
         ));
-        table.setRowHeight(45);
+        table.setRowHeight(50);
         jScrollPane1.setViewportView(table);
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);

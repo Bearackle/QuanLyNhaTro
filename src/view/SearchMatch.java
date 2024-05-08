@@ -55,7 +55,7 @@ public class SearchMatch extends javax.swing.JPanel {
     public void initTable(ArrayList<Customer> list)
     {
         model = (DefaultTableModel) table.getModel();
-        table.getColumnModel().getColumn(2).setCellRenderer(new tableCellRenderForSearchMatch());
+        table.getColumnModel().getColumn(2).setCellRenderer(new tableCellRenderForSearchMatch("icon/report.svg"));
         model.setRowCount(0);
         for (Customer cus : list){
             model.addRow(new Object[]{cus.getPhone(), cus.getName()});
@@ -63,7 +63,7 @@ public class SearchMatch extends javax.swing.JPanel {
     }
     public void setActionListenerForReportbtn(ActionListener listener)
     {
-        table.getColumnModel().getColumn(2).setCellEditor(new TableCellAction(listener));
+        table.getColumnModel().getColumn(2).setCellEditor(new TableCellAction(listener,"icon/report.svg"));
     }
     public int getSelecteditem(){
         return table.getSelectedRow();
@@ -179,8 +179,7 @@ public class SearchMatch extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        table.setRowHeight(40);
-        table.setSelectionBackground(new java.awt.Color(204, 255, 204));
+        table.setRowHeight(50);
         jScrollPane2.setViewportView(table);
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);

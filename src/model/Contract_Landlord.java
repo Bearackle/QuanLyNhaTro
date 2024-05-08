@@ -15,7 +15,13 @@ public class Contract_Landlord {
     private Long LandlordID;
     private Date signed_date;
     private String status;
-
+    private int Duration;
+    public int getDuration() {
+        return Duration;
+    }
+    public void setDuration(int Duration) {
+        this.Duration = Duration;
+    }
     public int getID() {
         return ID;
     }

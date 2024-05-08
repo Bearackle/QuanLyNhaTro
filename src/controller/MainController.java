@@ -4,10 +4,8 @@
  */
 package controller;
 
-import DAO.AccountDAO;
 import DAO.CustomerDAO;
 import DAO.LandLordDAO;
-import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -16,7 +14,9 @@ import model.LandLord;
 import model.User;
 import view.BillPanel;
 import view.Contract;
+import view.CustomControl.NoFunctionFound;
 import view.Info;
+import view.LandLordView;
 import view.MainMonitor;
 import view.Post_Form;
 import view.ResidentRegistration;
@@ -59,6 +59,7 @@ public class MainController {
             mainMonitor.setActionListenerForbtnRegistration(new ClickResidentRegistration());
             mainMonitor.setActionListenerforBtnBill(new ClickBtnBill());
             mainMonitor.setActionListenerforBtnService(new ClickService());
+            monitor.setActionListenerforLandlordbtn(new clickShowLandLord());
             mainMonitor.setVisible(true);
        }
      class ClicklblPost implements ActionListener 
@@ -72,9 +73,13 @@ public class MainController {
       class ClicklblContract implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+             if(customer == null){
+                mainMonitor.setForm(new NoFunctionFound());
+            }else{
             ContractController contractController = new ContractController(new Contract(), user);
             mainMonitor.setForm(contractController.RenderForm());
-         //   mainMonitor.setForm();
+             }
+            
         }
       }
       class ClickInfo implements ActionListener
@@ -101,16 +106,27 @@ public class MainController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           RegistrationResidentController controller = new RegistrationResidentController(new ResidentRegistration(),customer);
-           mainMonitor.setForm(controller.Render());
+             if(customer == null){
+                mainMonitor.setForm(new NoFunctionFound());
+            }
+            else {
+            RegistrationResidentController controller = new RegistrationResidentController(new ResidentRegistration(),customer);
+            mainMonitor.setForm(controller.Render());
+            }
+          
         }
         
     }
     class ClickSearchMatch implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+             if(customer == null){
+                mainMonitor.setForm(new NoFunctionFound());
+            }else 
+             {
             SearchMatchController searchMatchController = new SearchMatchController(new SearchMatch(),user,customer);
             mainMonitor.setForm(searchMatchController.Renderer());
+             }
         }
     }
     class ClickBtnBill implements  ActionListener{
@@ -124,8 +140,21 @@ public class MainController {
     class ClickService implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(customer == null){
+                mainMonitor.setForm(new NoFunctionFound());
+            }
+            else {
             ServicesController serviceController = new ServicesController(new RoomServiceView(),customer);
             mainMonitor.setForm(serviceController.Render());
+            }
         }
+    }
+    class clickShowLandLord implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LandlordController landlordController = new LandlordController(new LandLordView(), landLord);
+            mainMonitor.setForm(landlordController.render());
+        }
+        
     }
 }

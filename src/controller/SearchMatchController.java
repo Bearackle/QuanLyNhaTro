@@ -52,12 +52,10 @@ public class SearchMatchController {
         return searchMatch;
     }
     private void initDataTable(){
-        if (customer == null) return;
          Roommates = customerDAO.getAllRoommate(roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID());
          searchMatch.initTable(Roommates);
     }
     private void initPolicy(){
-        if (customer == null) return;
         searchMatch.setToggleBtnState(roomDAO.getRoomIsAllowMatch
         (roomDAO.getDataRoomWithCustomerID(customer.getCCCD()).getID()));
     }

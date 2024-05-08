@@ -13,7 +13,6 @@ import javax.swing.JComponent;
  * @author Admin
  */
 public class MainMonitor extends javax.swing.JFrame {
-    
     /**
      * Creates new form MainMonitor
      */
@@ -65,6 +64,9 @@ public class MainMonitor extends javax.swing.JFrame {
         btnLandLord.setVisible(state);
         this.repaint();
         this.revalidate();
+    }
+    public void setActionListenerforLandlordbtn(ActionListener listener){
+        btnLandLord.addActionListener(listener);
     }
     /**
      * This method is called from within the constructor to initialize the form.

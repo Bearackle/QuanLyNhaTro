@@ -9,7 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import model.Contract;
 import model.ContractDetail;
+import model.ContractLandLordDetail;
+import model.Contract_Landlord;
 import model.Location;
+import model.Room;
 /**
  *
  * @author Admin
@@ -118,4 +121,78 @@ public class ContractDAO {
     public void CreateNewContract(Contract contract){
         
     } 
+    public boolean CreateNewLandLordContractAndRoom(Contract_Landlord contract,Room room){
+        String query1 = "INSERT INTO CONTRACT_LANDLORD (LANDLORDID,SIGNED_DATE,STATUS,DURATION) VALUES(?,?,?,?)";
+        String query2 = "INSERT INTO ROOM (NAME,AREA,LOCATION,PRICE,DESCRIPTION,STATUS,CATEGORYID,LANDLORDCONTRACTID,VOTE,ISALLOWMATCH) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        try{
+        String returnCols[] = {"CONTRACTID"};
+        PreparedStatement ps1 = connection.prepareStatement(query1,returnCols);
+        PreparedStatement ps2 = connection.prepareStatement(query2);
+        ps1.setLong(1,contract.getLandlordID());
+        ps1.setDate(2, new java.sql.Date(contract.getSigned_date().getTime()));
+        ps1.setString(3,contract.getStatus());
+        ps1.setInt(4, contract.getDuration());
+        int rowContract = ps1.executeUpdate();
+        if (rowContract == 0)  throw new SQLException("Creating Contract landlord fail"); 
+        try(ResultSet keyContract = ps1.getGeneratedKeys()){
+            if (keyContract.next()){
+                room.setLandLordContractID(keyContract.getInt(1));
+            }
+            else {
+                 throw new SQLException("fail getting key");
+            }
+        }
+        ps2.setString(1, room.getName());
+        ps2.setDouble(2, room.getArea());
+        ps2.setString(3 ,room.getLocation().toString());
+        ps2.setInt(4,room.getPrices());
+        ps2.setString(5, room.getDescription());
+        ps2.setString(6, room.getStatus());
+        ps2.setInt(7, room.getCategoryId());
+        ps2.setInt(8, room.getLandLordContractID());
+        ps2.setInt(9, room.getVote());
+        ps2.setString(10, room.isIsAllowMatch());
+        int rs2 = ps2.executeUpdate();
+        if ( rs2 == 0) throw new SQLException("Creating Room with contract fail");
+        return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public ArrayList<ContractLandLordDetail> getContractLandLordDetail(Long LandlordID){
+        String query = "SELECT CONTRACTID,NAME,SIGNED_DATE,CONTRACT_LANDLORD.STATUS FROM ROOM INNER JOIN CONTRACT_LANDLORD ON LANDLORDCONTRACTID = CONTRACTID WHERE LANDLORDID=? AND (CONTRACT_LANDLORD.STATUS='ĐÃ DUYỆT' OR CONTRACT_LANDLORD.STATUS='GIA HẠN')";
+        ArrayList<ContractLandLordDetail> contracts = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+             ps.setLong(1, LandlordID);
+             ResultSet resultSet = ps.executeQuery();
+             while(resultSet.next()){
+                 ContractLandLordDetail contract = new ContractLandLordDetail();
+                 contract.setID(resultSet.getInt(1));
+                 contract.setRoomName(resultSet.getString(2));
+                 contract.setSigned_Date(resultSet.getDate(3));
+                 contract.setStatus(resultSet.getString(4));
+                 contracts.add(contract);
+             }
+             return contracts;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean UpdateStatusContract (int ID,String status){
+        String query = "UPDATE CONTRACT_LANDLORD SET STATUS=? WHERE CONTRACTID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(2, ID);
+            int row=ps.executeUpdate();
+            if (row==0) throw new SQLException("Cant set status");
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
