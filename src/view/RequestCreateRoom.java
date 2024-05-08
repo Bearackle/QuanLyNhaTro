@@ -4,25 +4,33 @@
  */
 package view;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.BoxLayout;
 import model.Contract_Landlord;
 import model.LandLord;
 import model.Location;
 import model.Room;
+import view.CustomControl.itemUpload;
 
 /**
  *
  * @author Admin
  */
 public class RequestCreateRoom extends javax.swing.JFrame {
-
+    ArrayList<itemUpload> listItemUpload;
     /**
      * Creates new form RequestCreateRoom
      */
     public RequestCreateRoom() {
         initComponents();
         sVGimage1.setSVGImage("icon/upload2.svg",100,100);
+        panelUploadContent.setLayout(new BoxLayout(panelUploadContent, BoxLayout.Y_AXIS));
+        listItemUpload = new ArrayList<>();
     }
     public Room CreateRoomInfo(){
         Room room = new Room();
@@ -53,6 +61,18 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     public void setActionlistenerforBtnRequest(ActionListener listener){
         btnRequest.addActionListener(listener);
     }
+    public void setActionListenerUploadImage(MouseListener listener){
+         sVGimage1.addMouseListener(listener);
+    }
+    public void UpdateStatusField(String value,ActionListener listener){
+        itemUpload item = new itemUpload(value);
+        listItemUpload.add(item);
+        item.setActionListenerDelete(listener);
+        panelUploadContent.add(item);
+        panelUploadContent.repaint();
+        panelUploadContent.revalidate();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,7 +105,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnRequest = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelUploadContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,7 +210,8 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 296, 0, 291);
         jPanel2.add(btnRequest, gridBagConstraints);
 
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+        panelUploadContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelUploadContent.setLayout(new javax.swing.BoxLayout(panelUploadContent, javax.swing.BoxLayout.LINE_AXIS));
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -199,7 +220,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
         jLayeredPane1.setLayer(sVGimage1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(panelUploadContent, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -222,7 +243,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                 .addComponent(sVGimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(panelUploadContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
@@ -255,7 +276,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panelUploadContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -315,8 +336,8 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelUploadContent;
     private view.CustomControl.SVGimage sVGimage1;
     private javax.swing.JTextField txtArea;
     private javax.swing.JTextField txtDuration;

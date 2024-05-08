@@ -236,4 +236,17 @@ public class RoomDAO {
          }
          return false;
     }
+    public boolean InsertImage(int RoomID,String path){
+        String query = "INSERT INTO ROOMIMAGE VALUES (?,?)";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1,RoomID);
+            ps.setString(2,path);
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

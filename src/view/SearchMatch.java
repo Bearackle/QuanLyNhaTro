@@ -29,6 +29,7 @@ public class SearchMatch extends javax.swing.JPanel {
     public SearchMatch() {
         initComponents();
         SetEmptyContent("Tìm kiếm bạn bè, người thân, hàng xóm...");
+        btnAdd.setVisible(false);
     }
     public String getPhoneNumber()
     {
@@ -39,6 +40,7 @@ public class SearchMatch extends javax.swing.JPanel {
             JLabel lblNoUserFound = new JLabel(value);
             lblNoUserFound.setBounds(150, 10, 500, 30);
             lblNoUserFound.setFont(new Font("Segoe UI", Font.BOLD,30));
+            btnAdd.setVisible(false);
             searchInfoPanel.add(lblNoUserFound);
             searchInfoPanel.repaint();
             searchInfoPanel.revalidate();
@@ -47,6 +49,7 @@ public class SearchMatch extends javax.swing.JPanel {
             searchInfoPanel.removeAll();
             panelInfoSearch newPanel = new panelInfoSearch();
             newPanel.setDataInfoSearch(user);
+            btnAdd.setVisible(true);
             searchInfoPanel.add(newPanel);
             searchInfoPanel.validate();
             searchInfoPanel.repaint();
@@ -143,7 +146,6 @@ public class SearchMatch extends javax.swing.JPanel {
         btnSearch.setUI(new StyledButtonUI());
 
         searchInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
-        searchInfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -259,7 +261,7 @@ public class SearchMatch extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

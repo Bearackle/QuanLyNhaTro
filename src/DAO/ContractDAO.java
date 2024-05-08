@@ -121,13 +121,14 @@ public class ContractDAO {
     public void CreateNewContract(Contract contract){
         
     } 
-    public boolean CreateNewLandLordContractAndRoom(Contract_Landlord contract,Room room){
+    public int CreateNewLandLordContractAndRoom(Contract_Landlord contract,Room room){
         String query1 = "INSERT INTO CONTRACT_LANDLORD (LANDLORDID,SIGNED_DATE,STATUS,DURATION) VALUES(?,?,?,?)";
         String query2 = "INSERT INTO ROOM (NAME,AREA,LOCATION,PRICE,DESCRIPTION,STATUS,CATEGORYID,LANDLORDCONTRACTID,VOTE,ISALLOWMATCH) VALUES(?,?,?,?,?,?,?,?,?,?)";
         try{
         String returnCols[] = {"CONTRACTID"};
+        String returnCols2[] = {"ROOMID"};
         PreparedStatement ps1 = connection.prepareStatement(query1,returnCols);
-        PreparedStatement ps2 = connection.prepareStatement(query2);
+        PreparedStatement ps2 = connection.prepareStatement(query2,returnCols2);
         ps1.setLong(1,contract.getLandlordID());
         ps1.setDate(2, new java.sql.Date(contract.getSigned_date().getTime()));
         ps1.setString(3,contract.getStatus());
@@ -154,11 +155,19 @@ public class ContractDAO {
         ps2.setString(10, room.isIsAllowMatch());
         int rs2 = ps2.executeUpdate();
         if ( rs2 == 0) throw new SQLException("Creating Room with contract fail");
-        return true;
+         try(ResultSet keyContract2 = ps2.getGeneratedKeys()){
+            if (keyContract2.next()){
+                room.setID(keyContract2.getInt(1));
+            }
+            else {
+                 throw new SQLException("fail getting key");
+            }
+        }
+        return room.getID();
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return false;
+        return 0;
     }
     public ArrayList<ContractLandLordDetail> getContractLandLordDetail(Long LandlordID){
         String query = "SELECT CONTRACTID,NAME,SIGNED_DATE,CONTRACT_LANDLORD.STATUS FROM ROOM INNER JOIN CONTRACT_LANDLORD ON LANDLORDCONTRACTID = CONTRACTID WHERE LANDLORDID=? AND (CONTRACT_LANDLORD.STATUS='ĐÃ DUYỆT' OR CONTRACT_LANDLORD.STATUS='GIA HẠN')";

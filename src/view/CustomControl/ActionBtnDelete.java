@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class ActionBtnDelete extends JButton{
     private FlatSVGIcon svgIcon;
-    private void setSVGImage(String image, int width,int height)
+    public void setSVGImage(String image, int width,int height)
     {
         svgIcon = new FlatSVGIcon(image,width,height);
         this.setIcon(svgIcon);
