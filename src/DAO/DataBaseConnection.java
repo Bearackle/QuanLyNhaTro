@@ -15,8 +15,9 @@ public class DataBaseConnection {
     public static Connection CreateConnection()
     {
         try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
             connection =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/orcl21","C##DOANJAVA","123");
-        } catch (SQLException e)
+        } catch (SQLException | ClassNotFoundException e)
         {
             e.printStackTrace();
         }

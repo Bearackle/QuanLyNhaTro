@@ -32,11 +32,11 @@ import view.RequestCreateRoom;
  * @author Admin
  */
 public class LandlordController {
-    private LandLordView view;
-    private LandLordDAO DAO;
-    private ContractDAO contractDAO;
-    private RoomDAO roomDAO;
-    private LandLord model;
+    private final LandLordView view;
+    private final LandLordDAO DAO;
+    private final ContractDAO contractDAO;
+    private final RoomDAO roomDAO;
+    private final LandLord model;
     private RequestCreateRoom rqView;
     private ArrayList<ContractLandLordDetail> list;
     private ArrayList<String> listImage;
@@ -82,7 +82,7 @@ public class LandlordController {
               else
                   JOptionPane.showMessageDialog(rqView, "Bạn đã yêu cầu thất bại, vui lòng thử lại sau!!");
               for(String path : listImage){
-                  roomDAO.InsertImage(RoomID,path);
+                  roomDAO.InsertImage(RoomID,path.substring(4).replace("\\", "/"));
               }
               rqView.dispose();
         }
@@ -124,13 +124,15 @@ public class LandlordController {
                 int i = 1;
                 while(Files.exists(desPath))
                 {
-                    desPath = Paths.get("src","icon","ROOM_IMAGE",fileDialog.getFile()+"_"+String.valueOf(i));
+                    desPath = Paths.get("src","icon","ROOM_IMAGE",fileDialog.getFile().substring(0,fileDialog.getFile().lastIndexOf('.'))+"_"+
+                            String.valueOf(i)+fileDialog.getFile().substring(fileDialog.getFile().lastIndexOf('.')));
                     i++;
                 }
                 try{
                 Files.copy(Paths.get(fileDialog.getDirectory(),fileDialog.getFile()),desPath,StandardCopyOption.REPLACE_EXISTING);
                 } catch(IOException ex){
                     ex.printStackTrace();
+                    return;
                 }
                 listImage.add(desPath.toString());
                 rqView.UpdateStatusField(desPath.getFileName().toString(),new RemoveFile());

@@ -167,7 +167,10 @@ public class RoomItemView extends javax.swing.JPanel implements ListCellRenderer
     @Override
     public Component getListCellRendererComponent(JList<? extends Room> list, Room room, int index, boolean isSelected, boolean cellHasFocus) {
         //this.lblCustomer.setText(String.valueOf(room.getCustomerName()));
+        try{
         this.lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(room.getIconList())).getImage().getScaledInstance(200,200,Image.SCALE_AREA_AVERAGING)));
+        } catch (NullPointerException e){
+        }
         this.lblPrice.setText(String.valueOf(room.getPrices()));
         this.lblLocation.setText(String.valueOf(room.getLocation().getDistrict()));
         this.lblRoomName.setText(String.valueOf(room.getName()));
