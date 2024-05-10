@@ -10,8 +10,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import model.Bill;
 import model.Customer;
-import view.BillDetailPanel;
-import view.BillPanel;
+import model.LandLord;
+import model.User;
+import view.Bill.BillDetailPanel;
+import view.Bill.BillPanel;
 
 /**
  *
@@ -27,10 +29,10 @@ public class BillController {
         this.view = view;
         this.model = customer;
         this.DAO = new BillDAO();
-        initData();
+        initDataCustomer();
         view.setActionListenerForDetailbtn(new ClickDetailButton());
     }
-    private void initData(){
+    private void initDataCustomer(){
         if (model != null){
         list = DAO.getAllBillbyCustomerID(model.getCCCD());
         view.initTable(list);

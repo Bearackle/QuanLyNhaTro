@@ -11,7 +11,6 @@ package model;
 public class LandLord extends User{
      private Long CCCD;
      private String BankAccount;
-
     public Long getCCCD() {
         return CCCD;
     }

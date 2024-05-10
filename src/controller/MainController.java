@@ -12,18 +12,18 @@ import javax.swing.JOptionPane;
 import model.Customer;
 import model.LandLord;
 import model.User;
-import view.BillPanel;
-import view.Contract;
+import view.Bill.BillPanel;
+import view.Contract.Contract;
 import view.CustomControl.NoFunctionFound;
-import view.Info;
-import view.LandLordView;
+import view.User.Info;
+import view.User.LandLordView;
 import view.MainMonitor;
-import view.Post_Form;
-import view.ResidentRegistration;
-import view.RoomServiceView;
-import view.SearchMatch;
-import view.Welcompage;
-import view.loginAndRegister;
+import view.Room.Post_Form;
+import view.User.ResidentRegistration;
+import view.Room.RoomServiceView;
+import view.User.SearchMatch;
+import view.Login.Welcompage;
+import view.Login.loginAndRegister;
 
 /**
  *
@@ -133,7 +133,11 @@ public class MainController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            BillController billController = new BillController(new BillPanel(), customer);
+            if (customer == null) {
+                mainMonitor.setForm(new NoFunctionFound());
+                return;
+            }
+            BillController billController = new BillController(new BillPanel(),customer);
             mainMonitor.setForm(billController.Render());
         }
     }

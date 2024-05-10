@@ -20,9 +20,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import model.User;
-import view.RegisterForm;
-import view.VeriFyMail;
-import view.loginAndRegister;
+import view.Login.RegisterForm;
+import view.Login.VeriFyMail;
+import view.Login.loginAndRegister;
 
 
 /**
@@ -30,9 +30,9 @@ import view.loginAndRegister;
  * @author Admin
  */
 public class RegisterController {
-    private RegisterForm registerForm;
+    private final RegisterForm registerForm;
     private VeriFyMail veriFyMail;
-    private AccountDAO accountDAO;
+    private final AccountDAO accountDAO;
     private int code;
     public RegisterController(RegisterForm register)
     {

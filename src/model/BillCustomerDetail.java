@@ -8,21 +8,11 @@ package model;
  *
  * @author Admin
  */
-public class BillCustomerDetail {
-    private int ID;
+public class BillCustomerDetail extends Bill {
     private int Water;
     private int Electric;
     private int wifi;
     private int garbage;
-    private int price;
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public int getWater() {
         return Water;
@@ -54,14 +44,5 @@ public class BillCustomerDetail {
 
     public void setGarbage(int garbage) {
         this.garbage = garbage;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-    
+    }    
 }

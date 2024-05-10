@@ -8,7 +8,7 @@ import DAO.ContractDAO;
 import DAO.CustomerDAO;
 import model.Customer;
 import model.User;
-import view.Contract;
+import view.Contract.Contract;
 
 /**
  *

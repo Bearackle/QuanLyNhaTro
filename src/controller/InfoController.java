@@ -10,14 +10,17 @@ import DAO.LandLordDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Contract;
 import model.Customer;
 import model.Room;
 import model.User;
-import view.Info;
-import view.NewCustomer;
+import view.User.Info;
+import view.User.NewCustomer;
 
 /**
  *
@@ -32,6 +35,7 @@ public class InfoController {
     private final User user;
     private NewCustomer newCustomer;
     private final LandLordDAO landLordDAO;
+    private List<Contract> contracts;
     public InfoController(Info info,User user)
     {
         customerDAO = new CustomerDAO();
@@ -44,9 +48,9 @@ public class InfoController {
         info.setUpdateBtn(new clickUpdateBtn());
         info.setBecomeCustomerBtn(new clickNewCustomer());
         info.setActionListenerBtnlandlord(new clickLandlord());
-        
+        info.setActionListenerDeleteContact(new ClickDelete());
     }
-    public void RenderInformation()
+    private void RenderInformation()
     {
         customer = customerDAO.getCustomer(user.getPhone());
         if (customer!=null)
@@ -59,9 +63,9 @@ public class InfoController {
            info.setUserInfo(user);
         }
     }
+ 
     public void RenderContractList()
     {
-        List<Contract> contracts;
         contracts = contractDAO.getAllContractByCustomer(customer.getCCCD());
         info.initContract(contracts);
     }
@@ -77,7 +81,7 @@ public class InfoController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+             
         }
     }
     class clickNewCustomer implements ActionListener{
@@ -109,5 +113,28 @@ public class InfoController {
                 JOptionPane.showMessageDialog(info,"Đã Đăng ký khách hàng thành công!!");
             });
         }     
+    }
+    class ClickDelete implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (info.getSelectedMode()==false){
+                info.setJListSelect(new ClickDeleteItem());
+                info.setbtnValue("Chọn phòng");
+                info.setSelectedMode(true);
+            }
+            else {
+                info.setRefuseSelect();
+                info.setbtnValue("Trả Phòng");
+                info.setSelectedMode(false);
+            }
+        }
+        
+    }
+    class ClickDeleteItem extends MouseAdapter{
+        @Override
+        public void mousePressed(MouseEvent e) {
+               contractDAO.updateStatusContractCustomer(contracts.get(info.getSelectedItem()).getID(), "XÓA");
+        }
     }
 }

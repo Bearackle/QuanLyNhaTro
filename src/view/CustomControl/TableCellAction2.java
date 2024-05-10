@@ -17,11 +17,13 @@ import javax.swing.JTable;
 public class TableCellAction2 extends DefaultCellEditor{
     private ActionListener listener;
     private ActionListener listener2;
-    public TableCellAction2(ActionListener listener1,ActionListener listener2)
+    private ActionListener listener3;
+    public TableCellAction2(ActionListener listener1,ActionListener listener2,ActionListener listener3)
       {
           super(new JCheckBox());
           this.listener = listener1;
           this.listener2 = listener2;
+          this.listener3 = listener3;
       }
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -29,6 +31,7 @@ public class TableCellAction2 extends DefaultCellEditor{
         actionPanel.setBackground(table.getSelectionBackground());
         actionPanel.setActionlistenerForbtnDelete(listener);
         actionPanel.setActionListenerForbtnExtend(listener2);
+        actionPanel.setActionListenerForbtnDetail(listener3);
         return actionPanel;
     }
       

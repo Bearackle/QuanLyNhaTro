@@ -19,12 +19,16 @@ public class Action2Panel extends javax.swing.JPanel {
         initComponents();
         actionBtnDelete1.setImage("icon/delete.svg");
         actionBtnDelete2.setImage("icon/extend.svg");
+        btnDetail.setImage("icon/detail3.svg");
     }
     public void setActionlistenerForbtnDelete(ActionListener listener){
          actionBtnDelete1.addActionListener(listener);
     }
     public void setActionListenerForbtnExtend(ActionListener listener){
         actionBtnDelete2.addActionListener(listener);
+    }
+    public void setActionListenerForbtnDetail(ActionListener listener){
+        btnDetail.addActionListener(listener);
     }
     
     /**
@@ -38,27 +42,30 @@ public class Action2Panel extends javax.swing.JPanel {
 
         actionBtnDelete1 = new view.CustomControl.ActionBtnDelete();
         actionBtnDelete2 = new view.CustomControl.ActionBtnDelete();
+        btnDetail = new view.CustomControl.ActionBtnDelete();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(actionBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(actionBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(actionBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(actionBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(actionBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(actionBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(actionBtnDelete2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actionBtnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -67,5 +74,6 @@ public class Action2Panel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.CustomControl.ActionBtnDelete actionBtnDelete1;
     private view.CustomControl.ActionBtnDelete actionBtnDelete2;
+    private view.CustomControl.ActionBtnDelete btnDetail;
     // End of variables declaration//GEN-END:variables
 }

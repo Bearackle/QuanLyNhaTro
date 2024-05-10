@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import model.Room;
-import view.Post_Form;
+import view.Room.Post_Form;
 
 /**
  *

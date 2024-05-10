@@ -17,7 +17,13 @@ public class Bill {
     private Date dateCreated;
     private Date pay_date;
     private String status;
-
+    private int price;
+    public int getPrice() {
+        return price;
+    }
+    public void setPrice(int price) {
+        this.price = price;
+    }
     public int getID() {
         return ID;
     }

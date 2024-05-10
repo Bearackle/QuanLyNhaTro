@@ -8,33 +8,13 @@ package model;
  *
  * @author Admin
  */
-public class BillLandlordDetail {
-    private int ID;
+public class BillLandlordDetail extends Bill{
     private int Contract_ID;
-    private int price;
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
+    
     public int getContract_ID() {
         return Contract_ID;
     }
-
     public void setContract_ID(int Contract_ID) {
         this.Contract_ID = Contract_ID;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-    
+    } 
 }

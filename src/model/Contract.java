@@ -138,13 +138,3 @@ public class Contract {
      }
 }
 
-class ContractOwner extends Contract
-{
-    private int numberofRoom;
-    public int getNumberofRoom() {
-        return numberofRoom;
-    }
-    public void setNumberofRoom(int numberofRoom) {
-        this.numberofRoom = numberofRoom;
-    }
-}

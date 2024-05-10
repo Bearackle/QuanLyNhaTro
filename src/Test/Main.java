@@ -7,7 +7,7 @@ package Test;
 import controller.LoginController;
 import view.CustomControl.SonoFont;
 import view.MainMonitor;
-import view.loginAndRegister;
+import view.Login.loginAndRegister;
 
 /**
  *

@@ -60,4 +60,25 @@ public class BillDAO {
         }
         return null;
     }
+    public ArrayList<Bill> getAllBillofAContractLandlord(int contractid){
+        String query = "SELECT BILL.BILL_ID,PAY_DATE,PRICE,Bill.STATUS FROM BILL INNER JOIN (SELECT BILL_ID,PRICE FROM BILL_LANDLORD WHERE CONTRACT_ID=?) BLL ON BILL.BILL_ID = BLL.BILL_ID";
+       ArrayList <Bill> list = new ArrayList<>();
+        try{
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, contractid);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+            Bill bill = new Bill();
+            bill.setID(rs.getInt(1));
+            bill.setPay_date(rs.getDate(2));
+            bill.setPrice(rs.getInt(3));
+            bill.setStatus(rs.getString(4));
+            list.add(bill);
+        }
+        return list;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

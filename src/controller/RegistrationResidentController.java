@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import model.Customer;
-import view.ResidentRegistration;
+import view.User.ResidentRegistration;
 
 /**
  *

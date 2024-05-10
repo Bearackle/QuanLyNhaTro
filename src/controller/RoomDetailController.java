@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Room;
 import view.CustomControl.BufferedImageCreator;
-import view.RoomDetail;
+import view.Room.RoomDetail;
 
 /**
  *

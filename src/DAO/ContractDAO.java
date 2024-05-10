@@ -26,7 +26,7 @@ public class ContractDAO {
     public List<Contract> getAllContractByCustomer (Long ID)
     {
         List<Contract> allContracts = new ArrayList<>();
-        String query = "SELECT * FROM CONTRACT WHERE CUSTOMER_ID=?";
+        String query = "SELECT * FROM CONTRACT WHERE CUSTOMER_ID=? AND STATUS='ĐÃ DUYỆT'";
         try 
         {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -190,7 +190,7 @@ public class ContractDAO {
         }
         return null;
     }
-    public boolean UpdateStatusContract (int ID,String status){
+    public boolean UpdateStatusContractLandLord (int ID,String status){
         String query = "UPDATE CONTRACT_LANDLORD SET STATUS=? WHERE CONTRACTID=?";
         try{
             PreparedStatement ps = connection.prepareStatement(query);
@@ -200,6 +200,23 @@ public class ContractDAO {
             if (row==0) throw new SQLException("Cant set status");
             return true;
         } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean updateStatusContractCustomer (int ID, String status){
+        String query = "UPDATE CONTRACT SET STATUS=? WHERE CONTRACTID=?";
+        String query2 = "UPDATE ROOM SET STATUS='TRỐNG' WHERE ROOMID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            PreparedStatement ps2 = connection.prepareStatement(query2);
+            ps.setString(1, status);
+            ps.setInt(2,ID);
+            ps2.setInt(1, ID);
+            ps.executeUpdate();
+            ps2.executeUpdate();
+            return true;
+        } catch (SQLException e){
             e.printStackTrace();
         }
         return false;

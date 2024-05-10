@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import model.Customer;
 import model.User;
 import view.CustomControl.toggle.ToggleListener;
-import view.SearchMatch;
+import view.User.SearchMatch;
 
 /**
  *

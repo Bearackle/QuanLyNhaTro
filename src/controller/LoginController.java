@@ -11,8 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import model.User;
-import view.RegisterForm;
-import view.loginAndRegister;
+import view.Login.RegisterForm;
+import view.Login.loginAndRegister;
 
 /**
  *

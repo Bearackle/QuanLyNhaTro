@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAO.BillDAO;
 import DAO.ContractDAO;
 import DAO.LandLordDAO;
 import DAO.RoomDAO;
@@ -24,8 +25,9 @@ import model.ContractLandLordDetail;
 import model.Contract_Landlord;
 import model.LandLord;
 import model.Room;
-import view.LandLordView;
-import view.RequestCreateRoom;
+import view.Bill.DetailBillLandlordView;
+import view.User.LandLordView;
+import view.Room.RequestCreateRoom;
 
 /**
  *
@@ -37,6 +39,7 @@ public class LandlordController {
     private final ContractDAO contractDAO;
     private final RoomDAO roomDAO;
     private final LandLord model;
+    private final BillDAO billDAO;
     private RequestCreateRoom rqView;
     private ArrayList<ContractLandLordDetail> list;
     private ArrayList<String> listImage;
@@ -46,8 +49,9 @@ public class LandlordController {
         DAO = new LandLordDAO();
         contractDAO = new ContractDAO();
         roomDAO = new RoomDAO();
+        billDAO = new BillDAO();
         view.setActionListenerForBtnCreateRoom(new ClickCreateRoom());
-        view.setActionListenerFortablebtn(new ClickRequestDeleteContract(), new ClickRequestExtendContract());
+        view.setActionListenerFortablebtn(new ClickRequestDeleteContract(), new ClickRequestExtendContract(),new BillDetail());
         initDataTable();
     }
     private void initDataTable(){
@@ -90,7 +94,7 @@ public class LandlordController {
     class ClickRequestDeleteContract implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-           boolean rs =  contractDAO.UpdateStatusContract(list.get(view.getSelectedItemTable()).getID(), "XÓA");
+           boolean rs =  contractDAO.UpdateStatusContractLandLord(list.get(view.getSelectedItemTable()).getID(), "XÓA");
            if (rs){
                JOptionPane.showMessageDialog(rqView, "Đã yêu cầu xóa thành công");
            }
@@ -103,7 +107,7 @@ public class LandlordController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("abc");
-               boolean rs =  contractDAO.UpdateStatusContract(list.get(view.getSelectedItemTable()).getID(), "GIA HẠN");
+               boolean rs =  contractDAO.UpdateStatusContractLandLord(list.get(view.getSelectedItemTable()).getID(), "GIA HẠN");
                 if (rs){
                     JOptionPane.showMessageDialog(rqView, "Đã yêu cầu gia hạn thành công");
                 }
@@ -144,5 +148,16 @@ public class LandlordController {
              
         }
         
+    }
+    class BillDetail implements  ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            DetailBillLandlordView dtb = new DetailBillLandlordView();
+            dtb.initDataTable(billDAO.getAllBillofAContractLandlord(list.get(view.getSelectedItemTable()).getID()));
+             java.awt.EventQueue.invokeLater(() -> {
+               dtb.setDefaultCloseOperation(RequestCreateRoom.DISPOSE_ON_CLOSE);
+               dtb.setVisible(true);
+            });
+        }  
     }
 }
