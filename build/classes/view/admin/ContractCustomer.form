@@ -62,7 +62,7 @@
         <Component class="javax.swing.JTable" name="table">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="11" rowCount="0">
+              <Table columnCount="10" rowCount="0">
                 <Column editable="false" title="M&#xe3; h&#x1ee3;p &#x111;&#x1ed3;ng" type="java.lang.Object"/>
                 <Column editable="false" title="M&#xe3; Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                 <Column editable="false" title="T&#xea;n Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
@@ -70,9 +70,8 @@
                 <Column editable="false" title="K&#x1ef3; H&#x1ea1;n" type="java.lang.Object"/>
                 <Column editable="false" title="Gi&#xe1;" type="java.lang.Object"/>
                 <Column editable="false" title="Ng&#xe0;y k&#xfd;" type="java.lang.Object"/>
+                <Column editable="false" title="Ti&#x1ec1;n c&#x1ecd;c" type="java.lang.Object"/>
                 <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
-                <Column editable="true" title="Gi&#xe1; &#x111;i&#x1ec7;n" type="java.lang.Object"/>
-                <Column editable="true" title="Gi&#xe1; n&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                 <Column editable="true" title="" type="java.lang.Object"/>
               </Table>
             </Property>

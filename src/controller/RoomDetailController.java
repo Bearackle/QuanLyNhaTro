@@ -4,17 +4,22 @@
  */
 package controller;
 
+import DAO.ContractDAO;
+import DAO.CustomerDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Contract;
+import model.Customer;
 import model.Room;
-import view.CustomControl.BufferedImageCreator;
+import model.User;
+import view.CustomControl.TextField;
 import view.Room.RoomDetail;
+import view.Room.TimePicker2;
+import view.User.TimePicker;
 
 /**
  *
@@ -24,25 +29,65 @@ public class RoomDetailController {
     private RoomDetail roomDetail;
     private RoomDAO roomDAO;
     private Room room;
+    private TimePicker2 time;
+    private User user;
+    private Customer customer;
+    private ContractDAO contractDAO;
+    private final CustomerDAO customerDAO;
     public RoomDetailController(RoomDetail roomDetail){
         this.roomDetail = roomDetail;
         roomDetail.setDefaultCloseOperation(RoomDetail.DISPOSE_ON_CLOSE);
         roomDAO = new RoomDAO();
+        customerDAO = new CustomerDAO();
+        contractDAO = new ContractDAO();
     }
-    public RoomDetailController(Room room)
+    public RoomDetailController(Room room,User user)
     {
         this(new RoomDetail());
         this.room = room;
+        this.user = user;
+        this.customer = customerDAO.getCustomer(user.getPhone());
         roomDetail.initImage(roomDAO.getRoomImages(room.getID()));
         roomDetail.initData(this.room);
         roomDetail.setListenerForbtnThue(new ClickBtnThue());
     }
     class ClickBtnThue implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-             
-             JOptionPane.showMessageDialog(roomDetail, "Đã gửi yêu cầu đến admin!");
+            if(customer == null){
+                JOptionPane.showMessageDialog(roomDetail, "Bạn cần đăng ký thông tin trước khách hàng trước!!");
+                return;
+            }
+            time = new TimePicker2();
+            time.setActionListenerForOK(new ClickOK());
+            java.awt.EventQueue.invokeLater(() -> {
+                    time.setDefaultCloseOperation(TimePicker2.DISPOSE_ON_CLOSE);
+                    time.setVisible(true);
+            });
+        }
+    }
+    class ClickOK implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                Contract contract = new Contract();
+                contract.setCustomerCCCD(customer.getCCCD());
+                contract.setCancelDate(time.getSelectedDate().plusMonths(time.getMonth()));
+                contract.setCustomerName(customer.getName());
+                contract.setDeposit(room.getPrices());
+                contract.setDuration(time.getMonth());
+                contract.setElecticPrice(3500);
+                contract.setWaterPrice(6000);
+                contract.setEnterDate(time.getSelectedDate());
+                contract.setNumberOfPeople(1);
+                contract.setPrice(room.getPrices());
+                contract.setRoomID(room.getID());
+                contract.setSigned_date(time.getSelectedDate());
+                contract.setStatus("CHỜ DUYỆT");
+                boolean check = contractDAO.CreateNewCustomerContract(contract);
+            if (check == true){
+                JOptionPane.showMessageDialog(roomDetail, "Bạn đã Đăng ký thành công, hẹn gặp lại bạn vào ngày đã hẹn!!");
+            }
+                time.dispose();
         }
         
     }

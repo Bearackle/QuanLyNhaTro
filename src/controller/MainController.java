@@ -66,7 +66,7 @@ public class MainController {
       {
         @Override
         public void actionPerformed(ActionEvent e) {
-            PostController postController = new PostController(new Post_Form());
+            PostController postController = new PostController(new Post_Form(),user);
             mainMonitor.setForm(postController.renderForm());
         }     
       }

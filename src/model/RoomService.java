@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ public class RoomService {
     private int RoomID;
     private String Description;
     private int Price;
-    private Date CreateDate;
+    private LocalDate CreateDate;
 
     public int getID() {
         return ID;
@@ -49,11 +50,11 @@ public class RoomService {
         this.Price = Price;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return CreateDate;
     }
 
-    public void setCreateDate(Date CreateDate) {
+    public void setCreateDate(LocalDate CreateDate) {
         this.CreateDate = CreateDate;
     }
 }

@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,13 +19,13 @@ public class Contract {
     private int RoomID;
     private int Duration; //tinh bang thang thang
     private int Price;
-    private Date Signed_date;
+    private LocalDate Signed_date;
     private String Status;
     private int ElecticPrice;
     private int WaterPrice;
     private int Deposit;
-    private Date EnterDate;
-    private Date CancelDate;
+    private LocalDate EnterDate;
+    private LocalDate CancelDate;
     private int NumberOfPeople;
 
     public int getNumberOfPeople() {
@@ -35,19 +36,19 @@ public class Contract {
         this.NumberOfPeople = NumberOfPeople;
     }
     
-    public Date getEnterDate() {
+    public LocalDate getEnterDate() {
         return EnterDate;
     }
 
-    public void setEnterDate(Date EnterDate) {
+    public void setEnterDate(LocalDate EnterDate) {
         this.EnterDate = EnterDate;
     }
 
-    public Date getCancelDate() {
+    public LocalDate getCancelDate() {
         return CancelDate;
     }
 
-    public void setCancelDate(Date CancelDate) {
+    public void setCancelDate(LocalDate CancelDate) {
         this.CancelDate = CancelDate;
     }
     
@@ -99,11 +100,11 @@ public class Contract {
         this.Price = Price;
     }
 
-    public Date getSigned_date() {
+    public LocalDate getSigned_date() {
         return Signed_date;
     }
 
-    public void setSigned_date(Date Signed_date) {
+    public void setSigned_date(LocalDate Signed_date) {
         this.Signed_date = Signed_date;
     }
 
@@ -143,7 +144,6 @@ public class Contract {
          Calendar calendar = Calendar.getInstance();
          calendar.setTime(date);
          return calendar;
-         
      }
 }
 

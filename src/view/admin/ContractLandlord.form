@@ -26,10 +26,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="131" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Component id="txtFilter" min="-2" pref="352" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="151" max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="txtFind" min="-2" pref="365" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="171" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -38,20 +38,30 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                  <Component id="txtFilter" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="txtFind" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="527" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="517" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="H&#x1ee3;p &#x111;&#x1ed3;ng ch&#x1ee7; ph&#xf2;ng"/>
+      </Properties>
+    </Component>
+    <Component class="view.CustomControl.TextField" name="txtFind">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="textField1"/>
+      </Properties>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -59,33 +69,22 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="table">
+        <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="0">
-                <Column editable="false" title="M&#xe3; h&#x1ee3;p &#x111;&#x1ed3;ng" type="java.lang.Object"/>
-                <Column editable="false" title="M&#xe3; Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
-                <Column editable="false" title="T&#xea;n Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
-                <Column editable="false" title="M&#xe3; ph&#xf2;ng" type="java.lang.Object"/>
-                <Column editable="false" title="K&#x1ef3; H&#x1ea1;n" type="java.lang.Object"/>
-                <Column editable="false" title="Gi&#xe1;" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="false" title="ID" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; ch&#x1ee7; thu&#xea;" type="java.lang.Object"/>
+                <Column editable="true" title="T&#xea;n ch&#x1ee7; thu&#xea;" type="java.lang.Object"/>
                 <Column editable="false" title="Ng&#xe0;y k&#xfd;" type="java.lang.Object"/>
-                <Column editable="false" title="Ti&#x1ec1;n c&#x1ecd;c" type="java.lang.Object"/>
+                <Column editable="false" title="K&#x1ef3; H&#x1ea1;n" type="java.lang.Object"/>
                 <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
-                <Column editable="true" title="" type="java.lang.Object"/>
+                <Column editable="false" title="" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="rowHeight" type="int" value="50"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="H&#x1ee3;p &#x111;&#x1ed3;ng thu&#xea; ph&#xf2;ng"/>
-      </Properties>
-    </Component>
-    <Component class="view.CustomControl.TextField" name="txtFilter">
-    </Component>
   </SubComponents>
 </Form>

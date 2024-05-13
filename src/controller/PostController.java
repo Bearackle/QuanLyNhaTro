@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import model.Room;
+import model.User;
 import view.Room.Post_Form;
 
 /**
@@ -21,7 +22,8 @@ public class PostController {
     private final Post_Form post;
     private final RoomDAO roomDAO;
     private List<Room> allRoom;
-    public PostController(Post_Form post_Form)
+    private User user;
+    public PostController(Post_Form post_Form,User user)
     {
         this.post = post_Form;
         roomDAO = new RoomDAO();
@@ -31,6 +33,7 @@ public class PostController {
         post.setActionListnerforlbl7(new clickforlbl7());
         post.setActionListenerforlblAllPrice(new clickForlblAllPrice());
         post.setMouseEventForJlist(new clickforItem());
+        this.user = user;
         renderList(0, "Tất cả", "Tất cả");
     }
     public Post_Form renderForm()
@@ -112,7 +115,7 @@ public class PostController {
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() 
             {
-               RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem())); 
+               RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem()),user); 
             }
         });
        }

@@ -7,6 +7,8 @@ package view.admin;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Contract;
@@ -56,33 +58,19 @@ public class DetailContractCustomer extends javax.swing.JFrame {
     }
     public Contract Update() {
         Contract contract = new  Contract();
-        try{
-        contract.setCancelDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(txtEnterDate.getText())));
-        } catch(ParseException e){
-            contract.setCancelDate(new Date(0));
-            JOptionPane.showMessageDialog(rootPane, "Sai định dạng ngày tháng");
-        }
+        contract.setCancelDate(LocalDate.parse(txtEnterDate.getText(),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")).plusMonths(Long.parseLong(txtDuration.getText())));
         contract.setCustomerCCCD(Long.valueOf(txtCusID.getText()));
         contract.setCustomerName(txtCusName.getText());
         contract.setDeposit(Integer.parseInt(txtDeposit.getText()));
         contract.setDuration(Integer.parseInt(txtDuration.getText()));
         contract.setRoomID(Integer.parseInt(txtRoomId.getText()));
         contract.setElecticPrice(Integer.parseInt(txtElectric.getText()));
-        try{
-        contract.setEnterDate(new SimpleDateFormat("yyyy-MM-dd").parse(txtEnterDate.getText()));
-        } catch(ParseException e){
-            contract.setEnterDate(new Date(0));
-            JOptionPane.showMessageDialog(rootPane, "Sai định dạng ngày tháng");
-        }
+        contract.setEnterDate(LocalDate.parse(txtEnterDate.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         contract.setID(Integer.parseInt(txtID.getText()));
         contract.setNumberOfPeople(Integer.parseInt(txtNumberOfpeople.getText()));
         contract.setPrice(Integer.parseInt(txtPrice.getText()));
-        try{
-            contract.setSigned_date(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(txtSign_date.getText()))); }
-        catch (ParseException e){
-            contract.setSigned_date(new Date(0));
-            JOptionPane.showMessageDialog(rootPane, "Sai định dạng ngày tháng");
-        }
+        contract.setSigned_date(LocalDate.parse(txtEnterDate.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         contract.setStatus(String.valueOf(txtStatus.getText()));
         contract.setWaterPrice(Integer.parseInt(String.valueOf(txtWater.getText())));
         return contract;
@@ -218,9 +206,9 @@ public class DetailContractCustomer extends javax.swing.JFrame {
                         .addComponent(txtWater, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCancelDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNumberOfpeople, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCancelDate, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(txtRoomId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

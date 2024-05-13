@@ -5,13 +5,14 @@
 package controller.ADMINCONTROLLER;
 
 import DAO.ContractDAO;
+import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Contract;
 import view.admin.ContractCustomer;
 import view.admin.DetailContractCustomer;
-import view.admin.RoomAdmin;
 
 /**
  *
@@ -22,8 +23,10 @@ public class AdminContractController {
   private final ContractCustomer view;
   private ArrayList<Contract> list;
   private DetailContractCustomer editView;
+  private RoomDAO roomDAO;
   public AdminContractController(ContractCustomer view){
       this.view = view;
+      roomDAO = new RoomDAO();
       DAO = new ContractDAO();
       initData();
       view.setActionListenerFortablebtn(new ClickAccept(), new ClickDelete(), new ClickEdit());
@@ -71,8 +74,14 @@ public class AdminContractController {
   class UpdateClick implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            DAO.UpdateContract(editView.Update());
+            boolean result = DAO.UpdateContract(editView.Update());
+            if(result) {     
+                roomDAO.updateStatusRoom(list.get(view.getSelectionIndex()).getRoomID(),"ĐÃ THUÊ");
+                JOptionPane.showMessageDialog(editView, "Cập nhật thành công");
+            }
+            else 
+                JOptionPane.showMessageDialog(editView, "Cập nhật thất bại, vui lòng thử lại sau");
+            editView.dispose();
         }
-      
   }
 }

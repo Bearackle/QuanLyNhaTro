@@ -7,6 +7,7 @@ package DAO;
 import java.util.List;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Contract;
 import model.ContractDetail;
@@ -42,13 +43,13 @@ public class ContractDAO {
                 contract.setRoomID(result.getInt("ROOM_ID"));
                 contract.setDuration(result.getInt("DURATION"));
                 contract.setPrice(result.getInt("PRICE"));
-                contract.setSigned_date(result.getDate("SIGN_DATE"));
+                contract.setSigned_date(result.getDate("SIGN_DATE").toLocalDate());
                 contract.setStatus(result.getString("STATUS"));
                 contract.setElecticPrice(result.getInt("ELECTRICPRICE"));
                 contract.setWaterPrice(result.getInt("WATERPRICE"));
                 contract.setDeposit(result.getInt("DEPOSIT"));
-                contract.setEnterDate(result.getDate("ENTER_DATE"));
-                contract.setCancelDate(result.getDate("CANCEL_DATE"));
+                contract.setEnterDate(result.getDate("ENTER_DATE").toLocalDate());
+                contract.setCancelDate(result.getDate("CANCEL_DATE").toLocalDate());
   
             allContracts.add(contract);
             }
@@ -75,12 +76,12 @@ public class ContractDAO {
                 contract.setRoomID(resultSet.getInt("ROOM_ID"));
                 contract.setDuration(resultSet.getInt("DURATION"));
                 contract.setPrice(resultSet.getInt("PRICE"));
-                contract.setSigned_date(resultSet.getDate("SIGN_DATE"));
+                contract.setSigned_date(resultSet.getDate("SIGN_DATE").toLocalDate());
                 contract.setStatus(resultSet.getString("STATUS"));
                 contract.setElecticPrice(resultSet.getInt("ELECTRICPRICE"));
                 contract.setWaterPrice(resultSet.getInt("WATERPRICE"));
-                contract.setEnterDate(resultSet.getDate("ENTER_DATE"));
-                contract.setCancelDate(resultSet.getDate("CANCEL_DATE"));
+                contract.setEnterDate(resultSet.getDate("ENTER_DATE").toLocalDate());
+                contract.setCancelDate(resultSet.getDate("CANCEL_DATE").toLocalDate());
                 contract.setDeposit(resultSet.getInt("DEPOSIT"));
                return contract;
             }
@@ -119,9 +120,6 @@ public class ContractDAO {
         }
       return null;
     }
-    public void CreateNewContract(Contract contract){
-        
-    } 
     public int CreateNewLandLordContractAndRoom(Contract_Landlord contract,Room room){
         String query1 = "INSERT INTO CONTRACT_LANDLORD (LANDLORDID,SIGNED_DATE,STATUS,DURATION) VALUES(?,?,?,?)";
         String query2 = "INSERT INTO ROOM (NAME,AREA,LOCATION,PRICE,DESCRIPTION,STATUS,CATEGORYID,LANDLORDCONTRACTID,VOTE,ISALLOWMATCH) VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -181,7 +179,7 @@ public class ContractDAO {
                  ContractLandLordDetail contract = new ContractLandLordDetail();
                  contract.setID(resultSet.getInt(1));
                  contract.setRoomName(resultSet.getString(2));
-                 contract.setSigned_Date(resultSet.getDate(3));
+                 contract.setSigned_Date(resultSet.getDate(3).toLocalDate());
                  contract.setStatus(resultSet.getString(4));
                  contracts.add(contract);
              }
@@ -232,12 +230,12 @@ public class ContractDAO {
                   contract.setRoomID(rs.getInt(4));
                   contract.setDuration(rs.getInt(5));
                   contract.setPrice(rs.getInt(6));
-                  contract.setSigned_date(rs.getDate(7));
+                  contract.setSigned_date(rs.getDate(7).toLocalDate());
                   contract.setStatus(rs.getString(8));
                   contract.setElecticPrice(rs.getInt(9));
                   contract.setWaterPrice(rs.getInt(10));
-                  contract.setEnterDate(rs.getDate(11));
-                  contract.setCancelDate(rs.getDate(12));
+                  contract.setEnterDate(rs.getDate(11).toLocalDate());
+                  contract.setCancelDate(rs.getDate(12) ==null ? LocalDate.now() : rs.getDate(12).toLocalDate());
                   contract.setDeposit(rs.getInt(13));
                   contract.setNumberOfPeople(rs.getInt(14));
                list.add(contract);
@@ -283,12 +281,12 @@ public class ContractDAO {
              ps.setInt(3, contract.getRoomID());
              ps.setInt(4, contract.getDuration());
              ps.setInt(5, contract.getPrice());
-             ps.setDate(6, new java.sql.Date(contract.getSigned_date().getTime()));
+             ps.setDate(6, java.sql.Date.valueOf(contract.getSigned_date()));
              ps.setString(7, contract.isStatus());
              ps.setInt(8, contract.getElecticPrice());
              ps.setInt(9, contract.getWaterPrice());
-             ps.setDate(10, new java.sql.Date(contract.getEnterDate().getTime()));
-             ps.setDate(11, new java.sql.Date(contract.getCancelDate().getTime()));
+             ps.setDate(10, java.sql.Date.valueOf(contract.getEnterDate()));
+             ps.setDate(11, java.sql.Date.valueOf(contract.getCancelDate()));
              ps.setInt(12, contract.getDeposit());
              ps.setInt(13, contract.getNumberOfPeople());
              ps.setInt(14, contract.getID());
@@ -298,5 +296,29 @@ public class ContractDAO {
              e.printStackTrace();
          }
          return false;
+    }
+    public boolean CreateNewCustomerContract(Contract contract){
+        String query = "INSERT INTO CONTRACT (CUSTOMER_ID,CUSTOMER_NAME,ROOM_ID,DURATION,PRICE,SIGN_DATE,STATUS,ELECTRICPRICE,WATERPRICE,ENTER_DATE,CANCEL_DATE,DEPOSIT,NUMBEROFPEOPLE) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, contract.getCustomerCCCD());
+            ps.setString(2, contract.getCustomerName());
+            ps.setInt(3, contract.getRoomID());
+            ps.setInt(4, contract.getDuration());
+            ps.setInt(5, contract.getPrice());
+            ps.setDate(6,java.sql.Date.valueOf(contract.getSigned_date()));
+            ps.setString(7, contract.isStatus());
+            ps.setInt(8, contract.getElecticPrice());
+            ps.setInt(9, contract.getWaterPrice());
+            ps.setDate(10, java.sql.Date.valueOf(contract.getEnterDate()));
+            ps.setDate(11, java.sql.Date.valueOf(contract.getCancelDate()));
+            ps.setInt(12, contract.getDeposit());
+            ps.setInt(13, contract.getNumberOfPeople());
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

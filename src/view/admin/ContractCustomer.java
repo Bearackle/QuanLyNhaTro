@@ -54,11 +54,11 @@ public class ContractCustomer extends javax.swing.JPanel {
         table.setRowSorter(sorter);
     }
     public void initDataTable(ArrayList<Contract> contracts){
-         table.getColumnModel().getColumn(10).setCellRenderer(new tablecellRenderFor3item("icon/accept.svg icon/delete.svg icon/edit.svg"));
+         table.getColumnModel().getColumn(9).setCellRenderer(new tablecellRenderFor3item("icon/accept.svg icon/delete.svg icon/edit.svg"));
          tableModel.setRowCount(0);
         for(Contract con : contracts){
             tableModel.addRow(new Object[]{"#"+con.getID(),"@"+con.getCustomerCCCD(),con.getCustomerName(),"#"+con.getRoomID()
-            ,con.getDuration(),con.getPrice(),con.getSigned_date().toString(),con.isStatus(),con.getElecticPrice()+" vnd",con.getWaterPrice()+" vnd"});
+            ,con.getDuration(),con.getPrice(),con.getSigned_date().toString(),con.getDeposit(),con.isStatus()});
         }
         table.setModel(tableModel);
         setWidthCellChange();
@@ -100,7 +100,7 @@ public class ContractCustomer extends javax.swing.JPanel {
         return table.convertRowIndexToModel(table.getSelectedRow());
     }
     public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1,ActionListener listener2){
-         table.getColumnModel().getColumn(10).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/accept.svg icon/delete.svg icon/edit.svg"));
+         table.getColumnModel().getColumn(9).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/accept.svg icon/delete.svg icon/edit.svg"));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,11 +123,11 @@ public class ContractCustomer extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hợp đồng", "Mã Khách hàng", "Tên Khách hàng", "Mã phòng", "Kỳ Hạn", "Giá", "Ngày ký", "Trạng thái", "Giá điện", "Giá nước", ""
+                "Mã hợp đồng", "Mã Khách hàng", "Tên Khách hàng", "Mã phòng", "Kỳ Hạn", "Giá", "Ngày ký", "Tiền cọc", "Trạng thái", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

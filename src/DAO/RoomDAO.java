@@ -198,7 +198,7 @@ public class RoomDAO {
                 roomService.setRoomID(rs.getInt(2));
                 roomService.setDescription(rs.getString(3));
                 roomService.setPrice(rs.getInt(4));
-                roomService.setCreateDate(rs.getDate(5));
+                roomService.setCreateDate(rs.getDate(5).toLocalDate());
                 allServices.add(roomService);
             }
             return allServices;
@@ -214,7 +214,7 @@ public class RoomDAO {
             ps.setInt(1,roomService.getRoomID());
             ps.setString(2,roomService.getDescription());
             ps.setInt(3,roomService.getPrice());
-            ps.setDate(4,new java.sql.Date(roomService.getCreateDate().getTime()));
+            ps.setDate(4, java.sql.Date.valueOf(roomService.getCreateDate()));
             ps.executeUpdate();
             return true;
         } catch (SQLException e){
@@ -245,6 +245,19 @@ public class RoomDAO {
             ps.executeUpdate();
             return true;
         } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean updateStatusRoom(int ID, String status){
+        String query = "UPDATE ROOM SET STATUS=? WHERER ROOMID=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(1, ID);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

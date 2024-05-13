@@ -271,7 +271,7 @@ public class RoomDetail extends javax.swing.JFrame {
         );
         jXMapViewer1Layout.setVerticalGroup(
             jXMapViewer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
 
         maps.add(jXMapViewer1, java.awt.BorderLayout.CENTER);
