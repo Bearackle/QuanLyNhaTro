@@ -16,7 +16,6 @@ import model.LandLord;
 import model.Location;
 import model.Room;
 import view.CustomControl.StyledButtonUI;
-import view.CustomControl.TextArea;
 import view.CustomControl.itemUpload;
 
 /**

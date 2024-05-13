@@ -25,7 +25,16 @@ public class Contract {
     private int Deposit;
     private Date EnterDate;
     private Date CancelDate;
+    private int NumberOfPeople;
 
+    public int getNumberOfPeople() {
+        return NumberOfPeople;
+    }
+
+    public void setNumberOfPeople(int NumberOfPeople) {
+        this.NumberOfPeople = NumberOfPeople;
+    }
+    
     public Date getEnterDate() {
         return EnterDate;
     }

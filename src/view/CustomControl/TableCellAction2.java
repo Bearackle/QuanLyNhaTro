@@ -18,16 +18,18 @@ public class TableCellAction2 extends DefaultCellEditor{
     private ActionListener listener;
     private ActionListener listener2;
     private ActionListener listener3;
-    public TableCellAction2(ActionListener listener1,ActionListener listener2,ActionListener listener3)
+    private String items;
+    public TableCellAction2(ActionListener listener1,ActionListener listener2,ActionListener listener3,String items)
       {
           super(new JCheckBox());
           this.listener = listener1;
           this.listener2 = listener2;
           this.listener3 = listener3;
+          this.items = items;
       }
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        Action2Panel actionPanel = new Action2Panel();
+        Action2Panel actionPanel = new Action2Panel(items);
         actionPanel.setBackground(table.getSelectionBackground());
         actionPanel.setActionlistenerForbtnDelete(listener);
         actionPanel.setActionListenerForbtnExtend(listener2);

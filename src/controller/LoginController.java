@@ -5,6 +5,7 @@
 package controller;
 
 import DAO.AccountDAO;
+import controller.ADMINCONTROLLER.AdminController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.User;
 import view.Login.RegisterForm;
 import view.Login.loginAndRegister;
+import view.admin.AdminMonitor;
 
 /**
  *
@@ -37,7 +39,11 @@ public class LoginController {
            if (authenticatedUser == null)
                JOptionPane.showMessageDialog(logAndRegister, "Thông tin đăng nhập sai");
            else {
-               var mainMonitor = new MainController(authenticatedUser);
+               if ("ADMIN".equals(authenticatedUser.getRole())){
+                   var Admin = new  AdminController();
+               } else{
+                   var mainMonitor = new MainController(authenticatedUser);
+               }
                logAndRegister.setVisible(false);
            }
        }

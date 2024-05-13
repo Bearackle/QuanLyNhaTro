@@ -11,15 +11,19 @@ import java.awt.event.ActionListener;
  * @author Admin
  */
 public class Action2Panel extends javax.swing.JPanel {
-
+    private String[] itemImages;
     /**
      * Creates new form Action2Panel
      */
-    public Action2Panel() {
+    public Action2Panel(String items) {
         initComponents();
-        actionBtnDelete1.setImage("icon/delete.svg");
-        actionBtnDelete2.setImage("icon/extend.svg");
-        btnDetail.setImage("icon/detail3.svg");
+        itemImages = items.split(" ");
+        actionBtnDelete1.setImage(itemImages[0]);
+        actionBtnDelete2.setImage(itemImages[1]);
+        btnDetail.setImage(itemImages[2]);
+//        actionBtnDelete1.setImage("icon/delete.svg");
+//        actionBtnDelete2.setImage("icon/extend.svg");
+//        btnDetail.setImage("icon/detail3.svg");
     }
     public void setActionlistenerForbtnDelete(ActionListener listener){
          actionBtnDelete1.addActionListener(listener);

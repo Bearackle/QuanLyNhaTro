@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.ContractLandLordDetail;
 import view.CustomControl.StyledButtonUI;
-import view.CustomControl.TableCellAction;
 import view.CustomControl.TableCellAction2;
-import view.CustomControl.tableCellRenderForSearchMatch;
-import view.CustomControl.tablecellRenderForLandlordContract;
+import view.CustomControl.tablecellRenderFor3item;
 
 /**
  *
@@ -31,7 +29,7 @@ public class LandLordView extends javax.swing.JPanel {
         btnCreateRoom.addActionListener(listener);
     }
     public void initTable(ArrayList<ContractLandLordDetail> contracts){
-         table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderForLandlordContract());
+         table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderFor3item("icon/delete.svg con/extend.svg icon/detail3.svg"));
          tableModel =(DefaultTableModel) table.getModel();
          tableModel.setRowCount(0);
          for (ContractLandLordDetail Detail : contracts){
@@ -39,7 +37,7 @@ public class LandLordView extends javax.swing.JPanel {
          }
     }
     public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1,ActionListener listener2){
-         table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction2(listener,listener1,listener2));
+         table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/delete.svg icon/extend.svg icon/detail3.svg"));
     }
     public int getSelectedItemTable(){
         return table.getSelectedRow();

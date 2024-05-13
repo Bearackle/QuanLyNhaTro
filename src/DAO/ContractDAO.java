@@ -6,6 +6,7 @@ package DAO;
 
 import java.util.List;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import model.Contract;
 import model.ContractDetail;
@@ -206,19 +207,96 @@ public class ContractDAO {
     }
     public boolean updateStatusContractCustomer (int ID, String status){
         String query = "UPDATE CONTRACT SET STATUS=? WHERE CONTRACTID=?";
-        String query2 = "UPDATE ROOM SET STATUS='TRỐNG' WHERE ROOMID=?";
         try{
             PreparedStatement ps = connection.prepareStatement(query);
-            PreparedStatement ps2 = connection.prepareStatement(query2);
             ps.setString(1, status);
             ps.setInt(2,ID);
-            ps2.setInt(1, ID);
             ps.executeUpdate();
-            ps2.executeUpdate();
             return true;
         } catch (SQLException e){
             e.printStackTrace();
         }
         return false;
+    }
+    public ArrayList<Contract> getAllContracts(){
+        String query = "SELECT * FROM CONTRACT";
+        ArrayList<Contract> list = new ArrayList<>();
+        try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ResultSet rs = ps.executeQuery();
+             while(rs.next()){
+                  Contract contract = new Contract();
+                  contract.setID(rs.getInt(1));
+                  contract.setCustomerCCCD(rs.getLong(2));
+                  contract.setCustomerName(rs.getString(3));
+                  contract.setRoomID(rs.getInt(4));
+                  contract.setDuration(rs.getInt(5));
+                  contract.setPrice(rs.getInt(6));
+                  contract.setSigned_date(rs.getDate(7));
+                  contract.setStatus(rs.getString(8));
+                  contract.setElecticPrice(rs.getInt(9));
+                  contract.setWaterPrice(rs.getInt(10));
+                  contract.setEnterDate(rs.getDate(11));
+                  contract.setCancelDate(rs.getDate(12));
+                  contract.setDeposit(rs.getInt(13));
+                  contract.setNumberOfPeople(rs.getInt(14));
+               list.add(contract);
+             } 
+             return list;
+        } catch (SQLException e){
+            e.printStackTrace();
+            }
+        return null;
+    }
+    public boolean UpdateStatusRoomAndContractCustomer(String status, int ID){
+           String query = "UPDATE CONTRACT SET STATUS=? WHERE CONTRACTID=?";
+           try{
+               PreparedStatement ps = connection.prepareStatement(query);
+               ps.setString(1, status);
+               ps.setInt(2, ID);
+               ps.executeUpdate();
+               return true;
+           } catch (SQLException e){
+               e.printStackTrace();
+           }
+           return false;
+    }
+    public boolean UpdateStatusRoom(String status, int ID){
+           String query = "UPDATE ROOM SET STATUS=? WHERE ROOMID=?";
+           try{
+               PreparedStatement ps = connection.prepareStatement(query);
+               ps.setString(1, status);
+               ps.setInt(2, ID);
+               ps.executeUpdate();
+               return true;
+           } catch (SQLException e){
+               e.printStackTrace();
+           }
+           return false;
+    }
+    public boolean UpdateContract(Contract contract){
+         String query = "UPDATE CONTRACT SET CUSTOMER_ID=?,CUSTOMER_NAME=?,ROOM_ID=?,DURATION=?,PRICE=?,SIGN_DATE=?,STATUS=?,ELECTRICPRICE=?,WATERPRICE=?,ENTER_DATE=?,CANCEL_DATE=?,DEPOSIT=?,NUMBEROFPEOPLE=? WHERE CONTRACTID=?";
+         try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setLong(1, contract.getCustomerCCCD());
+             ps.setString(2,contract.getCustomerName());
+             ps.setInt(3, contract.getRoomID());
+             ps.setInt(4, contract.getDuration());
+             ps.setInt(5, contract.getPrice());
+             ps.setDate(6, new java.sql.Date(contract.getSigned_date().getTime()));
+             ps.setString(7, contract.isStatus());
+             ps.setInt(8, contract.getElecticPrice());
+             ps.setInt(9, contract.getWaterPrice());
+             ps.setDate(10, new java.sql.Date(contract.getEnterDate().getTime()));
+             ps.setDate(11, new java.sql.Date(contract.getCancelDate().getTime()));
+             ps.setInt(12, contract.getDeposit());
+             ps.setInt(13, contract.getNumberOfPeople());
+             ps.setInt(14, contract.getID());
+             ps.executeUpdate();
+             return true;
+         } catch(SQLException e){
+             e.printStackTrace();
+         }
+         return false;
     }
 }
