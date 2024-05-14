@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
 public class Contract_Landlord {
     private int ID;
     private Long LandlordID;
-    private Date signed_date;
+    private LocalDate signed_date;
     private String status;
     private int Duration;
     public int getDuration() {
@@ -38,11 +39,11 @@ public class Contract_Landlord {
         this.LandlordID = LandlordID;
     }
 
-    public Date getSigned_date() {
+    public LocalDate getSigned_date() {
         return signed_date;
     }
 
-    public void setSigned_date(Date signed_date) {
+    public void setSigned_date(LocalDate signed_date) {
         this.signed_date = signed_date;
     }
 

@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.BoxLayout;
@@ -65,7 +66,7 @@ public class RequestCreateRoom extends javax.swing.JFrame {
     public Contract_Landlord CreateContract_Landlord(LandLord value){
          Contract_Landlord con = new Contract_Landlord();
          con.setLandlordID(value.getCCCD());
-         con.setSigned_date(new Date());
+         con.setSigned_date(LocalDate.now());
          con.setStatus("CHỜ DUYỆT");
          con.setDuration(Integer.parseInt(txtDuration.getText()));
          return con;

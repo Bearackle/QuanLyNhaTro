@@ -129,7 +129,7 @@ public class ContractDAO {
         PreparedStatement ps1 = connection.prepareStatement(query1,returnCols);
         PreparedStatement ps2 = connection.prepareStatement(query2,returnCols2);
         ps1.setLong(1,contract.getLandlordID());
-        ps1.setDate(2, new java.sql.Date(contract.getSigned_date().getTime()));
+        ps1.setDate(2, java.sql.Date.valueOf(contract.getSigned_date()));
         ps1.setString(3,contract.getStatus());
         ps1.setInt(4, contract.getDuration());
         int rowContract = ps1.executeUpdate();
@@ -316,6 +316,42 @@ public class ContractDAO {
             ps.setInt(13, contract.getNumberOfPeople());
             ps.executeUpdate();
             return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public ArrayList<Contract_Landlord> getAllContract_Landlords(){
+        String query = "SELECT * FROM CONTRACT_LANDLORD";
+        try{ 
+            ArrayList<Contract_Landlord> list = new ArrayList<>();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Contract_Landlord con = new Contract_Landlord();
+                con.setID(rs.getInt(1));
+                con.setLandlordID(rs.getLong(2));
+                con.setSigned_date(rs.getDate(3).toLocalDate());
+                con.setStatus(rs.getString(4));
+                con.setDuration(rs.getInt(5));
+              list.add(con);
+            }
+            return list;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean UpdateContractLandlord(Contract_Landlord contract){
+        String query = "UPDATE CONTRACT_LANDLORD SET SIGNED_DATE=?,STATUS=?,DURATION=? WHERE CONTRACTID=?";
+        try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setDate(1, java.sql.Date.valueOf(contract.getSigned_date()));
+             ps.setString(2, contract.getStatus());
+             ps.setInt(3, contract.getDuration());
+             ps.setInt(4, contract.getID());
+             ps.executeUpdate();
+             return true;
         } catch(SQLException e){
             e.printStackTrace();
         }

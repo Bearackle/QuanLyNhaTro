@@ -3,100 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/java/DoAn/src/model/Contract.java</file>
-            <file>file:/E:/java/DoAn/src/view/Bill/BillPanel.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/EmptyRoom.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/BillDAO.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/loginAndRegister.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/gradientBackground.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/MatchRoom.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/SVGimage.java</file>
-            <file>file:/E:/java/DoAn/src/resource/data.sql</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ClickDeleteItemUpload.java</file>
-            <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/swing/shadow/ShadowRenderer.java</file>
-            <file>file:/E:/java/DoAn/src/view/Contract/Contract.java</file>
-            <file>file:/E:/java/DoAn/src/model/Room.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/itemUpload.java</file>
-            <file>file:/E:/java/DoAn/src/model/ResidentDetail.java</file>
-            <file>file:/E:/java/DoAn/src/view/admin/RoomAdmin.java</file>
-            <file>file:/E:/java/DoAn/src/model/BillCustomerDetail.java</file>
-            <file>file:/E:/java/DoAn/src/model/BillLandlordDetail.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/Combobox.java</file>
-            <file>file:/E:/java/DoAn/src/view/Bill/QRTAKEMONEY.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/RoomImageItem.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/CustomScrollBarUI.java</file>
-            <file>file:/E:/java/DoAn/src/controller/BillController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/ServicesController.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/Post_Form.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/TextAreaScroll.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/VeriFyMail.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/SearchMatch.java</file>
-            <file>file:/E:/java/DoAn/src/view/Bill/BillDetailPanel.java</file>
-            <file>file:/E:/java/DoAn/src/view/Bill/DetailBillLandlordView.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/panelInfoSearch.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/toggle/ToggleButton.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/RoomItemView.java</file>
-            <file>file:/E:/java/DoAn/src/controller/RegistrationResidentController.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/ResidentRegistration.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/NewCustomer.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/TextArea.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/TextField.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/ShortTermRoom.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/RoomDetail.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ItemNotFound.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/CustomerDAO.java</file>
-            <file>file:/E:/java/DoAn/src/icon/PROFILE_IMAGE/PR0E4.jpg</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ActionPanel.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/LandLordView.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/RegisterForm.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/RequestCreateRoom.java</file>
-            <file>file:/E:/java/DoAn/src/model/RoomService.java</file>
-            <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/toggle/ToggleListener.java</file>
-            <file>file:/E:/java/DoAn/src/view/Menu.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/loginPanel.java</file>
-            <file>file:/E:/java/DoAn/src/view/admin/DetailContractCustomer.java</file>
-            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
-            <file>file:/E:/java/DoAn/src/view/Room/RoomServiceView.java</file>
-            <file>file:/E:/java/DoAn/src/view/Contract/ContractItemView.java</file>
-            <file>file:/E:/java/DoAn/src/model/Location.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/Action2Panel.java</file>
-            <file>file:/E:/java/DoAn/src/view/admin/AdminMonitor.java</file>
-            <file>file:/E:/java/DoAn/src/view/Login/Welcompage.java</file>
-            <file>file:/E:/java/DoAn/src/Test/Main.java</file>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminContractController.java</file>
-            <file>file:/E:/java/DoAn/src/model/ContractDetail.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/SonoFont.java</file>
-            <file>file:/E:/java/DoAn/src/view/User/Info.java</file>
-            <file>file:/E:/java/DoAn/src/controller/LandlordController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/SearchMatchController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/RoomDetailController.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/ContractLandlord.java</file>
             <file>file:/E:/java/DoAn/src/model/ContractLandLordDetail.java</file>
             <file>file:/E:/java/DoAn/src/DAO/ContractDAO.java</file>
-            <file>file:/E:/java/DoAn/src/controller/LoginController.java</file>
-            <file>file:/E:/java/DoAn/src/contract/thuenhatro.png</file>
-            <file>file:/E:/java/DoAn/src/DAO/DataBaseConnection.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/toggle/ToggleAdapter.java</file>
-            <file>file:/E:/java/DoAn/src/model/Bill.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/TableCellAction2.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/AdminMonitor.java</file>
             <file>file:/E:/java/DoAn/src/model/LandLord.java</file>
-            <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
-            <file>file:/E:/java/DoAn/src/model/Customer.java</file>
-            <file>file:/E:/java/DoAn/src/controller/RegisterController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/PostController.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/TableCellAction.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/swing/shadow/GraphicsUtilities.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/tableCellRenderForSearchMatch.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/tablecellRenderFor3item.java</file>
-            <file>file:/E:/java/DoAn/src/controller/ContractController.java</file>
-            <file>file:/E:/java/DoAn/src/view/MainMonitor.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ModernScrollBarUI.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/NoFunctionFound.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ActionBtnDelete.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractCustomer.java</file>
-            <file>file:/E:/java/DoAn/src/model/User.java</file>
-            <file>file:/E:/java/DoAn/src/view/CustomControl/ScrollBarCustom.java</file>
         </group>
     </open-files>
 </project-private>

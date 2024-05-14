@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import view.Login.loginAndRegister;
 import view.admin.AdminMonitor;
 import view.admin.ContractCustomer;
+import view.admin.ContractLandlord;
 
 /**
  *
@@ -44,6 +45,8 @@ public class AdminController {
     class ClickContractLandlord implements ActionListener{
          @Override
         public void actionPerformed(ActionEvent e) {
+            AdminContractLandlordController controller = new AdminContractLandlordController(new ContractLandlord());
+            view.setForm(controller.Render());
                }
     }
     class ClickBill implements ActionListener {

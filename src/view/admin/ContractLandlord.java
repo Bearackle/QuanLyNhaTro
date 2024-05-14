@@ -4,21 +4,70 @@
  */
 package view.admin;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import model.Contract_Landlord;
+import view.CustomControl.TableCellAction2;
+import view.CustomControl.tablecellRenderFor3item;
+
 /**
  *
  * @author Admin
  */
 public class ContractLandlord extends javax.swing.JPanel {
-
+    private DefaultTableModel tableModel;
+    private TableRowSorter sorter;
     /**
      * Creates new form ContractLandlord
      */
     public ContractLandlord() {
         initComponents();
-        txtFind.setLabelText("Tìm kiếm theo tên");
+        txtFilter.setLabelText("Tìm kiếm theo tên");
+        tableModel = (DefaultTableModel) table.getModel();
+        sorter = new TableRowSorter<>(tableModel);
+        txtFilter.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                 initFilter();
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                initFilter();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+         }
+        });
+        table.setRowSorter(sorter);
     }
-    public void initDatable(){
-        
+    public void initDatable(ArrayList<Contract_Landlord> contracts){
+         table.getColumnModel().getColumn(5).setCellRenderer(new tablecellRenderFor3item("icon/accept.svg icon/delete.svg icon/edit.svg"));
+         tableModel.setRowCount(0);
+        for(Contract_Landlord con : contracts){
+            tableModel.addRow(new Object[]{"#"+con.getID(),"@"+con.getLandlordID(),con.getSigned_date(),con.getDuration(),con.getStatus()
+        });}
+        table.setModel(tableModel);
+    }
+    private void initFilter(){
+        RowFilter<DefaultTableModel,Object> rowFilter = null;
+        try{
+            rowFilter = RowFilter.regexFilter(txtFilter.getText(), 1);
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        sorter.setRowFilter(rowFilter);
+    }
+     public int getSelectionIndex(){
+        return table.convertRowIndexToModel(table.getSelectedRow());
+    }
+    public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1,ActionListener listener2){
+         table.getColumnModel().getColumn(5).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/accept.svg icon/delete.svg icon/edit.svg"));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,33 +79,32 @@ public class ContractLandlord extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtFind = new view.CustomControl.TextField();
+        txtFilter = new view.CustomControl.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Hợp đồng chủ phòng");
 
-        txtFind.setText("textField1");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Mã chủ thuê", "Tên chủ thuê", "Ngày ký", "Kỳ Hạn", "Trạng thái", ""
+                "ID", "Mã chủ thuê", "Ngày ký", "Kỳ Hạn", "Trạng thái", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        table.setRowHeight(40);
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -69,7 +117,7 @@ public class ContractLandlord extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 171, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -79,7 +127,7 @@ public class ContractLandlord extends javax.swing.JPanel {
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                 .addContainerGap())
@@ -90,7 +138,7 @@ public class ContractLandlord extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private view.CustomControl.TextField txtFind;
+    private javax.swing.JTable table;
+    private view.CustomControl.TextField txtFilter;
     // End of variables declaration//GEN-END:variables
 }
