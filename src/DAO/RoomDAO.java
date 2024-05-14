@@ -58,6 +58,39 @@ public class RoomDAO {
         }
         return null;
     }
+     public ArrayList<Room> getAllRoomNoMatter()
+    {
+        ArrayList<Room> allRoom = new ArrayList<>();
+        String query = "SELECT * FROM ROOM";
+        try 
+        {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet result = ps.executeQuery();
+            while (result.next())
+            {
+                Room room = new Room();
+                room.setID(result.getInt("ROOMID"));
+                room.setName(result.getString("NAME"));
+                room.setPrices(result.getInt("PRICE"));
+                room.setArea(result.getFloat("AREA"));
+                room.setCategoryId(result.getInt("CATEGORYID"));
+                room.setIsAllowMatch(result.getString("ISALLOWMATCH"));
+                room.setDescription(result.getString("DESCRIPTION"));
+                room.setStatus(result.getString("STATUS"));
+                room.setLandLordContractID(result.getInt("LANDLORDCONTRACTID"));
+                room.setVote(result.getInt("VOTE"));
+                String[] dblocation = result.getString("LOCATION").split(",");
+                room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
+                //
+                allRoom.add(room);
+            }
+          return allRoom;
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public Room getDataRoomWithCustomerID(Long ID){
         String query = "SELECT ROOM.ROOMID, CATEGORYID ROOM_ FROM CUSTOMER INNER JOIN CONTRACT ON CUSTOMER.CCCD=CONTRACT.CUSTOMER_ID INNER JOIN ROOM ON ROOM.ROOMID=CONTRACT.ROOM_ID WHERE CUSTOMER.CCCD=? AND CONTRACT.STATUS='ĐÃ DUYỆT'";
         try {
@@ -254,10 +287,32 @@ public class RoomDAO {
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, status);
-            ps.setInt(1, ID);
+            ps.setInt(2, ID);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean updateDataRoom(Room room){
+        String query = "UPDATE ROOM SET NAME=?,AREA=?,LOCATION=?,PRICE=?,DESCRIPTION=?,STATUS=?,CATEGORYID=?,LANDLORDCONTRACTID=?,VOTE=?,ISALLOWMATCH=? WHERE ROOMID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, room.getName());
+            ps.setDouble(2, room.getArea());
+            ps.setString(3 ,room.getLocation().toString());
+            ps.setInt(4,room.getPrices());
+            ps.setString(5, room.getDescription());
+            ps.setString(6, room.getStatus());
+            ps.setInt(7, room.getCategoryId());
+            ps.setInt(8, room.getLandLordContractID());
+            ps.setInt(9, room.getVote());
+            ps.setString(10, room.isIsAllowMatch());
+            ps.setInt(11, room.getID());
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e){
             e.printStackTrace();
         }
         return false;

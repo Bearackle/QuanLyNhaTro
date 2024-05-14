@@ -357,4 +357,24 @@ public class ContractDAO {
         }
         return false;
     }
+    public Contract_Landlord getContractLL(int ID){
+        String query = "SELECT * FROM CONTRACT_LANDLORD WHERE CONTRACTID=?";        
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            Contract_Landlord con = new Contract_Landlord();
+            if(rs.next()){   
+                con.setID(rs.getInt(1));
+                con.setLandlordID(rs.getLong(2));
+                con.setSigned_date(rs.getDate(3).toLocalDate());
+                con.setStatus(rs.getString(4));
+                con.setDuration(rs.getInt(5));
+            }
+            return con;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

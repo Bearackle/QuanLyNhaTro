@@ -26,7 +26,7 @@ public class AdminContractLandlordController {
           this.view = view;
           DAO = new ContractDAO();
           initData();
-           view.setActionListenerFortablebtn(new ClickAccept(), new ClickDelete(), new ClickEdit());
+          view.setActionListenerFortablebtn(new ClickAccept(), new ClickDelete(), new ClickEdit());
       }
       public ContractLandlord Render(){
           return view;

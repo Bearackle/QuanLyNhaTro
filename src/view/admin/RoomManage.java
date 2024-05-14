@@ -11,7 +11,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Contract_Landlord;
+import model.Room;
 import view.CustomControl.TableCellAction2;
 import view.CustomControl.tablecellRenderFor3item;
 
@@ -19,15 +19,15 @@ import view.CustomControl.tablecellRenderFor3item;
  *
  * @author Admin
  */
-public class ContractLandlord extends javax.swing.JPanel {
-    private DefaultTableModel tableModel;
-    private TableRowSorter sorter;
+public class RoomManage extends javax.swing.JPanel {
+    private final DefaultTableModel tableModel;
+    private final TableRowSorter sorter;
     /**
-     * Creates new form ContractLandlord
+     * Creates new form RoomManage
      */
-    public ContractLandlord() {
+    public RoomManage() {
         initComponents();
-        txtFilter.setLabelText("Tìm kiếm theo tên");
+        txtFilter.setLabelText("Tìm kiếm phòng");
         tableModel = (DefaultTableModel) table.getModel();
         sorter = new TableRowSorter<>(tableModel);
         txtFilter.getDocument().addDocumentListener(new DocumentListener(){
@@ -39,22 +39,21 @@ public class ContractLandlord extends javax.swing.JPanel {
             public void removeUpdate(DocumentEvent e) {
                 initFilter();
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {
          }
         });
         table.setRowSorter(sorter);
     }
-    public void initDatable(ArrayList<Contract_Landlord> contracts){
-         table.getColumnModel().getColumn(5).setCellRenderer(new tablecellRenderFor3item("icon/accept.svg icon/delete.svg icon/edit.svg"));
-         tableModel.setRowCount(0);
-        for(Contract_Landlord con : contracts){
-            tableModel.addRow(new Object[]{"#"+con.getID(),"@"+con.getLandlordID(),con.getSigned_date(),con.getDuration(),con.getStatus()
-        });}
+    public void initTable(ArrayList<Room> list){
+        table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderFor3item("icon/showcontract.svg icon/delete.svg icon/detail3.svg"));
+        tableModel.setRowCount(0);
+        for(Room room : list){
+            tableModel.addRow(new Object[]{"#"+room.getID(),room.getName(),room.getPrices(),room.getStatus()});
+        }
         table.setModel(tableModel);
     }
-    private void initFilter(){
+     private void initFilter(){
         RowFilter<DefaultTableModel,Object> rowFilter = null;
         try{
             rowFilter = RowFilter.regexFilter(txtFilter.getText(), 1);
@@ -63,12 +62,13 @@ public class ContractLandlord extends javax.swing.JPanel {
         }
         sorter.setRowFilter(rowFilter);
     }
-     public int getSelectionIndex(){
+    public int getSelectionIndex(){
         return table.convertRowIndexToModel(table.getSelectedRow());
     }
     public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1,ActionListener listener2){
-         table.getColumnModel().getColumn(5).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/accept.svg icon/delete.svg icon/edit.svg"));
+         table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/showcontract.svg icon/delete.svg icon/detail3.svg"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,24 +79,24 @@ public class ContractLandlord extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtFilter = new view.CustomControl.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        txtFilter = new view.CustomControl.TextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Hợp đồng chủ phòng");
+        jLabel1.setText("Quản lý phòng ở");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Mã chủ thuê", "Ngày ký", "Kỳ Hạn", "Trạng thái", ""
+                "Mã phòng", "Tên phòng", "Giá", "Trạng thái", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -113,24 +113,24 @@ public class ContractLandlord extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 171, Short.MAX_VALUE)))
+                        .addGap(0, 144, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

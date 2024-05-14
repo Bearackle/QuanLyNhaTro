@@ -12,6 +12,7 @@ import view.Login.loginAndRegister;
 import view.admin.AdminMonitor;
 import view.admin.ContractCustomer;
 import view.admin.ContractLandlord;
+import view.admin.RoomManage;
 
 /**
  *
@@ -40,7 +41,9 @@ public class AdminController {
     class ClickRoom implements ActionListener{
          @Override
         public void actionPerformed(ActionEvent e) {
-               }
+            RoomManageController controller = new RoomManageController(new RoomManage());
+            view.setForm(controller.Render());
+        }
     }
     class ClickContractLandlord implements ActionListener{
          @Override

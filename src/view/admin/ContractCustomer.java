@@ -28,9 +28,7 @@ import view.CustomControl.tablecellRenderFor3item;
 public class ContractCustomer extends javax.swing.JPanel {
     private DefaultTableModel tableModel;
     private TableRowSorter sorter;
-    /**
-     * Creates new form ContractCustomer
-     */
+    
     public ContractCustomer() {
         initComponents();
         txtFilter.setLabelText("Tìm kiếm hợp đồng");

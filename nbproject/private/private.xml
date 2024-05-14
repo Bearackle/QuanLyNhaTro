@@ -4,13 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminContractController.java</file>
-            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
+            <file>file:/E:/java/DoAn/src/model/ContractDetail.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/ContractLandlordDetailView.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractLandlord.java</file>
             <file>file:/E:/java/DoAn/src/model/ContractLandLordDetail.java</file>
             <file>file:/E:/java/DoAn/src/DAO/ContractDAO.java</file>
-            <file>file:/E:/java/DoAn/src/view/admin/AdminMonitor.java</file>
+            <file>file:/E:/java/DoAn/src/view/Room/RequestCreateRoom.java</file>
             <file>file:/E:/java/DoAn/src/model/LandLord.java</file>
+            <file>file:/E:/java/DoAn/src/DAO/LandLordDAO.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/DetailContractCustomer.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/AdminMonitor.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminContractLandlordController.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractCustomer.java</file>
+            <file>file:/E:/java/DoAn/src/model/Contract_Landlord.java</file>
         </group>
     </open-files>
 </project-private>
