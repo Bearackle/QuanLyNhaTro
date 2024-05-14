@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import view.Login.loginAndRegister;
+import view.admin.AdminBill;
 import view.admin.AdminMonitor;
 import view.admin.ContractCustomer;
 import view.admin.ContractLandlord;
@@ -55,6 +56,8 @@ public class AdminController {
     class ClickBill implements ActionListener {
          @Override
         public void actionPerformed(ActionEvent e) {
+            AdminBillController controller = new AdminBillController(new AdminBill());
+            view.setForm(controller.Render());
                }
     }
     class ClickPay implements ActionListener{

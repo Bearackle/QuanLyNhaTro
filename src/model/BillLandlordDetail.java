@@ -10,7 +10,6 @@ package model;
  */
 public class BillLandlordDetail extends Bill{
     private int Contract_ID;
-    
     public int getContract_ID() {
         return Contract_ID;
     }

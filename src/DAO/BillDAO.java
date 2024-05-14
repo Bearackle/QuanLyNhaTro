@@ -7,6 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import model.Bill;
 import model.BillCustomerDetail;
+import model.BillLandlordDetail;
+import model.LandLord;
 /**
  *
  * @author Admin
@@ -24,7 +26,7 @@ public class BillDAO {
             ps.setLong(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                Bill bill = new Bill();
+                Bill bill = new BillCustomerDetail();
                 bill.setID(rs.getInt(1));
                 bill.setCustomer_id(rs.getLong(2));
                 bill.setDateCreated(rs.getDate(3));
@@ -68,7 +70,7 @@ public class BillDAO {
         ps.setInt(1, contractid);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
-            Bill bill = new Bill();
+            Bill bill = new BillLandlordDetail();
             bill.setID(rs.getInt(1));
             bill.setPay_date(rs.getDate(2));
             bill.setPrice(rs.getInt(3));
@@ -80,5 +82,73 @@ public class BillDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public ArrayList<Bill> getAllBillNoMatter(){
+        String query1 = "SELECT BILL.BILL_ID,CUSTOMER_ID,DATE_CREATED,PAY_DATE,STATUS,PRICE FROM BILL INNER JOIN BILL_CUSTOMER ON BILL.BILL_ID=BILL_CUSTOMER.BILL_ID";
+        String query2 = "SELECT BILL.BILL_ID,CUSTOMER_ID,DATE_CREATED,PAY_DATE,STATUS, PRICE, CONTRACT_ID FROM BILL INNER JOIN BILL_LANDLORD ON BILL.BILL_ID=BILL_LANDLORD.BILL_ID";
+        ArrayList<Bill> bills = new ArrayList<>();
+        try{
+            PreparedStatement ps1 = connection.prepareStatement(query1);
+            PreparedStatement ps2 = connection.prepareStatement(query2);
+            ResultSet rs = ps1.executeQuery();
+            while(rs.next()){
+                BillCustomerDetail bill = new BillCustomerDetail();
+                bill.setID(rs.getInt(1));
+                bill.setCustomer_id(rs.getLong(2));
+                bill.setDateCreated(rs.getDate(3));
+                bill.setPay_date(rs.getDate(4));
+                bill.setStatus(rs.getString(5));
+                bill.setPrice(rs.getInt(6));
+                bills.add(bill);
+            }
+            ResultSet rs2 = ps2.executeQuery();
+            while(rs2.next()){
+                BillLandlordDetail bill = new BillLandlordDetail();
+                bill.setID(rs2.getInt(1));
+                bill.setCustomer_id(rs2.getLong(2));
+                bill.setDateCreated(rs2.getDate(3));
+                bill.setPay_date(rs2.getDate(4));
+                bill.setStatus(rs2.getString(5));
+                bill.setPrice(rs2.getInt(6));
+                bill.setContract_ID(rs2.getInt(7));
+                bills.add(bill);
+            }
+            return bills;
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
+        return null;
+    }
+    public boolean updateBillStatus(String status, int ID){
+        String query = "UPDATE BILL SET STATUS=? WHERE BILL_ID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(2, ID);
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public LandLord getLandlordInfo(int ID){
+        String query = "SELECT CCCD,NAME,PHONE,BANKACCOUNT FROM CONTRACT_LANDLORD INNER JOIN LANDLORD ON LANDLORDID=CCCD WHERE CONTRACTID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            LandLord landlord = new LandLord();
+            if(rs.next()){
+                landlord.setCCCD(rs.getLong(1));
+                landlord.setName(rs.getString(2));
+                landlord.setPhone(rs.getString(3));
+                landlord.setBankAccount(rs.getString(4));
+            }
+            return landlord;
+            } catch (SQLException e){
+                        e.printStackTrace();
+                    }
+            return null;
     }
 }

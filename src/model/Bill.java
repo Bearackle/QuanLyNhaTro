@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Admin
  */
-public class Bill {
+public abstract class Bill {
     private int ID;
     private Long customer_id;
     private Date dateCreated;
@@ -63,10 +63,4 @@ public class Bill {
     public void setStatus(String status) {
         this.status = status;
     }
-    public Calendar getCalendar(Date date)
-     {
-         Calendar calendar = Calendar.getInstance();
-         calendar.setTime(date);
-         return calendar;
-     }
 }
