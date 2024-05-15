@@ -4,8 +4,7 @@
  */
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -14,8 +13,8 @@ import java.util.Date;
 public abstract class Bill {
     private int ID;
     private Long customer_id;
-    private Date dateCreated;
-    private Date pay_date;
+    private LocalDate dateCreated;
+    private LocalDate pay_date;
     private String status;
     private int price;
     public int getPrice() {
@@ -40,19 +39,19 @@ public abstract class Bill {
         this.customer_id = customer_id;
     }
 
-    public Date getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getPay_date() {
+    public LocalDate getPay_date() {
         return pay_date;
     }
 
-    public void setPay_date(Date pay_date) {
+    public void setPay_date(LocalDate pay_date) {
         this.pay_date = pay_date;
     }
 

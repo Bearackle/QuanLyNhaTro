@@ -81,7 +81,7 @@ public class RoomDetail extends javax.swing.JFrame {
        TileFactoryInfo info = new OSMTileFactoryInfo();
        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
        jXMapViewer1.setTileFactory(tileFactory);
-       GeoPosition geo = new GeoPosition(9.927522, 105.904301);
+       GeoPosition geo = new GeoPosition(10.812938635137982, 106.69043641571405);
        
        jXMapViewer1.setAddressLocation(geo);
        jXMapViewer1.setZoom(5);

@@ -31,6 +31,7 @@ public class AdminBillController {
         DAO = new BillDAO();
         initData();
         view.setActionListenerFortablebtn(new ClickButton());
+        view.setbtnCreate(new ClickCreate());
     }
     public AdminBill Render(){
         return view;
@@ -70,6 +71,17 @@ public class AdminBillController {
                  JOptionPane.showMessageDialog(view, "DUYỆT THÀNH CÔNG");
              } else JOptionPane.showMessageDialog(view, "DUYỆT THẤT BẠI, VUI LÒNG THỬ LẠI SAU!!");
              billView.dispose();
+        }
+    }
+    class ClickCreate implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {  
+             Bill bill = view.getDataBill();
+             if (bill instanceof BillCustomerDetail billcus){
+                 boolean rs = DAO.CreateCustomerBill(billcus);
+                 if (rs) JOptionPane.showMessageDialog(view, "Tạo thành công Hóa đơn!");
+                 else JOptionPane.showMessageDialog(view, "Tạo Hóa đơn thất bại!");
+             }
         }
         
     }

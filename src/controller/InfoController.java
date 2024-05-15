@@ -45,6 +45,7 @@ public class InfoController {
         this.info = info;
         this.user = user;
         RenderInformation();
+        RenderContractList();
         info.setUpdateBtn(new clickUpdateBtn());
         info.setBecomeCustomerBtn(new clickNewCustomer());
         info.setActionListenerBtnlandlord(new clickLandlord());
@@ -56,7 +57,6 @@ public class InfoController {
         if (customer!=null)
         {
         info.setCustomerInfo(customer);
-        RenderContractList();
         }
         else 
         {

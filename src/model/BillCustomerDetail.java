@@ -13,7 +13,16 @@ public class BillCustomerDetail extends Bill {
     private int Electric;
     private int wifi;
     private int garbage;
+    private int Roomid;
 
+    public int getRoomid() {
+        return Roomid;
+    }
+
+    public void setRoomid(int Roomid) {
+        this.Roomid = Roomid;
+    }
+    
     public int getWater() {
         return Water;
     }

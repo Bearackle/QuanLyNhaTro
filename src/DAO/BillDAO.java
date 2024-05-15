@@ -29,8 +29,8 @@ public class BillDAO {
                 Bill bill = new BillCustomerDetail();
                 bill.setID(rs.getInt(1));
                 bill.setCustomer_id(rs.getLong(2));
-                bill.setDateCreated(rs.getDate(3));
-                bill.setPay_date(rs.getDate(4));
+                bill.setDateCreated(rs.getDate(3).toLocalDate());
+                bill.setPay_date(rs.getDate(4).toLocalDate());
                 bill.setStatus(rs.getString(5));
             list.add(bill);
             }
@@ -72,7 +72,7 @@ public class BillDAO {
         while (rs.next()){
             Bill bill = new BillLandlordDetail();
             bill.setID(rs.getInt(1));
-            bill.setPay_date(rs.getDate(2));
+            bill.setPay_date(rs.getDate(2).toLocalDate());
             bill.setPrice(rs.getInt(3));
             bill.setStatus(rs.getString(4));
             list.add(bill);
@@ -95,8 +95,8 @@ public class BillDAO {
                 BillCustomerDetail bill = new BillCustomerDetail();
                 bill.setID(rs.getInt(1));
                 bill.setCustomer_id(rs.getLong(2));
-                bill.setDateCreated(rs.getDate(3));
-                bill.setPay_date(rs.getDate(4));
+                bill.setDateCreated(rs.getDate(3).toLocalDate());
+                bill.setPay_date(rs.getDate(4).toLocalDate());
                 bill.setStatus(rs.getString(5));
                 bill.setPrice(rs.getInt(6));
                 bills.add(bill);
@@ -106,8 +106,8 @@ public class BillDAO {
                 BillLandlordDetail bill = new BillLandlordDetail();
                 bill.setID(rs2.getInt(1));
                 bill.setCustomer_id(rs2.getLong(2));
-                bill.setDateCreated(rs2.getDate(3));
-                bill.setPay_date(rs2.getDate(4));
+                bill.setDateCreated(rs2.getDate(3).toLocalDate());
+                bill.setPay_date(rs2.getDate(4).toLocalDate());
                 bill.setStatus(rs2.getString(5));
                 bill.setPrice(rs2.getInt(6));
                 bill.setContract_ID(rs2.getInt(7));
@@ -150,5 +150,78 @@ public class BillDAO {
                         e.printStackTrace();
                     }
             return null;
+    }
+    public boolean CreateCustomerBill(BillCustomerDetail bill){
+        String query = "INSERT INTO BILL(CUSTOMER_ID,DATE_CREATED, PAY_DATE,STATUS) VALUES(?,?,?,?)";
+        try{
+            String[] cols = {"BILL_ID"};
+            PreparedStatement ps = connection.prepareStatement(query,cols);
+            ps.setLong(1, bill.getCustomer_id());
+            ps.setDate(2, java.sql.Date.valueOf(bill.getDateCreated()));
+            ps.setDate(3, java.sql.Date.valueOf(bill.getPay_date()));
+            ps.setString(4, bill.getStatus());
+            int keyGen;
+            int row = ps.executeUpdate();
+                    if (row==0) throw new SQLException("Fail create Bill");
+            try(ResultSet rs = ps.getGeneratedKeys()){
+                if (rs.next()){
+                    keyGen = rs.getInt(1);
+                } else {
+                    throw new SQLException("Fail getting key");
+                }
+            }
+            PreparedStatement ps1 = connection.prepareStatement("INSERT INTO BILL_CUSTOMER(BILL_ID,WATER,ELECTRIC,WIFI,GARBAGE,PRICE,ROOMID) VALUES (?,?,?,?,?,?,?");
+            int[] arrContractPrice = getContractPricedetail(bill.getRoomid(), bill.getCustomer_id())==null ? new int[]{0,0} : getContractPricedetail(bill.getRoomid(), bill.getCustomer_id());
+            int[] arrPreviousPrice = getCustomerDetailLatest(bill) == null ? new int[]{0,0} : getCustomerDetailLatest(bill);
+            ps1.setInt(1, keyGen);
+            ps1.setInt(2, bill.getWater());
+            ps1.setInt(3, bill.getElectric());
+            ps1.setInt(4, bill.getWifi());
+            ps1.setInt(5, bill.getGarbage());
+            ps1.setInt(6, (bill.getWater()-arrPreviousPrice[0])* arrContractPrice[0] + (bill.getElectric()-arrPreviousPrice[1])*arrContractPrice[1] +
+                    bill.getGarbage() + bill.getWifi());
+            ps1.setInt(7, bill.getRoomid());
+            ps1.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public int[] getCustomerDetailLatest(BillCustomerDetail bill){
+        String query = "SELECT WATER,ELECTRIC FROM BILL INNER JOIN BILL_CUSTOMER WHERE CUSTOMERID=? AND ROOMID=? AND ROWNUM=1 ORDER BY DESC";
+        try{
+            int[] arr = new int[2];
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, bill.getCustomer_id());
+            ps.setInt(2, bill.getRoomid());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                arr[0] = rs.getInt(1);
+                arr[1] = rs.getInt(2);
+            }
+            return arr;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public int[] getContractPricedetail(int roomid, Long customerid){
+        String query = "SELECT WATERPRICE,ELECTRICPRICE FROM CONTRACT WHERE ROOMID=? AND CUSTOMER_ID=? AND STATUS='ĐÃ DUYỆT'";
+        int[] arr = new int[2];
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, roomid);
+            ps.setLong(2 ,customerid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                arr[0] = rs.getInt(1);
+                arr[1] = rs.getInt(2);
+                return arr;
+            }
+        } catch(SQLException e){
+            e.printStackTrace();  
+        }
+        return null;
     }
 }

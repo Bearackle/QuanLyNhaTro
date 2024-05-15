@@ -12,6 +12,7 @@
             <file>file:/E:/java/DoAn/src/DAO/BillDAO.java</file>
             <file>file:/E:/java/DoAn/src/DAO/RoomDAO.java</file>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/RoomManageController.java</file>
+            <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
             <file>file:/E:/java/DoAn/src/model/Room.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/DetailContractCustomer.java</file>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
@@ -28,17 +29,23 @@
             <file>file:/E:/java/DoAn/src/model/BillCustomerDetail.java</file>
             <file>file:/E:/java/DoAn/src/model/BillLandlordDetail.java</file>
             <file>file:/E:/java/DoAn/src/controller/LandlordController.java</file>
+            <file>file:/E:/java/DoAn/src/view/User/Info.java</file>
             <file>file:/E:/java/DoAn/src/model/ContractLandLordDetail.java</file>
+            <file>file:/E:/java/DoAn/src/controller/RoomDetailController.java</file>
             <file>file:/E:/java/DoAn/src/DAO/ContractDAO.java</file>
+            <file>file:/E:/java/DoAn/src/DAO/DataBaseConnection.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/AdminBill.java</file>
             <file>file:/E:/java/DoAn/src/model/Bill.java</file>
             <file>file:/E:/java/DoAn/src/model/LandLord.java</file>
             <file>file:/E:/java/DoAn/src/view/Bill/BillDetailPanel.java</file>
+            <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/TableCellAction.java</file>
             <file>file:/E:/java/DoAn/src/DAO/LandLordDAO.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/tableCellRenderForSearchMatch.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ContractController.java</file>
             <file>file:/E:/java/DoAn/src/view/User/ResidentRegistration.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractCustomer.java</file>
+            <file>file:/E:/java/DoAn/src/view/Room/RoomDetail.java</file>
         </group>
     </open-files>
 </project-private>
