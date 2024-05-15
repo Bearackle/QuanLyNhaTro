@@ -17,6 +17,16 @@ public abstract class Bill {
     private LocalDate pay_date;
     private String status;
     private int price;
+    private int roomid;
+
+    public int getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
+    }
+    
     public int getPrice() {
         return price;
     }

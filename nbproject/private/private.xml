@@ -5,6 +5,7 @@
         <group>
             <file>file:/E:/java/DoAn/src/view/admin/RoomManage.java</file>
             <file>file:/E:/java/DoAn/src/view/Bill/BillPanel.java</file>
+            <file>file:/E:/java/DoAn/src/DAO/CustomerDAO.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractLandlordDetailView.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/ContractLandlord.java</file>
             <file>file:/E:/java/DoAn/src/view/Room/RequestCreateRoom.java</file>
@@ -28,6 +29,7 @@
             <file>file:/E:/java/DoAn/src/model/ContractDetail.java</file>
             <file>file:/E:/java/DoAn/src/model/BillCustomerDetail.java</file>
             <file>file:/E:/java/DoAn/src/model/BillLandlordDetail.java</file>
+            <file>file:/E:/java/DoAn/src/DAO/AccountDAO.java</file>
             <file>file:/E:/java/DoAn/src/controller/LandlordController.java</file>
             <file>file:/E:/java/DoAn/src/view/User/Info.java</file>
             <file>file:/E:/java/DoAn/src/model/ContractLandLordDetail.java</file>

@@ -151,7 +151,7 @@ public class BillDAO {
                     }
             return null;
     }
-    public boolean CreateCustomerBill(BillCustomerDetail bill){
+    public int CreateCustomerBill(BillCustomerDetail bill){
         String query = "INSERT INTO BILL(CUSTOMER_ID,DATE_CREATED, PAY_DATE,STATUS) VALUES(?,?,?,?)";
         try{
             String[] cols = {"BILL_ID"};
@@ -170,26 +170,27 @@ public class BillDAO {
                     throw new SQLException("Fail getting key");
                 }
             }
-            PreparedStatement ps1 = connection.prepareStatement("INSERT INTO BILL_CUSTOMER(BILL_ID,WATER,ELECTRIC,WIFI,GARBAGE,PRICE,ROOMID) VALUES (?,?,?,?,?,?,?");
-            int[] arrContractPrice = getContractPricedetail(bill.getRoomid(), bill.getCustomer_id())==null ? new int[]{0,0} : getContractPricedetail(bill.getRoomid(), bill.getCustomer_id());
-            int[] arrPreviousPrice = getCustomerDetailLatest(bill) == null ? new int[]{0,0} : getCustomerDetailLatest(bill);
+            PreparedStatement ps1 = connection.prepareStatement("INSERT INTO BILL_CUSTOMER(BILL_ID,WATER,ELECTRIC,WIFI,GARBAGE,PRICE,ROOMID) VALUES (?,?,?,?,?,?,?)");
+            int[] arrContractPrice = getContractPricedetail(bill.getRoomid(), bill.getCustomer_id());
+            int[] arrPreviousPrice = getCustomerDetailLatest(bill);
+            int fee = (bill.getWater()-arrPreviousPrice[0])* arrContractPrice[0] + (bill.getElectric()-arrPreviousPrice[1])*arrContractPrice[1] +
+                    bill.getGarbage() + bill.getWifi();
             ps1.setInt(1, keyGen);
             ps1.setInt(2, bill.getWater());
             ps1.setInt(3, bill.getElectric());
             ps1.setInt(4, bill.getWifi());
             ps1.setInt(5, bill.getGarbage());
-            ps1.setInt(6, (bill.getWater()-arrPreviousPrice[0])* arrContractPrice[0] + (bill.getElectric()-arrPreviousPrice[1])*arrContractPrice[1] +
-                    bill.getGarbage() + bill.getWifi());
+            ps1.setInt(6, fee + getPrice(bill.getRoomid())[1]);
             ps1.setInt(7, bill.getRoomid());
             ps1.executeUpdate();
-            return true;
+            return fee ;
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return false;
+        return 0;
     }
     public int[] getCustomerDetailLatest(BillCustomerDetail bill){
-        String query = "SELECT WATER,ELECTRIC FROM BILL INNER JOIN BILL_CUSTOMER WHERE CUSTOMERID=? AND ROOMID=? AND ROWNUM=1 ORDER BY DESC";
+        String query = " SELECT WATER,ELECTRIC FROM BILL INNER JOIN BILL_CUSTOMER ON BILL.BILL_ID=BILL_CUSTOMER.BILL_ID WHERE CUSTOMER_ID=? AND ROOMID=? AND ROWNUM=1 ORDER BY DATE_CREATED DESC";
         try{
             int[] arr = new int[2];
             PreparedStatement ps = connection.prepareStatement(query);
@@ -199,16 +200,16 @@ public class BillDAO {
             if (rs.next()){
                 arr[0] = rs.getInt(1);
                 arr[1] = rs.getInt(2);
+                return arr;
             }
-            return arr;
         } catch(SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return new int[]{0,0};
     }
     public int[] getContractPricedetail(int roomid, Long customerid){
-        String query = "SELECT WATERPRICE,ELECTRICPRICE FROM CONTRACT WHERE ROOMID=? AND CUSTOMER_ID=? AND STATUS='ĐÃ DUYỆT'";
-        int[] arr = new int[2];
+        String query = "SELECT WATERPRICE,ELECTRICPRICE,PRICE FROM CONTRACT WHERE ROOM_ID=? AND CUSTOMER_ID=? AND STATUS='ĐÃ DUYỆT'";
+        int[] arr = new int[3];
         try{
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, roomid);
@@ -217,10 +218,72 @@ public class BillDAO {
             if(rs.next()){
                 arr[0] = rs.getInt(1);
                 arr[1] = rs.getInt(2);
+                arr[2] = rs.getInt(3);
                 return arr;
             }
         } catch(SQLException e){
             e.printStackTrace();  
+        }
+        return new int[]{0,0};
+    }
+    public boolean CreateNewBillLandlord(Bill bill,int Extrafee){
+          String query = "INSERT INTO BILL(CUSTOMER_ID,DATE_CREATED, PAY_DATE,STATUS) VALUES(?,?,?,?)";
+        try{
+            String[] cols = {"BILL_ID"};
+            PreparedStatement ps = connection.prepareStatement(query,cols);
+            ps.setLong(1, getLandLordIdbyRoomid(bill.getRoomid()));
+            ps.setDate(2, java.sql.Date.valueOf(bill.getDateCreated()));
+            ps.setDate(3, java.sql.Date.valueOf(bill.getPay_date()));
+            ps.setString(4,"CHƯA THANH TOÁN");
+            int keyGen;
+            int row = ps.executeUpdate();
+                    if (row==0) throw new SQLException("Fail create Bill");
+            try(ResultSet rs = ps.getGeneratedKeys()){
+                if (rs.next()){
+                    keyGen = rs.getInt(1);
+                } else {
+                    throw new SQLException("Fail getting key");
+                }
+            }
+            PreparedStatement ps1 = connection.prepareStatement("INSERT INTO BILL_LANDLORD VALUES(?,?,?)");
+            int[] arr = getPrice(bill.getRoomid());
+            arr[1] = ((int) Math.round(0.7*arr[1])) + Extrafee;
+            ps1.setInt(1, keyGen);
+            ps1.setInt(2, arr[0]);
+            ps1.setInt(3, arr[1]);
+            ps1.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public int[] getPrice(int roomid){
+         String query = "SELECT CT.CONTRACTID,R.PRICE,CT.LANDLORDID FROM ROOM R INNER JOIN CONTRACT_LANDLORD CT ON R.LANDLORDCONTRACTID=CT.CONTRACTID WHERE R.ROOMID=?";
+         try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setInt(1, roomid);
+             ResultSet rs = ps.executeQuery();
+             if(rs.next()){
+                  return new int[]{ rs.getInt(1),rs.getInt(2)};
+             }
+         }catch(SQLException e)
+         {
+             e.printStackTrace();
+         }
+         return new int[]{0,0,0};
+    }
+    public Long getLandLordIdbyRoomid(int Roomid){
+        String query = "SELECT CT.LANDLORDID FROM ROOM R INNER JOIN CONTRACT_LANDLORD CT ON R.LANDLORDCONTRACTID=CT.CONTRACTID WHERE R.ROOMID=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, Roomid);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getLong(1);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
         }
         return null;
     }

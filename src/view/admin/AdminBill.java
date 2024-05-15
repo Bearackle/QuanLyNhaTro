@@ -35,15 +35,16 @@ public class AdminBill extends javax.swing.JPanel {
         txtNuoc.setLabelText("Số nước");
         txtWifi.setLabelText("Tiền wifi");
         txtGarbage.setLabelText("Tiền rác");
+        txtRoomid.setLabelText("Mã phòng");
         cmbCategory.setModel(new DefaultComboBoxModel(new Object[]{"Hóa đơn điện nước","Hóa đơn chủ trọ"}));
         cmbCategory.setSelectedIndex(0);
     }
     public void initTable(ArrayList<Bill> bills){
            tableModel = (DefaultTableModel) table.getModel();
-           table.getColumnModel().getColumn(6).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
+           table.getColumnModel().getColumn(7).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
          tableModel.setRowCount(0);
         for(Bill bill : bills){
-            tableModel.addRow(new Object[]{"#"+bill.getID(),bill.getCustomer_id(),bill instanceof BillCustomerDetail ? "Phòng, điện, nước" : "Phí thanh toán của chủ", bill.getDateCreated(),bill.getPay_date(),bill.getStatus()});
+            tableModel.addRow(new Object[]{"#"+bill.getID(),bill.getCustomer_id(),bill instanceof BillCustomerDetail ? "Phòng, điện, nước" : "Phí thanh toán của chủ", bill.getDateCreated(),bill.getPay_date(),bill.getStatus(),bill.getPrice()});
         }
         table.setModel(tableModel);
     }
@@ -51,7 +52,7 @@ public class AdminBill extends javax.swing.JPanel {
         return table.convertRowIndexToModel(table.getSelectedRow());
     }
     public void setActionListenerFortablebtn(ActionListener listener){
-         table.getColumnModel().getColumn(6).setCellEditor(new TableCellAction(listener, "icon/detail2.svg"));
+         table.getColumnModel().getColumn(7).setCellEditor(new TableCellAction(listener, "icon/detail2.svg"));
     }
     public Bill getDataBill(){
         Bill bill;
@@ -70,7 +71,9 @@ public class AdminBill extends javax.swing.JPanel {
             bill.setDateCreated(LocalDate.now());
             bill.setPay_date(LocalDate.now());
             bill.setStatus("CHƯA THANH TOÁN");
+            bill.setRoomid(Integer.parseInt(txtRoomid.getText()));
             bill.setPrice(0);
+            
             return bill;
     }
     public void setbtnCreate(ActionListener listener){
@@ -91,9 +94,8 @@ public class AdminBill extends javax.swing.JPanel {
         txtNuoc = new view.CustomControl.TextField();
         btnCreate = new javax.swing.JButton();
         svgtranform = new view.CustomControl.SVGimage();
-        lblPrice = new javax.swing.JLabel();
         cmbCategory = new view.CustomControl.Combobox();
-        textField1 = new view.CustomControl.TextField();
+        txtRoomid = new view.CustomControl.TextField();
         txtWifi = new view.CustomControl.TextField();
         txtGarbage = new view.CustomControl.TextField();
         jLabel1 = new javax.swing.JLabel();
@@ -110,9 +112,6 @@ public class AdminBill extends javax.swing.JPanel {
         btnCreate.setText("Tạo hóa đơn");
         btnCreate.setUI(new StyledButtonUI());
 
-        lblPrice.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(255, 51, 51));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,50 +127,41 @@ public class AdminBill extends javax.swing.JPanel {
                             .addComponent(txtCustomerId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(txtRoomid, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                             .addComponent(txtWifi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtGarbage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(39, 39, 39)
                 .addComponent(svgtranform, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(btnCreate)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 54, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDien, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtWifi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGarbage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRoomid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addComponent(svgtranform, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 54, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtDien, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtWifi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtGarbage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(svgtranform, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -182,11 +172,11 @@ public class AdminBill extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Mã Khách hàng", "Nội dung", "Ngày tạo", "Ngày thanh toán", "Trạng thái", ""
+                "Mã hóa đơn", "Mã Khách hàng", "Nội dung", "Ngày tạo", "Ngày thanh toán", "Trạng thái", "Tổng Thanh toán", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -226,14 +216,13 @@ public class AdminBill extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblPrice;
     private view.CustomControl.SVGimage svgtranform;
     private javax.swing.JTable table;
-    private view.CustomControl.TextField textField1;
     private view.CustomControl.TextField txtCustomerId;
     private view.CustomControl.TextField txtDien;
     private view.CustomControl.TextField txtGarbage;
     private view.CustomControl.TextField txtNuoc;
+    private view.CustomControl.TextField txtRoomid;
     private view.CustomControl.TextField txtWifi;
     // End of variables declaration//GEN-END:variables
 }

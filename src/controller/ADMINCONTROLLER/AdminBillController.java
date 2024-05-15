@@ -77,10 +77,18 @@ public class AdminBillController {
         @Override
         public void actionPerformed(ActionEvent e) {  
              Bill bill = view.getDataBill();
+             if (bill.getCustomer_id() == 0) JOptionPane.showMessageDialog(view, "Vui lòng điền thông tin đầy đủ");
              if (bill instanceof BillCustomerDetail billcus){
-                 boolean rs = DAO.CreateCustomerBill(billcus);
-                 if (rs) JOptionPane.showMessageDialog(view, "Tạo thành công Hóa đơn!");
+                 int fee = DAO.CreateCustomerBill(billcus);
+                 if (fee != 0) {
+                     JOptionPane.showMessageDialog(view, "Tạo thành công Hóa đơn!");
+                     DAO.CreateNewBillLandlord(billcus,fee);
+                     initData();
+                 }
                  else JOptionPane.showMessageDialog(view, "Tạo Hóa đơn thất bại!");
+             }
+             else {
+                 
              }
         }
         
