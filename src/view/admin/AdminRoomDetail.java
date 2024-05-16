@@ -5,6 +5,7 @@
 package view.admin;
 
 import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
 import model.Location;
 import model.Room;
 import view.CustomControl.StyledButtonUI;
@@ -14,7 +15,7 @@ import view.CustomControl.StyledButtonUI;
  * @author Admin
  */
 public class AdminRoomDetail extends javax.swing.JFrame {
-
+    private final Object[] listStatus = {"TRỐNG","ĐÃ THUÊ","CHỜ DUYỆT"};
     /**
      * Creates new form AdminRoomDetail
      */
@@ -30,7 +31,8 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         txtPrice.setLabelText("Giá");
         txtRooName.setLabelText("Tên Phòng");
         txtRoomid.setLabelText("Mã phòng");
-        txtStatus.setLabelText("Trạng thái");
+        cmbStatus.setLabeText("Trạng thái");
+        cmbStatus.setModel(new DefaultComboBoxModel(listStatus));
         txtRoomid.setEnabled(false);
     }
     public void initData(Room room){
@@ -40,7 +42,11 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         txtContractLL.setText(String.valueOf(room.getLandLordContractID()));
         txtLocation.setText(String.valueOf(room.getLocation().toString()));
         txtPrice.setText(String.valueOf(room.getPrices()));
-        txtStatus.setText(String.valueOf(room.getStatus()));
+        for(Object str : listStatus){
+            if(str.equals(room.getStatus())){
+                cmbStatus.setSelectedItem(str);
+            }
+        }
         txtDescription.setText(String.valueOf(room.getDescription()));
         cmbCategory.setSelectedIndex(room.getCategoryId()>500 ? 5 : room.getCategoryId()/100-1);
         cmbMatch.setSelectedIndex("CÓ".equals(room.isIsAllowMatch())? 0 : 1);
@@ -60,7 +66,7 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         room.setPrices(Integer.parseInt(txtPrice.getText()));
         String[] dblocation = String.valueOf(txtLocation.getText()).split(",");
         room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
-        room.setStatus(String.valueOf(txtStatus.getText()));
+        room.setStatus(String.valueOf(cmbStatus.getSelectedItem()));
         room.setIsAllowMatch(cmbMatch.getSelectedIndex()==0? "CÓ" : "KHÔNG");
         return room;
     }
@@ -82,7 +88,6 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         txtRooName = new view.CustomControl.TextField();
         txtArea = new view.CustomControl.TextField();
         txtPrice = new view.CustomControl.TextField();
-        txtStatus = new view.CustomControl.TextField();
         txtContractLL = new view.CustomControl.TextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -92,6 +97,7 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         cmbMatch = new view.CustomControl.Combobox();
+        cmbStatus = new view.CustomControl.Combobox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,14 +105,6 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         jLayeredPane1.setOpaque(true);
 
         txtRoomid.setText("textField1");
-
-        txtArea.setText("textField3");
-
-        txtPrice.setText("textField4");
-
-        txtStatus.setText("textField5");
-
-        txtContractLL.setText("textField7");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Thông tin chi tiết phòng");
@@ -128,8 +126,6 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(35, 224, 29, 242);
         jPanel1.add(btnUpdate, gridBagConstraints);
 
-        txtLocation.setText("textField1");
-
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
         jScrollPane1.setViewportView(txtDescription);
@@ -138,7 +134,6 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         jLayeredPane1.setLayer(txtRooName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtArea, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtPrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtContractLL, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -146,6 +141,7 @@ public class AdminRoomDetail extends javax.swing.JFrame {
         jLayeredPane1.setLayer(txtLocation, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(cmbMatch, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(cmbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -156,11 +152,11 @@ public class AdminRoomDetail extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtContractLL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtRoomid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                            .addComponent(txtArea, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(cmbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
@@ -177,7 +173,7 @@ public class AdminRoomDetail extends javax.swing.JFrame {
                             .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -195,8 +191,8 @@ public class AdminRoomDetail extends javax.swing.JFrame {
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtContractLL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,6 +249,7 @@ public class AdminRoomDetail extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private view.CustomControl.Combobox cmbCategory;
     private view.CustomControl.Combobox cmbMatch;
+    private view.CustomControl.Combobox cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
@@ -264,6 +261,5 @@ public class AdminRoomDetail extends javax.swing.JFrame {
     private view.CustomControl.TextField txtPrice;
     private view.CustomControl.TextField txtRooName;
     private view.CustomControl.TextField txtRoomid;
-    private view.CustomControl.TextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }

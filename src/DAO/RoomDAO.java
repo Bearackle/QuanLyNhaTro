@@ -22,7 +22,7 @@ public class RoomDAO {
         connection = DataBaseConnection.getConnection();
     }
     public List<Room> getAllRoom(String status)
-    {
+    {   
         List<Room> allRoom = new ArrayList<>();
         String query = "SELECT * FROM ROOM WHERE STATUS=?";
         String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
@@ -156,7 +156,7 @@ public class RoomDAO {
     {
         String query1 = "SELECT COUNT(*) AS CNT FROM ROOM WHERE STATUS=?";
         String query2 = "SELECT COUNT(*) AS CNTMATCH FROM ROOM WHERE ISALLOWMATCH=?";
-        String query3 = "SELECT COUNT(*) AS CNTSHORT FROM ROOM WHERE CATEGORYID=600";
+        String query3 = "SELECT COUNT(*) AS CNTSHORT FROM ROOM WHERE CATEGORYID=600 AND STATUS='TRỐNG'";
         int[] arr = new int[3];
         try
             {
@@ -206,7 +206,7 @@ public class RoomDAO {
         return null;
     }
     public boolean UpdatePolicy (Long ID,String state){
-        String query = "UPDATE ROOM SET ISALLOWMATCH=? WHERE ROOMID=(SELECT ROOM_ID FROM CONTRACT WHERE CUSTOMER_ID=?)";
+        String query = "UPDATE ROOM SET ISALLOWMATCH=? WHERE ROOMID=(SELECT ROOM_ID FROM CONTRACT WHERE CUSTOMER_ID=? AND CONTRACT.STATUS='ĐÃ DUYỆT')";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, state);
@@ -283,7 +283,20 @@ public class RoomDAO {
         return false;
     }
     public boolean updateStatusRoom(int ID, String status){
-        String query = "UPDATE ROOM SET STATUS=? WHERER ROOMID=?";
+        String query = "UPDATE ROOM SET STATUS=? WHERE ROOMID=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(2, ID);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean UpdateStatusRoomThroughLandlordcontractid(int ID,String status){
+        String query = "UPDATE ROOM SET STATUS=? WHERER LANDLORDCONTRACTID=?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, status);

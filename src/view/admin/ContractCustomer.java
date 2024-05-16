@@ -6,6 +6,7 @@ package view.admin;
 
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import static javax.management.Query.gt;
 import static javax.management.Query.lt;
@@ -100,6 +101,12 @@ public class ContractCustomer extends javax.swing.JPanel {
     public void setActionListenerFortablebtn(ActionListener listener, ActionListener listener1,ActionListener listener2){
          table.getColumnModel().getColumn(9).setCellEditor(new TableCellAction2(listener,listener1,listener2, "icon/accept.svg icon/delete.svg icon/edit.svg"));
     }
+    public void setTggleBtn(ItemListener listener){
+        tggleShowAll.addItemListener(listener);
+    }
+    public void setTextTggbtn(String value){
+        tggleShowAll.setText(value);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,6 +120,7 @@ public class ContractCustomer extends javax.swing.JPanel {
         table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtFilter = new view.CustomControl.TextField();
+        tggleShowAll = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -137,6 +145,8 @@ public class ContractCustomer extends javax.swing.JPanel {
 
         jLabel1.setText("Hợp đồng thuê phòng");
 
+        tggleShowAll.setText("Xem tất cả");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,7 +159,8 @@ public class ContractCustomer extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 151, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addComponent(tggleShowAll)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,7 +169,8 @@ public class ContractCustomer extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tggleShowAll, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
                 .addContainerGap())
@@ -170,6 +182,7 @@ public class ContractCustomer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
+    private javax.swing.JToggleButton tggleShowAll;
     private view.CustomControl.TextField txtFilter;
     // End of variables declaration//GEN-END:variables
 }

@@ -169,7 +169,7 @@ public class ContractDAO {
         return 0;
     }
     public ArrayList<ContractLandLordDetail> getContractLandLordDetail(Long LandlordID){
-        String query = "SELECT CONTRACTID,NAME,SIGNED_DATE,CONTRACT_LANDLORD.STATUS FROM ROOM INNER JOIN CONTRACT_LANDLORD ON LANDLORDCONTRACTID = CONTRACTID WHERE LANDLORDID=? AND (CONTRACT_LANDLORD.STATUS='ĐÃ DUYỆT' OR CONTRACT_LANDLORD.STATUS='GIA HẠN')";
+        String query = "SELECT CONTRACTID,NAME,SIGNED_DATE,CONTRACT_LANDLORD.STATUS FROM ROOM INNER JOIN CONTRACT_LANDLORD ON LANDLORDCONTRACTID = CONTRACTID WHERE LANDLORDID=? AND CONTRACT_LANDLORD.STATUS != 'XÓA'";
         ArrayList<ContractLandLordDetail> contracts = new ArrayList<>();
         try {
             PreparedStatement ps = connection.prepareStatement(query);

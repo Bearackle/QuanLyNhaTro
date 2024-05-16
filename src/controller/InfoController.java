@@ -135,7 +135,8 @@ public class InfoController {
     class ClickDeleteItem extends MouseAdapter{
         @Override
         public void mousePressed(MouseEvent e) {
-               contractDAO.updateStatusContractCustomer(contracts.get(info.getSelectedItem()).getID(), "XÓA");
+               boolean check = contractDAO.updateStatusContractCustomer(contracts.get(info.getSelectedItem()).getID(), "YÊU CẦU XÓA");
+               if(check) JOptionPane.showMessageDialog(info,"Bạn đã yêu cầu hủy phòng thành công, chúng tôi sẽ đến thanh toán hợp đồng!");
         }
     }
 }

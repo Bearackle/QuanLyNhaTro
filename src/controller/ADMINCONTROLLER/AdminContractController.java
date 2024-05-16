@@ -8,6 +8,8 @@ import DAO.ContractDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Contract;
@@ -28,35 +30,42 @@ public class AdminContractController {
       this.view = view;
       roomDAO = new RoomDAO();
       DAO = new ContractDAO();
-      initData();
+      initData("XÓA");
       view.setActionListenerFortablebtn(new ClickAccept(), new ClickDelete(), new ClickEdit());
+      view.setTggleBtn(new ShowAll());
   }
-  private void initData(){
+  private void initData(String status){
       list = DAO.getAllContracts();
+      list.removeIf(con ->  !"".equals(status) ? con.isStatus().equals(status) : false);
       view.initDataTable(list);
   }
   public ContractCustomer render(){
       return view;
   }
   class ClickAccept implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             int index = view.getSelectionIndex();
-            if (list.get(index).isStatus().equals("XÓA")){
-                DAO.UpdateStatusRoom("TRỐNG", list.get(index).getRoomID());
-            }
+            if (list.get(index).isStatus().equals("YÊU CẦU XÓA")){
+                JOptionPane.showMessageDialog(view, "Vui lòng chọn tùy chọn phù hợp");
+                return;
+            } else {
               DAO.updateStatusContractCustomer(list.get(view.getSelectionIndex()).getID(),"ĐÃ DUYỆT");
+              roomDAO.updateStatusRoom(list.get(index).getRoomID(), "ĐÃ THUÊ");
+            }
+            JOptionPane.showMessageDialog(view, "Duyệt thành công");
         }
   }
   class ClickDelete implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
                int index = view.getSelectionIndex();
                list.remove(index);
                view.initDataTable(list);
-               DAO.updateStatusContractCustomer(list.get(index).getID(), "XÓA");
+              if(DAO.updateStatusContractCustomer(list.get(index).getID(), "XÓA") &&
+               roomDAO.updateStatusRoom(list.get(index).getRoomID(), "TRỐNG")){
+                  JOptionPane.showMessageDialog(view, "XÓA THÀNH CÔNG");
+              }
              }
   }
   class ClickEdit implements ActionListener{
@@ -83,5 +92,19 @@ public class AdminContractController {
                 JOptionPane.showMessageDialog(editView, "Cập nhật thất bại, vui lòng thử lại sau");
             editView.dispose();
         }
+  }
+  class ShowAll implements ItemListener{
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+           if(e.getStateChange() == ItemEvent.SELECTED){
+                 view.setTextTggbtn("Rút gọn");
+                 initData("");
+           }
+           else{
+               view.setTextTggbtn("Xem tất cả");
+               initData("XÓA");
+           }
+        }
+      
   }
 }

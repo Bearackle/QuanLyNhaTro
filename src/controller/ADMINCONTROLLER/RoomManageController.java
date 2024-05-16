@@ -8,6 +8,8 @@ import DAO.ContractDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Room;
@@ -29,19 +31,25 @@ public class RoomManageController {
      public RoomManageController(RoomManage view){
          this.view = view;
          DAO = new RoomDAO();
-         rooms = DAO.getAllRoomNoMatter();
          contractDAO = new ContractDAO();
-         initData();view.setActionListenerFortablebtn(new ClickRoot(), new ClickDelete(), new ClickEdit());
+         initData("XÓA");
+         view.setActionListenerFortablebtn(new ClickRoot(), new ClickDelete(), new ClickEdit());
+         view.setbtnShowAll(new ShowAll());
+         roomdetail = new AdminRoomDetail();
      }
      public RoomManage Render(){
          return view;
      }
-     private void initData(){
+     private void initData(String status){
+         rooms = DAO.getAllRoomNoMatter();
+         rooms.removeIf(room ->  !"".equals(status) ? room.getStatus().equals(status) : false);
          view.initTable(rooms);
      }
      class ClickDelete implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+                  rooms.remove(rooms.get(view.getSelectionIndex()));
+                  initData("XÓA");
                   boolean rs = DAO.updateStatusRoom(rooms.get(view.getSelectionIndex()).getID(),"XÓA");
                   if(rs){
                       JOptionPane.showMessageDialog(view, "Xóa thành công");
@@ -58,13 +66,12 @@ public class RoomManageController {
                    rootContractView.setDefaultCloseOperation(ContractLandlordDetailView.DISPOSE_ON_CLOSE);
                    rootContractView.setVisible(true);
             });
-                   rootContractView.setBtnUpdate(new UpdateClick());
+                   rootContractView.setBtnUpdate(new UpdateContractLandlordClick());
         }
   }
   class ClickEdit implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-             roomdetail = new AdminRoomDetail();
              roomdetail.initData(rooms.get(view.getSelectionIndex()));
              java.awt.EventQueue.invokeLater(() -> {
                    roomdetail.setDefaultCloseOperation(ContractLandlordDetailView.DISPOSE_ON_CLOSE);
@@ -80,6 +87,31 @@ public class RoomManageController {
              if(result) JOptionPane.showMessageDialog(roomdetail, "Đã cập nhật thành công");
              else JOptionPane.showMessageDialog(roomdetail, "Cập nhật thất bại, vui lòng thử lại sau !!");
              roomdetail.dispose();
+        }
+  }
+  class UpdateContractLandlordClick implements  ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        boolean result = contractDAO.UpdateContractLandlord(rootContractView.getUpdateData());
+        if (result){
+            JOptionPane.showMessageDialog(view, "Cập nhật thành công");
+        } else  
+            JOptionPane.showMessageDialog(view, "Cập nhật thất bại");
+        rootContractView.dispose();
+        }
+      
+  }
+  class ShowAll implements ItemListener{
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+           if (e.getStateChange() == ItemEvent.SELECTED){
+               initData("");
+               view.setbtntggle("Xem rút gọn");
+           }
+           else {
+               initData("XÓA");
+               view.setbtntggle("Xem tất cả");
+           }
         }
   }
 }

@@ -7,6 +7,7 @@ package view.admin;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.DefaultComboBoxModel;
 import model.Contract_Landlord;
 
 /**
@@ -14,7 +15,7 @@ import model.Contract_Landlord;
  * @author Admin
  */
 public class ContractLandlordDetailView extends javax.swing.JFrame {
-
+    private Object[] listStatus = {"CHỜ DUYỆT","ĐÃ DUYỆT","HẾT HẠN","KHÔNG HỢP LỆ","XÓA","GIA HẠN"};
     /**
      * Creates new form ContractLandlordDetailView
      */
@@ -23,7 +24,8 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         txtDuration.setLabelText("Kỳ Hạn");
         txtLandlorid.setLabelText("Mã chủ phòng");
         txtSignDate.setLabelText("Ngày Ký");
-        txtStatus.setLabelText("Tình trạng");
+        cmbStatus.setLabeText("Tình trạng");
+        cmbStatus.setModel(new DefaultComboBoxModel(listStatus));
         txtid.setLabelText("Mã Hợp Đồng");
         txtid.setEnabled(false);
     }
@@ -31,7 +33,12 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         txtDuration.setText(String.valueOf(contract.getDuration()));
         txtLandlorid.setText(String.valueOf(contract.getLandlordID()));
         txtSignDate.setText(String.valueOf(contract.getSigned_date()));
-        txtStatus.setText(String.valueOf(contract.getStatus()));
+        for(Object str : listStatus){
+            if (str.equals(contract.getStatus())){
+                cmbStatus.setSelectedItem(str);
+                break;
+            }
+        }
         txtid.setText(String.valueOf(contract.getID()));
     }
       public void setBtnUpdate(ActionListener listener){
@@ -42,7 +49,7 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         con.setDuration(Integer.parseInt(txtDuration.getText()));
         con.setLandlordID(Long.valueOf(txtLandlorid.getText()));
         con.setSigned_date(LocalDate.parse(txtSignDate.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        con.setStatus(String.valueOf(txtStatus.getText()));
+        con.setStatus((String) cmbStatus.getSelectedItem());
         con.setID(Integer.parseInt(txtid.getText()));
         return con;
     }
@@ -62,9 +69,9 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         txtLandlorid = new view.CustomControl.TextField();
         txtSignDate = new view.CustomControl.TextField();
         txtDuration = new view.CustomControl.TextField();
-        txtStatus = new view.CustomControl.TextField();
         jPanel1 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
+        cmbStatus = new view.CustomControl.Combobox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,16 +79,6 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         jLayeredPane1.setOpaque(true);
 
         jLabel1.setText("Chi tiết hợp đồng");
-
-        txtid.setText("textField1");
-
-        txtLandlorid.setText("textField2");
-
-        txtSignDate.setText("textField3");
-
-        txtDuration.setText("textField4");
-
-        txtStatus.setText("textField5");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -101,8 +98,8 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         jLayeredPane1.setLayer(txtLandlorid, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtSignDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtDuration, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(cmbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -113,14 +110,14 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtid, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                             .addComponent(txtLandlorid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtSignDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -136,9 +133,9 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
                 .addComponent(txtSignDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -186,13 +183,13 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
+    private view.CustomControl.Combobox cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private view.CustomControl.TextField txtDuration;
     private view.CustomControl.TextField txtLandlorid;
     private view.CustomControl.TextField txtSignDate;
-    private view.CustomControl.TextField txtStatus;
     private view.CustomControl.TextField txtid;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,9 @@
 package view.admin;
 
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 import model.Contract;
 import view.CustomControl.StyledButtonUI;
 
@@ -19,10 +16,7 @@ import view.CustomControl.StyledButtonUI;
  * @author Admin
  */
 public class DetailContractCustomer extends javax.swing.JFrame {
-
-    /**
-     * Creates new form DetailContractCustomer
-     */
+    private final Object[] listStatus = {"ĐÃ DUYỆT","CHỜ DUYỆT","XÓA","GIA HẠN","YÊU CẦU XÓA"};
     public DetailContractCustomer() {
         initComponents();
         txtCancelDate.setLabelText("Ngày hủy hợp đồng");
@@ -34,7 +28,8 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         txtEnterDate.setLabelText("Ngày Dọn vào");
         txtID.setLabelText("#id");
         txtNumberOfpeople.setLabelText("Số lượng người ở");
-        txtStatus.setLabelText("Tình Trạng");
+        cmbStatus.setLabeText("Tình Trạng");
+        cmbStatus.setModel(new DefaultComboBoxModel(listStatus));
         txtWater.setLabelText("Tiền nước");
         txtPrice.setLabelText("Giá Phòng");
         txtSign_date.setLabelText("ngày ký");
@@ -52,7 +47,12 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         txtNumberOfpeople.setText(String.valueOf(contract.getNumberOfPeople()));
         txtPrice.setText(String.valueOf(contract.getPrice()));
         txtSign_date.setText(contract.getSigned_date().toString());
-        txtStatus.setText(String.valueOf(contract.isStatus()));
+        for(Object str : listStatus){
+            if(str.equals(contract.isStatus())){
+                cmbStatus.setSelectedItem(str);
+                break;
+            }
+        }
         txtWater.setText(String.valueOf(contract.getWaterPrice()));
         txtRoomId.setText(String.valueOf(contract.getRoomID()));
     }
@@ -71,7 +71,7 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         contract.setNumberOfPeople(Integer.parseInt(txtNumberOfpeople.getText()));
         contract.setPrice(Integer.parseInt(txtPrice.getText()));
         contract.setSigned_date(LocalDate.parse(txtEnterDate.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        contract.setStatus(String.valueOf(txtStatus.getText()));
+        contract.setStatus(String.valueOf(cmbStatus.getSelectedItem()));
         contract.setWaterPrice(Integer.parseInt(String.valueOf(txtWater.getText())));
         return contract;
     }
@@ -96,7 +96,6 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         txtDuration = new view.CustomControl.TextField();
         txtPrice = new view.CustomControl.TextField();
         txtSign_date = new view.CustomControl.TextField();
-        txtStatus = new view.CustomControl.TextField();
         txtElectric = new view.CustomControl.TextField();
         txtWater = new view.CustomControl.TextField();
         txtEnterDate = new view.CustomControl.TextField();
@@ -106,6 +105,7 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         txtRoomId = new view.CustomControl.TextField();
+        cmbStatus = new view.CustomControl.Combobox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,8 +126,6 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         txtPrice.setText("textField6");
 
         txtSign_date.setText("textField7");
-
-        txtStatus.setText("textField8");
 
         txtElectric.setText("textField9");
 
@@ -167,7 +165,6 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         jLayeredPane1.setLayer(txtDuration, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtPrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtSign_date, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(txtStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtElectric, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtWater, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtEnterDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -176,6 +173,7 @@ public class DetailContractCustomer extends javax.swing.JFrame {
         jLayeredPane1.setLayer(txtNumberOfpeople, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtRoomId, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(cmbStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -197,21 +195,26 @@ public class DetailContractCustomer extends javax.swing.JFrame {
                     .addComponent(txtCusName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtElectric, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCusID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCusID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNumberOfpeople, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCancelDate, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(txtRoomId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtWater, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtWater, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNumberOfpeople, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCancelDate, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(txtRoomId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -234,7 +237,7 @@ public class DetailContractCustomer extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSign_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtElectric, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,6 +297,7 @@ public class DetailContractCustomer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
+    private view.CustomControl.Combobox cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
@@ -309,7 +313,6 @@ public class DetailContractCustomer extends javax.swing.JFrame {
     private view.CustomControl.TextField txtPrice;
     private view.CustomControl.TextField txtRoomId;
     private view.CustomControl.TextField txtSign_date;
-    private view.CustomControl.TextField txtStatus;
     private view.CustomControl.TextField txtWater;
     // End of variables declaration//GEN-END:variables
 }

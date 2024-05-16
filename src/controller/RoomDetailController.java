@@ -84,7 +84,8 @@ public class RoomDetailController {
                 contract.setSigned_date(time.getSelectedDate());
                 contract.setStatus("CHỜ DUYỆT");
                 boolean check = contractDAO.CreateNewCustomerContract(contract);
-            if (check == true){
+                boolean check2 = roomDAO.updateStatusRoom(room.getID(), "CHỜ DUYỆT");
+            if (check == true && check2 == true){
                 JOptionPane.showMessageDialog(roomDetail, "Bạn đã Đăng ký thành công, hẹn gặp lại bạn vào ngày đã hẹn!!");
             }
                 time.dispose();

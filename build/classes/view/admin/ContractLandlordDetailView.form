@@ -44,7 +44,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" max="32767" attributes="0"/>
                       <Component id="txtDuration" max="32767" attributes="0"/>
-                      <Component id="txtStatus" max="32767" attributes="0"/>
+                      <Component id="jPanel1" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtid" pref="437" max="32767" attributes="0"/>
@@ -53,7 +53,7 @@
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="cmbStatus" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -72,9 +72,9 @@
                   <Component id="txtSignDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtDuration" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtStatus" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                  <Component id="cmbStatus" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -88,29 +88,12 @@
           </Properties>
         </Component>
         <Component class="view.CustomControl.TextField" name="txtid">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField1"/>
-          </Properties>
         </Component>
         <Component class="view.CustomControl.TextField" name="txtLandlorid">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField2"/>
-          </Properties>
         </Component>
         <Component class="view.CustomControl.TextField" name="txtSignDate">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField3"/>
-          </Properties>
         </Component>
         <Component class="view.CustomControl.TextField" name="txtDuration">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField4"/>
-          </Properties>
-        </Component>
-        <Component class="view.CustomControl.TextField" name="txtStatus">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField5"/>
-          </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
@@ -133,6 +116,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="view.CustomControl.Combobox" name="cmbStatus">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

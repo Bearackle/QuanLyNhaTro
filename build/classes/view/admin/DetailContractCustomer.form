@@ -58,24 +58,32 @@
                       <Component id="txtID" max="32767" attributes="0"/>
                       <Component id="txtElectric" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtCusID" max="32767" attributes="0"/>
-                      <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="txtWater" min="-2" pref="366" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtNumberOfpeople" max="32767" attributes="0"/>
-                              <Component id="txtStatus" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCancelDate" alignment="0" pref="366" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtCusID" max="32767" attributes="0"/>
+                              <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtNumberOfpeople" max="32767" attributes="0"/>
+                                      <Component id="txtCancelDate" alignment="0" pref="366" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="txtRoomId" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtWater" min="-2" pref="366" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="txtRoomId" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="cmbStatus" min="-2" pref="360" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -105,7 +113,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtSign_date" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -165,11 +173,6 @@
         <Component class="view.CustomControl.TextField" name="txtSign_date">
           <Properties>
             <Property name="text" type="java.lang.String" value="textField7"/>
-          </Properties>
-        </Component>
-        <Component class="view.CustomControl.TextField" name="txtStatus">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="textField8"/>
           </Properties>
         </Component>
         <Component class="view.CustomControl.TextField" name="txtElectric">
@@ -239,6 +242,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="textField1"/>
           </Properties>
+        </Component>
+        <Component class="view.CustomControl.Combobox" name="cmbStatus">
         </Component>
       </SubComponents>
     </Container>
