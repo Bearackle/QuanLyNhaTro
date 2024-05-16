@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import view.Login.loginAndRegister;
+import view.Room.RoomServiceView;
 import view.admin.AdminBill;
 import view.admin.AdminMonitor;
 import view.admin.ContractCustomer;
@@ -63,7 +64,9 @@ public class AdminController {
     class ClickPay implements ActionListener{
          @Override
         public void actionPerformed(ActionEvent e) {
-               }
+             AdminRoomServices controller = new AdminRoomServices(new RoomServiceView());
+               view.setForm(controller.Render());
+           }
     }
     class ClickStatistic implements ActionListener {
         @Override

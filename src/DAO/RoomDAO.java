@@ -232,6 +232,29 @@ public class RoomDAO {
                 roomService.setDescription(rs.getString(3));
                 roomService.setPrice(rs.getInt(4));
                 roomService.setCreateDate(rs.getDate(5).toLocalDate());
+                roomService.setStatus(rs.getString(6));
+                allServices.add(roomService);
+            }
+            return allServices;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ArrayList<RoomService> GetAllRoomServiceNoMatter(){
+        String query = "SELECT * FROM ROOMSERVICE";
+        ArrayList<RoomService> allServices = new ArrayList<>();
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                RoomService roomService = new RoomService();
+                roomService.setID(rs.getInt(1));
+                roomService.setRoomID(rs.getInt(2));
+                roomService.setDescription(rs.getString(3));
+                roomService.setPrice(rs.getInt(4));
+                roomService.setCreateDate(rs.getDate(5).toLocalDate());
+                roomService.setStatus(rs.getString(6));
                 allServices.add(roomService);
             }
             return allServices;
@@ -241,13 +264,14 @@ public class RoomDAO {
         return null;
     }
     public boolean RequestRoomService(RoomService roomService){
-        String query = "INSERT INTO ROOMSERVICE(ROOM_ID,DESCRIPTION,PRICE,CREATED_DATE) VALUES (?,?,?,?)";
+        String query = "INSERT INTO ROOMSERVICE(ROOM_ID,DESCRIPTION,PRICE,CREATED_DATE,STATUS) VALUES (?,?,?,?,?)";
         try{
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1,roomService.getRoomID());
             ps.setString(2,roomService.getDescription());
             ps.setInt(3,roomService.getPrice());
             ps.setDate(4, java.sql.Date.valueOf(roomService.getCreateDate()));
+            ps.setString(5, "CHƯA THỰC HIỆN");
             ps.executeUpdate();
             return true;
         } catch (SQLException e){
@@ -296,7 +320,7 @@ public class RoomDAO {
         return false;
     }
     public boolean UpdateStatusRoomThroughLandlordcontractid(int ID,String status){
-        String query = "UPDATE ROOM SET STATUS=? WHERER LANDLORDCONTRACTID=?";
+        String query = "UPDATE ROOM SET STATUS=? WHERE LANDLORDCONTRACTID=?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, status);
@@ -326,6 +350,23 @@ public class RoomDAO {
             ps.executeUpdate();
             return true;
         } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean updateStatusRoomService(RoomService roomService){
+        String query = "UPDATE ROOMSERVICE SET ROOM_ID=?,DESCRIPTION=?,PRICE=?,CREATED_DATE=?, STATUS=? WHERE SERVICE_ID=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, roomService.getRoomID());
+            ps.setString(2, roomService.getDescription());
+            ps.setInt(3, roomService.getPrice());
+            ps.setDate(4, java.sql.Date.valueOf(roomService.getCreateDate()));
+            ps.setString(5, roomService.getStatus());
+            ps.setInt(6, roomService.getID());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
             e.printStackTrace();
         }
         return false;

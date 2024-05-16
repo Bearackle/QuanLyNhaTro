@@ -94,7 +94,7 @@ public class LandlordController {
     class ClickRequestDeleteContract implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-           boolean rs =  contractDAO.UpdateStatusContractLandLord(list.get(view.getSelectedItemTable()).getID(), "XÓA");
+           boolean rs =  contractDAO.UpdateStatusContractLandLord(list.get(view.getSelectedItemTable()).getID(), "YÊU CẦU XÓA");
            if (rs){
                JOptionPane.showMessageDialog(rqView, "Đã yêu cầu xóa thành công");
            }

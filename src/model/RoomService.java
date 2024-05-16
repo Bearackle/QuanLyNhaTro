@@ -5,7 +5,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 /**
  *
@@ -17,6 +17,15 @@ public class RoomService {
     private String Description;
     private int Price;
     private LocalDate CreateDate;
+    private String status;
+
+    public String getStatus() { 
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getID() {
         return ID;

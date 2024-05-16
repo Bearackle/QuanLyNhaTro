@@ -48,9 +48,8 @@ public class AdminContractLandlordController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int index = view.getSelectionIndex();
-            if (contracts.get(index).getStatus().equals("XÓA")){
-                roomDAO.UpdateStatusRoomThroughLandlordcontractid(contracts.get(index).getID(), "XÓA");
-                JOptionPane.showMessageDialog(view, "Cập nhật thành công");
+            if (contracts.get(index).getStatus().equals("YÊU CẦU XÓA")){
+                JOptionPane.showMessageDialog(view, "Vui lòng chọn đúng chức năng");
             } else if(contracts.get(index).getStatus().equals("CHỜ DUYỆT"))
             {
               DAO.UpdateStatusContractLandLord(contracts.get(view.getSelectionIndex()).getID(),"ĐÃ DUYỆT");
@@ -66,6 +65,7 @@ public class AdminContractLandlordController {
                int index = view.getSelectionIndex();
                contracts.remove(index);
                DAO.UpdateStatusContractLandLord(contracts.get(index).getID(),"XÓA");
+               roomDAO.UpdateStatusRoomThroughLandlordcontractid(contracts.get(index).getID(), "XÓA");
                view.initDatable(contracts);          
              }
   }

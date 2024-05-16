@@ -48,9 +48,8 @@ public class RoomManageController {
      class ClickDelete implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-                  rooms.remove(rooms.get(view.getSelectionIndex()));
-                  initData("XÓA");
                   boolean rs = DAO.updateStatusRoom(rooms.get(view.getSelectionIndex()).getID(),"XÓA");
+                  initData("XÓA");
                   if(rs){
                       JOptionPane.showMessageDialog(view, "Xóa thành công");
                   }

@@ -15,7 +15,7 @@ import view.CustomControl.StyledButtonUI;
  * @author Admin
  */
 public class AdminRoomDetail extends javax.swing.JFrame {
-    private final Object[] listStatus = {"TRỐNG","ĐÃ THUÊ","CHỜ DUYỆT"};
+    private final Object[] listStatus = {"TRỐNG","ĐÃ THUÊ","CHỜ DUYỆT","XÓA"};
     /**
      * Creates new form AdminRoomDetail
      */

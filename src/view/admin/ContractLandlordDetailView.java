@@ -15,7 +15,7 @@ import model.Contract_Landlord;
  * @author Admin
  */
 public class ContractLandlordDetailView extends javax.swing.JFrame {
-    private Object[] listStatus = {"CHỜ DUYỆT","ĐÃ DUYỆT","HẾT HẠN","KHÔNG HỢP LỆ","XÓA","GIA HẠN"};
+    private Object[] listStatus = {"CHỜ DUYỆT","ĐÃ DUYỆT","HẾT HẠN","KHÔNG HỢP LỆ","XÓA","GIA HẠN","YÊU CẦU XÓA"};
     /**
      * Creates new form ContractLandlordDetailView
      */

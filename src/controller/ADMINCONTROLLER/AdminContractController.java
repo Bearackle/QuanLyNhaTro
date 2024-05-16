@@ -46,7 +46,7 @@ public class AdminContractController {
         @Override
         public void actionPerformed(ActionEvent e) {
             int index = view.getSelectionIndex();
-            if (list.get(index).isStatus().equals("YÊU CẦU XÓA")){
+            if (list.get(index).isStatus().equals("YÊU CẦU XÓA")){     
                 JOptionPane.showMessageDialog(view, "Vui lòng chọn tùy chọn phù hợp");
                 return;
             } else {

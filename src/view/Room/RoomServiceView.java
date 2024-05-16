@@ -26,16 +26,16 @@ public class RoomServiceView extends javax.swing.JPanel {
         initComponents();
     }
     public void initTable(ArrayList<RoomService> roomServices){
-        table.getColumnModel().getColumn(4).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
+        table.getColumnModel().getColumn(5).setCellRenderer(new tableCellRenderForSearchMatch("icon/detail2.svg"));
         model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         for (RoomService roomService : roomServices){
-            model.addRow(new Object[]{"#"+roomService.getRoomID(),roomService.getDescription(),roomService.getPrice(),LocalDate.parse(roomService.getCreateDate().toString())});
+            model.addRow(new Object[]{"#"+roomService.getRoomID(),roomService.getDescription(),roomService.getPrice(),roomService.getStatus(),LocalDate.parse(roomService.getCreateDate().toString())});
         }
     }
      public void setActionListenerForbtnPay(ActionListener listener)
     {
-        table.getColumnModel().getColumn(4).setCellEditor(new TableCellAction(listener,"icon/detail2.svg"));
+        table.getColumnModel().getColumn(5).setCellEditor(new TableCellAction(listener,"icon/detail2.svg"));
     }
     public void setActionListenerForFix(ActionListener listener){
         btnFix.addActionListener(listener);
@@ -45,6 +45,10 @@ public class RoomServiceView extends javax.swing.JPanel {
     }
     public int getSelectedItemTable(){
         return table.getSelectedRow();
+    }
+    public void hideButton(){
+        btnFix.setVisible(false);
+        btnClean.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,9 +114,17 @@ public class RoomServiceView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Phòng", "Mô tả", "Giá", "Ngày thực hiện", "Thanh toán"
+                "Mã Phòng", "Mô tả", "Giá", "Trạng thái", "Ngày thực hiện", "Thanh toán"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         table.setRowHeight(45);
         jScrollPane1.setViewportView(table);
 
