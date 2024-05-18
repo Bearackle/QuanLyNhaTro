@@ -28,10 +28,13 @@ public class ContractController {
         {
             RenderContract(customer);
         }
-         
     }
     public void RenderContract(Customer customer)
     {
+        if (contractDAO.getAvailableContractByCustomerID(customer.getCCCD()) == null) {
+             return;
+        }
+           
         contractView.LoadContract(contractDAO.contractDetailCustomer(customer.getCCCD()));
     }
     public void RenderContractNoInfo()

@@ -52,6 +52,9 @@ public class AdminMonitor extends javax.swing.JFrame {
     public void setbtnStatistic(ActionListener listener){
         btnStatistic.addActionListener(listener);
     }
+    public void setbtnReport(ActionListener listener){
+        btnReport.addActionListener(listener);
+    }
     public void DisposeFrame()
     {
         this.setVisible(false);

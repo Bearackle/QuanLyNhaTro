@@ -75,7 +75,7 @@ public class RoomDetail extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         }
-    }
+    }   
    private void initMap()
    {
        TileFactoryInfo info = new OSMTileFactoryInfo();
@@ -95,6 +95,9 @@ public class RoomDetail extends javax.swing.JFrame {
    public void setListenerForbtnThue(ActionListener listener){
        btnThue.addActionListener(listener);
    }
+   public void setActionListenerBtnShowReviwe(ActionListener listener){
+       btnShowReview.addActionListener(listener);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +114,7 @@ public class RoomDetail extends javax.swing.JFrame {
         lblgia = new javax.swing.JLabel();
         lblDiachi = new javax.swing.JLabel();
         lblArea = new javax.swing.JLabel();
+        btnShowReview = new javax.swing.JButton();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
         lbldiachi2 = new javax.swing.JLabel();
@@ -129,7 +133,7 @@ public class RoomDetail extends javax.swing.JFrame {
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.setOpaque(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(865, 200));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -157,10 +161,17 @@ public class RoomDetail extends javax.swing.JFrame {
 
         lblArea.setText("area");
 
+        btnShowReview.setBackground(new java.awt.Color(51, 153, 255));
+        btnShowReview.setFont(new java.awt.Font("Cascadia Code", 0, 14)); // NOI18N
+        btnShowReview.setForeground(new java.awt.Color(255, 255, 255));
+        btnShowReview.setText("Xem đánh giá");
+        btnShowReview.setUI(new StyledButtonUI());
+
         jLayeredPane2.setLayer(lblName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(lblgia, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(lblDiachi, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(lblArea, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(btnShowReview, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -169,14 +180,19 @@ public class RoomDetail extends javax.swing.JFrame {
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblgia, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblDiachi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDiachi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                                .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnShowReview, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblgia, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52))))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,8 +201,13 @@ public class RoomDetail extends javax.swing.JFrame {
                 .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblgia, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblArea)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblArea))
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnShowReview)))
                 .addGap(12, 12, 12)
                 .addComponent(lblDiachi, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addContainerGap())
@@ -349,6 +370,7 @@ public class RoomDetail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnShowReview;
     private javax.swing.JButton btnThue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

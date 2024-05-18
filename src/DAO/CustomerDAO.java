@@ -7,6 +7,7 @@ package DAO;
 import java.sql.*;
 import java.util.ArrayList;
 import model.Customer;
+import model.Report;
 import model.ResidentDetail;
 
 /**
@@ -35,7 +36,7 @@ public class CustomerDAO {
                 customer.setName(result.getString("NAME"));
                 customer.setPhone(result.getString("PHONE"));
                 customer.setGender(result.getString("GENDER"));
-                customer.setBirthday(result.getDate("BIRTHDAY"));
+                customer.setBirthday(result.getDate("BIRTHDAY").toLocalDate());
                 customer.setBankAccount(result.getString("BANKACCOUNT"));
                 customer.setRelativeName(result.getString("RELATIVENAME"));
                 customer.setRelativeNumber(result.getString("RELATIVEPHONE"));
@@ -51,19 +52,18 @@ public class CustomerDAO {
         return null;
     }
     public void CreeateNewCustomer(Customer customer){
-         String query = "INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?,?)";
+         String query = "INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?)";
          try {
              PreparedStatement ps = connection.prepareStatement(query);
              ps.setLong(1,customer.getCCCD());
              ps.setString(2, customer.getName());
              ps.setString(3, customer.getPhone());
              ps.setString(4, customer.getGender());
-             ps.setDate(5,new java.sql.Date(customer.getBirthday().getTime()));
-             ps.setNull(6,Types.INTEGER);
-             ps.setString(7, customer.getBankAccount());
-             ps.setString(8, customer.getRelativeName());
-             ps.setString(9, customer.getRelativeNumber());
-             ps.setNull(10, Types.INTEGER);
+             ps.setDate(5,java.sql.Date.valueOf(customer.getBirthday()));
+             ps.setString(6, customer.getBankAccount());
+             ps.setString(7, customer.getRelativeName());
+             ps.setString(8, customer.getRelativeNumber());
+             ps.setNull(9,Types.INTEGER);
              ps.executeUpdate();
          } catch (SQLException e)
          {
@@ -137,5 +137,54 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    public ArrayList<Report> getAllReport(){
+         String query = "SELECT * FROM REPORTCUSTOMER";
+         ArrayList<Report> list = new ArrayList<>();
+         try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ResultSet rs = ps.executeQuery();
+             while(rs.next()){
+                 Report rp = new Report();
+                 rp.setRoomid(rs.getInt(1));
+                 rp.setCCCDR(rs.getLong(2));
+                 rp.setContent(rs.getString(3));
+                 rp.setSolve("YES".equals(rs.getString(4)));
+                list.add(rp);
+             }
+             return list;
+             } catch (SQLException e){
+                    e.printStackTrace();
+           }
+         return null;
+    }
+    public boolean CreateNewReport(Report report){
+        String query = "INSERT INTO REPORTCUSTOMER VALUES(?,?,?,?)";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, report.getRoomidReport());
+            ps.setLong(2, report.getCCCDR());
+            ps.setString(3, report.getContent());
+            ps.setString(4, report.IsSolve()? "YES" : "NO");
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean UpdateSolveReport(Report report){
+        String query = "UPDATE REPORTCUSTOMER SET ISSOLVE='YES' WHERE ROOMID=? AND FROM_CUSTOMER=? AND REPORTCONTENT=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, report.getRoomidReport());
+            ps.setLong(2, report.getCCCDR());
+            ps.setString(3, report.getContent());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

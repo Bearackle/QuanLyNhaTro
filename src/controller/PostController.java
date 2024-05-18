@@ -22,7 +22,7 @@ public class PostController {
     private final Post_Form post;
     private final RoomDAO roomDAO;
     private List<Room> allRoom;
-    private User user;
+    private final User user;
     public PostController(Post_Form post_Form,User user)
     {
         this.post = post_Form;
@@ -112,12 +112,9 @@ public class PostController {
         @Override
         public void mouseClicked(MouseEvent evt)
         {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() 
-            {
-               RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem()),user); 
-            }
-        });
+            java.awt.EventQueue.invokeLater(() -> {
+                RoomDetailController roomdetail = new RoomDetailController(allRoom.get(post.getIndexofSelectedItem()),user);
+            });
        }
     }
 }

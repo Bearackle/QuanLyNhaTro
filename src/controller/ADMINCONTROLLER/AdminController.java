@@ -14,6 +14,7 @@ import view.admin.AdminBill;
 import view.admin.AdminMonitor;
 import view.admin.ContractCustomer;
 import view.admin.ContractLandlord;
+import view.admin.ReportCustomerView;
 import view.admin.RoomManage;
 
 /**
@@ -30,6 +31,7 @@ public class AdminController {
           view.setbtnBill(new ClickBill());
           view.setbtnPay(new ClickPay());
           view.setbtnStatistic(new ClickStatistic());
+          view.setbtnReport(new ClickReport());
           view.setbtnlogout(new Logout());
           view.setVisible(true);
       }
@@ -73,15 +75,22 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
                }
     }
-       class Logout implements ActionListener{
+    class Logout implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = JOptionPane.showConfirmDialog(view, "Bạn có chắc muốn đăng xuất?","Đăng xuất", JOptionPane.YES_NO_OPTION);
             if(i==JOptionPane.YES_OPTION)
             {
             view.DisposeFrame();
-            new LoginController(new loginAndRegister());
+                LoginController loginController = new LoginController(new loginAndRegister());
             }
       }
-    }  
+    }
+     class ClickReport implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             ReportController controller = new ReportController(new ReportCustomerView());
+             view.setForm(controller.Render());
+        } 
+     }
 }

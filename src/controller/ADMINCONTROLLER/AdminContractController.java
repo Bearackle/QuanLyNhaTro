@@ -60,11 +60,11 @@ public class AdminContractController {
         @Override
         public void actionPerformed(ActionEvent e) {
                int index = view.getSelectionIndex();
-               list.remove(index);
-               view.initDataTable(list);
               if(DAO.updateStatusContractCustomer(list.get(index).getID(), "XÓA") &&
                roomDAO.updateStatusRoom(list.get(index).getRoomID(), "TRỐNG")){
                   JOptionPane.showMessageDialog(view, "XÓA THÀNH CÔNG");
+                   list.remove(index);
+                   view.initDataTable(list);
               }
              }
   }

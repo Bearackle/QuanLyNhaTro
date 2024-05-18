@@ -6,17 +6,29 @@
             <file>file:/E:/java/DoAn/src/model/Contract.java</file>
             <file>file:/E:/java/DoAn/src/view/Bill/BillPanel.java</file>
             <file>file:/E:/java/DoAn/src/DAO/BillDAO.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/RoomServiceDetail.java</file>
+            <file>file:/E:/java/DoAn/src/view/CustomControl/PanelStar.java</file>
             <file>file:/E:/java/DoAn/src/controller/MainController.java</file>
+            <file>file:/E:/java/DoAn/src/model/Report.java</file>
+            <file>file:/E:/java/DoAn/src/view/Contract/Contract.java</file>
             <file>file:/E:/java/DoAn/src/model/Room.java</file>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminBillController.java</file>
+            <file>file:/E:/java/DoAn/src/view/User/editReviewView.java</file>
             <file>file:/E:/java/DoAn/src/model/Contract_Landlord.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/AdminRoomDetail.java</file>
             <file>file:/E:/java/DoAn/src/model/BillCustomerDetail.java</file>
             <file>file:/E:/java/DoAn/src/model/BillLandlordDetail.java</file>
             <file>file:/E:/java/DoAn/src/DAO/AccountDAO.java</file>
+            <file>file:/E:/java/DoAn/src/model/Review.java</file>
             <file>file:/E:/java/DoAn/src/controller/BillController.java</file>
+            <file>file:/E:/java/DoAn/src/view/Room/Post_Form.java</file>
+            <file>file:/E:/java/DoAn/src/view/User/SearchMatch.java</file>
             <file>file:/E:/java/DoAn/src/view/Bill/BillDetailPanel.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/ReportController.java</file>
+            <file>file:/E:/java/DoAn/src/view/Room/RoomItemView.java</file>
             <file>file:/E:/java/DoAn/src/view/User/ResidentRegistration.java</file>
+            <file>file:/E:/java/DoAn/src/view/User/NewCustomer.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/ReportCustomerView.java</file>
             <file>file:/E:/java/DoAn/src/view/Room/RoomDetail.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/RoomManage.java</file>
             <file>file:/E:/java/DoAn/src/DAO/CustomerDAO.java</file>
@@ -29,6 +41,7 @@
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/RoomManageController.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/DetailContractCustomer.java</file>
             <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminController.java</file>
+            <file>file:/E:/java/DoAn/src/controller/ADMINCONTROLLER/AdminRoomServices.java</file>
             <file>file:/E:/java/DoAn/src/view/Room/RoomServiceView.java</file>
             <file>file:/E:/java/DoAn/src/model/Location.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/LandlordBillView.java</file>
@@ -38,6 +51,8 @@
             <file>file:/E:/java/DoAn/src/model/ContractDetail.java</file>
             <file>file:/E:/java/DoAn/src/controller/LandlordController.java</file>
             <file>file:/E:/java/DoAn/src/view/User/Info.java</file>
+            <file>file:/E:/java/DoAn/src/view/User/ReportWindow.java</file>
+            <file>file:/E:/java/DoAn/src/view/Room/ReviewRoomView.java</file>
             <file>file:/E:/java/DoAn/src/controller/SearchMatchController.java</file>
             <file>file:/E:/java/DoAn/src/model/ContractLandLordDetail.java</file>
             <file>file:/E:/java/DoAn/src/controller/RoomDetailController.java</file>
@@ -45,9 +60,12 @@
             <file>file:/E:/java/DoAn/src/DAO/DataBaseConnection.java</file>
             <file>file:/E:/java/DoAn/src/view/admin/AdminBill.java</file>
             <file>file:/E:/java/DoAn/src/model/Bill.java</file>
+            <file>file:/E:/java/DoAn/src/view/CustomControl/ReviewItem.java</file>
             <file>file:/E:/java/DoAn/src/model/LandLord.java</file>
             <file>file:/E:/java/DoAn/src/controller/InfoController.java</file>
+            <file>file:/E:/java/DoAn/src/view/CustomControl/PanelStar2.java</file>
             <file>file:/E:/java/DoAn/src/controller/PostController.java</file>
+            <file>file:/E:/java/DoAn/src/view/admin/ReportItem.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/TableCellAction.java</file>
             <file>file:/E:/java/DoAn/src/DAO/LandLordDAO.java</file>
             <file>file:/E:/java/DoAn/src/view/CustomControl/tableCellRenderForSearchMatch.java</file>

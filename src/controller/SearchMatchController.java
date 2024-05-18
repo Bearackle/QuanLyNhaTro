@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.Customer;
 import model.User;
 import view.CustomControl.toggle.ToggleListener;
+import view.User.ReportWindow;
 import view.User.SearchMatch;
 
 /**
@@ -28,6 +29,7 @@ public class SearchMatchController {
     private RoomDAO roomDAO;
     private final SearchMatch searchMatch;
     private ArrayList<Customer> Roommates;
+    private ReportWindow rpw;
     public SearchMatchController(SearchMatch view, User user,Customer customer)
     {
         this.searchMatch = view;
@@ -40,6 +42,7 @@ public class SearchMatchController {
         searchMatch.setActionListenerForReportbtn(new ReportClick());
         searchMatch.setActionListenerForAddButton(new ClickAddBtn());
         searchMatch.setToggleBtnListener(new ClickPolicy());
+        searchMatch.setBtnReport(new ClickReport());
         initDataTable();
         initPolicy();
     }
@@ -114,7 +117,28 @@ public class SearchMatchController {
                 JOptionPane.showMessageDialog(searchMatch, "Không thể thêm bạn cùng phòng, vui lòng liên hệ admin hoặc thử lại sau!");
             }
             
+        }    
+    }
+    class ClickReport implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             rpw = new ReportWindow();
+              java.awt.EventQueue.invokeLater(() -> {
+                    rpw.setDefaultCloseOperation(ReportWindow.DISPOSE_ON_CLOSE);
+                    rpw.setVisible(true);
+            });
+             rpw.setBtnSend(new SendReport());
         }
-        
+    }
+    class SendReport implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+              if (customerDAO.CreateNewReport(rpw.getReport(customer.getCCCD()))){
+                  JOptionPane.showMessageDialog(searchMatch, "Gửi Khiếu nại thành công");
+              } else {
+                  JOptionPane.showMessageDialog(searchMatch, "Gửi yêu cầu thất bại, bạn vui lòng kiểm tra mã phòng của đối tượng có chính xác hay không?");
+              }
+              rpw.dispose();
+        }
     }
 }

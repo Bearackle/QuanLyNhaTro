@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import java.security.interfaces.RSAKey;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Location;
+import model.Review;
 import model.Room;
 import model.RoomService;
 
@@ -24,7 +26,7 @@ public class RoomDAO {
     public List<Room> getAllRoom(String status)
     {   
         List<Room> allRoom = new ArrayList<>();
-        String query = "SELECT * FROM ROOM WHERE STATUS=?";
+        String query = "SELECT * FROM ROOM WHERE STATUS=? OR ISALLOWMATCH='CÓ'";
         String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
         try 
         {
@@ -46,6 +48,9 @@ public class RoomDAO {
                 String[] dblocation = result.getString("LOCATION").split(",");
                 room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
                 //
+                room.setStatus(result.getString("STATUS"));
+                room.setLandLordContractID(result.getInt("LANDLORDCONTRACTID"));
+                room.setVote(result.getInt("VOTE"));
                 ps2.setInt(1,room.getID());
                 ResultSet thisRoomIcon = ps2.executeQuery();
                 room.setIconList(thisRoomIcon.next() ? thisRoomIcon.getString("PATH") : "NOT FOUND");
@@ -124,7 +129,7 @@ public class RoomDAO {
                 room.setArea(result.getFloat("AREA"));
                 room.setIsAllowMatch(result.getString("ISALLOWMATCH"));
                 //
-
+                room.setVote(result.getInt("VOTE"));
                 String[] dblocation = result.getString("LOCATION").split(",");
                 room.setLocation(new Location(dblocation[0],dblocation[1],dblocation[2],dblocation[3]));
             return room;
@@ -370,5 +375,45 @@ public class RoomDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    public boolean InsertReview(Review review){
+        String query ="INSERT INTO REVIEWROOM VALUES (?,?,?,?)";
+        try{
+            PreparedStatement ps = connection.prepareStatement(query);
+            CallableStatement st = connection.prepareCall("{call CNTROOMVOTE(?)}");
+            ps.setInt(1, review.getRoomid());
+            ps.setLong(2, review.getCustomerid());
+            ps.setString(3, review.getContent());
+            ps.setInt(4, review.getVote());
+            ps.executeUpdate();
+            st.setInt(1, review.getRoomid());
+            st.execute();
+            return true;
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public ArrayList<Review> getAllReviewRoomByRoomId(int Roomid){
+        String query ="SELECT ROOMID,CUSTOMERID,NAME,REVIEW,VOTE FROM REVIEWROOM INNER JOIN CUSTOMER ON CUSTOMERID=CCCD WHERE ROOMID=?";
+        ArrayList<Review> list = new ArrayList<>();
+        try{
+             PreparedStatement ps = connection.prepareStatement(query);
+             ps.setInt(1, Roomid);
+             ResultSet rs = ps.executeQuery();
+             while(rs.next()){
+                 Review review = new Review();
+                 review.setRoomid(rs.getInt(1));
+                 review.setCustomerid(rs.getLong(2));
+                 review.setCustmerName(rs.getString(3));
+                 review.setContent(rs.getString(4));
+                 review.setVote(rs.getInt(5));
+                 list.add(review);
+             }
+             return list;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

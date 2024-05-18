@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -15,7 +15,7 @@ public class Customer extends User{
     private String Name;
     private String Phone;
     private String Gender;
-    private Date Birthday;
+    private LocalDate Birthday;
     private int ContractId;
     private String BankAccount;
     private String RelativeName;
@@ -54,11 +54,11 @@ public class Customer extends User{
         this.Gender = Gender;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return Birthday;
     }
 
-    public void setBirthday(Date Birthday) {
+    public void setBirthday(LocalDate Birthday) {
         this.Birthday = Birthday;
     }
 

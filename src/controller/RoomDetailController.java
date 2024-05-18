@@ -9,17 +9,14 @@ import DAO.CustomerDAO;
 import DAO.RoomDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Contract;
 import model.Customer;
 import model.Room;
 import model.User;
-import view.CustomControl.TextField;
+import view.Room.ReviewRoomView;
 import view.Room.RoomDetail;
 import view.Room.TimePicker2;
-import view.User.TimePicker;
 
 /**
  *
@@ -50,6 +47,7 @@ public class RoomDetailController {
         roomDetail.initImage(roomDAO.getRoomImages(room.getID()));
         roomDetail.initData(this.room);
         roomDetail.setListenerForbtnThue(new ClickBtnThue());
+        roomDetail.setActionListenerBtnShowReviwe(new OpenReview());
     }
     class ClickBtnThue implements ActionListener{
         @Override
@@ -90,6 +88,16 @@ public class RoomDetailController {
             }
                 time.dispose();
         }
-        
+    }
+    class OpenReview implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ReviewRoomView reviewRoomView = new ReviewRoomView();
+            reviewRoomView.initList(roomDAO.getAllReviewRoomByRoomId(room.getID()));
+            java.awt.EventQueue.invokeLater(()->{
+                reviewRoomView.setDefaultCloseOperation(ReviewRoomView.DISPOSE_ON_CLOSE);
+                reviewRoomView.setVisible(true);
+            });
+        }
     }
 }

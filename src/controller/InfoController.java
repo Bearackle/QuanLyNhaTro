@@ -12,15 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Contract;
 import model.Customer;
+import model.Review;
 import model.Room;
 import model.User;
 import view.User.Info;
 import view.User.NewCustomer;
+import view.User.editReviewView;
 
 /**
  *
@@ -36,6 +37,8 @@ public class InfoController {
     private NewCustomer newCustomer;
     private final LandLordDAO landLordDAO;
     private List<Contract> contracts;
+    private editReviewView editRV;
+    private Review review;
     public InfoController(Info info,User user)
     {
         customerDAO = new CustomerDAO();
@@ -50,6 +53,7 @@ public class InfoController {
         info.setBecomeCustomerBtn(new clickNewCustomer());
         info.setActionListenerBtnlandlord(new clickLandlord());
         info.setActionListenerDeleteContact(new ClickDelete());
+        info.setActionListenerReviewRoom(new ClickReview());
     }
     private void RenderInformation()
     {
@@ -116,7 +120,6 @@ public class InfoController {
         }     
     }
     class ClickDelete implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             if (info.getSelectedMode()==false){
@@ -130,7 +133,32 @@ public class InfoController {
                 info.setSelectedMode(false);
             }
         }
-        
+    }
+    class ClickReview implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (info.getSelectedMode()==false){
+                info.setJListSelect(new ClickOpenReviewView());
+                info.setbtnReviewValue("Chọn phòng");
+                info.setSelectedMode(true);
+            }
+            else {
+                info.setRefuseSelect();
+                info.setbtnReviewValue("Đánh giá");
+                info.setSelectedMode(false);
+            }
+        }
+    }
+    class ClickOpenReviewView extends MouseAdapter{
+        @Override
+        public void mousePressed(MouseEvent e) {
+              editRV = new editReviewView();
+              java.awt.EventQueue.invokeLater(() -> {
+                    editRV.setDefaultCloseOperation(editReviewView.DISPOSE_ON_CLOSE);
+                    editRV.setVisible(true);
+            });
+              editRV.setBtnSend(new ClickSend());
+        }
     }
     class ClickDeleteItem extends MouseAdapter{
         @Override
@@ -138,5 +166,18 @@ public class InfoController {
                boolean check = contractDAO.updateStatusContractCustomer(contracts.get(info.getSelectedItem()).getID(), "YÊU CẦU XÓA");
                if(check) JOptionPane.showMessageDialog(info,"Bạn đã yêu cầu hủy phòng thành công, chúng tôi sẽ đến thanh toán hợp đồng!");
         }
+    }
+    class ClickSend implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            review = editRV.getData();
+            review.setCustomerid(customer.getCCCD());
+            review.setRoomid(contracts.get(info.getSelectedItem()).getRoomID());
+           if(roomDAO.InsertReview(review)){
+               JOptionPane.showMessageDialog(info, "Cảm ơn bạn đã góp ý!");
+           }
+           editRV.dispose();
+        }
+        
     }
 }

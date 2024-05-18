@@ -29,7 +29,7 @@ public class LandLordView extends javax.swing.JPanel {
         btnCreateRoom.addActionListener(listener);
     }
     public void initTable(ArrayList<ContractLandLordDetail> contracts){
-         table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderFor3item("icon/delete.svg con/extend.svg icon/detail3.svg"));
+         table.getColumnModel().getColumn(4).setCellRenderer(new tablecellRenderFor3item("icon/delete.svg icon/extend.svg icon/detail3.svg"));
          tableModel =(DefaultTableModel) table.getModel();
          tableModel.setRowCount(0);
          for (ContractLandLordDetail Detail : contracts){
