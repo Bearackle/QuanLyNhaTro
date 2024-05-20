@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import model.User;
+import view.CustomControl.StyledButtonUI;
 /**
  *
  * @author Admin
@@ -108,6 +109,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         pwf.setForeground(new java.awt.Color(128, 128, 128));
         pwf.setText("Nhập mật khẩu...");
         pwf.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        pwf.setEchoChar('\u0000');
         pwf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pwfFocusGained(evt);
@@ -198,6 +200,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Đăng ký");
+        jButton1.setUI(new StyledButtonUI());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;

@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
 import model.Review;
 import view.CustomControl.PanelStar2;
+import view.CustomControl.StyledButtonUI;
 
 /**
  *
@@ -148,6 +149,7 @@ public class editReviewView extends javax.swing.JFrame {
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSend.setForeground(new java.awt.Color(255, 255, 255));
         btnSend.setText("Đăng");
+        btnSend.setUI(new StyledButtonUI());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

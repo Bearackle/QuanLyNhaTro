@@ -73,7 +73,6 @@ public class loginPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtLoginName = new javax.swing.JTextField();
         pwf = new javax.swing.JPasswordField();
-        btnForget = new javax.swing.JButton();
         btnlogin = new javax.swing.JButton();
         btnRegisNewUser = new javax.swing.JButton();
 
@@ -103,6 +102,7 @@ public class loginPanel extends javax.swing.JPanel {
 
         pwf.setText("Nhập mật khẩu...");
         pwf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pwf.setEchoChar('\u0000');
         pwf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pwfFocusGained(evt);
@@ -111,13 +111,6 @@ public class loginPanel extends javax.swing.JPanel {
                 pwfFocusLost(evt);
             }
         });
-
-        btnForget.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnForget.setForeground(new java.awt.Color(0, 0, 255));
-        btnForget.setText("Quên mật khẩu?");
-        btnForget.setBorder(null);
-        btnForget.setBorderPainted(false);
-        btnForget.setContentAreaFilled(false);
 
         btnlogin.setBackground(new java.awt.Color(0, 102, 204));
         btnlogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -151,10 +144,6 @@ public class loginPanel extends javax.swing.JPanel {
                         .addGap(55, 55, 55)
                         .addComponent(btnRegisNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addComponent(btnForget)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +154,7 @@ public class loginPanel extends javax.swing.JPanel {
                 .addComponent(txtLoginName, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(pwf, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnForget, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
                 .addComponent(btnlogin, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegisNewUser)
@@ -218,7 +205,6 @@ public class loginPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnForget;
     private javax.swing.JButton btnRegisNewUser;
     private javax.swing.JButton btnlogin;
     private javax.swing.JLabel jLabel1;

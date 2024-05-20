@@ -5,7 +5,6 @@
 package view.admin;
 
 
-import view.*;
 import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 
@@ -49,9 +48,9 @@ public class AdminMonitor extends javax.swing.JFrame {
     public void setbtnBill(ActionListener listener){
         btnBill.addActionListener(listener);
     }
-    public void setbtnStatistic(ActionListener listener){
-        btnStatistic.addActionListener(listener);
-    }
+//    public void setbtnStatistic(ActionListener listener){
+//        btnStatistic.addActionListener(listener);
+//    }
     public void setbtnReport(ActionListener listener){
         btnReport.addActionListener(listener);
     }
@@ -75,7 +74,6 @@ public class AdminMonitor extends javax.swing.JFrame {
         btnContractCustomer = new javax.swing.JButton();
         btnBill = new javax.swing.JButton();
         btnlandlordContract = new javax.swing.JButton();
-        btnStatistic = new javax.swing.JButton();
         btnPay = new javax.swing.JButton();
         btnlogout = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
@@ -126,13 +124,6 @@ public class AdminMonitor extends javax.swing.JFrame {
         btnlandlordContract.setContentAreaFilled(false);
         btnlandlordContract.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnStatistic.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnStatistic.setForeground(new java.awt.Color(255, 255, 255));
-        btnStatistic.setText("Thống kê");
-        btnStatistic.setBorderPainted(false);
-        btnStatistic.setContentAreaFilled(false);
-        btnStatistic.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
         btnPay.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnPay.setForeground(new java.awt.Color(255, 255, 255));
         btnPay.setText("Thanh toán");
@@ -161,19 +152,15 @@ public class AdminMonitor extends javax.swing.JFrame {
             .addGroup(menu1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menu1Layout.createSequentialGroup()
-                        .addGroup(menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnStatistic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnContractCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRoom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnlogout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnlandlordContract, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPay, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnContractCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnlandlordContract, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPay)
+                    .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menu1Layout.setVerticalGroup(
             menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,13 +175,11 @@ public class AdminMonitor extends javax.swing.JFrame {
                 .addComponent(btnlandlordContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btnStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addGap(137, 137, 137)
                 .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -250,7 +235,6 @@ public class AdminMonitor extends javax.swing.JFrame {
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnRoom;
-    private javax.swing.JButton btnStatistic;
     private javax.swing.JButton btnlandlordContract;
     private javax.swing.JButton btnlogout;
     private javax.swing.JLabel jLabel1;

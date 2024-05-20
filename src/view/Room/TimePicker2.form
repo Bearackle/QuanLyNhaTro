@@ -30,15 +30,10 @@
                       <Component id="jPanel1" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dateChooser1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtMonth" min="-2" pref="262" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="dateChooser1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMonth" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -98,9 +93,6 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>
     <Component class="view.CustomControl.TextField" name="txtMonth">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="textField1"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

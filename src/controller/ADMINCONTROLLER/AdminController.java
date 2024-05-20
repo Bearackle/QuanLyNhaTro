@@ -30,7 +30,7 @@ public class AdminController {
           view.setbtnContractLandlord(new ClickContractLandlord());
           view.setbtnBill(new ClickBill());
           view.setbtnPay(new ClickPay());
-          view.setbtnStatistic(new ClickStatistic());
+         // view.setbtnStatistic(new ClickStatistic());
           view.setbtnReport(new ClickReport());
           view.setbtnlogout(new Logout());
           view.setVisible(true);
