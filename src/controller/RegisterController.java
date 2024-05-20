@@ -5,10 +5,8 @@
 package controller;
 
 import DAO.AccountDAO;
-import Test.Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.Message;
@@ -34,6 +32,7 @@ public class RegisterController {
     private VeriFyMail veriFyMail;
     private final AccountDAO accountDAO;
     private int code;
+    private Thread thrSendmail;
     public RegisterController(RegisterForm register)
     {
         this.registerForm = register;
@@ -49,12 +48,9 @@ public class RegisterController {
             JOptionPane.showMessageDialog(registerForm, "Đăng ký thành công");
             this.registerForm.setVisible(false);
             accountDAO.CreateUser(registerForm.getUser());
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() 
-            {
+            java.awt.EventQueue.invokeLater(() -> {
                 new LoginController(new loginAndRegister());
-            }
-        });
+            });
         }
     }
     private void SendMail(User newUser, int code)
@@ -83,10 +79,8 @@ public class RegisterController {
         } catch (MessagingException e) {
             if (e.getMessage().equals("Invalid Addresses")) {
                 JOptionPane.showMessageDialog(registerForm,e.getMessage());
-                e.printStackTrace();
             } else {
                 JOptionPane.showMessageDialog(registerForm,"fail to send mail");
-                e.printStackTrace();
             }
         }
     }
@@ -94,18 +88,25 @@ public class RegisterController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+             thrSendmail = new Thread(()->{
+                Random random = new Random();
+                code = random.nextInt(9000) + 1000;
+                SendMail( registerForm.getUser(),code);
+            });
+            thrSendmail.start();
             veriFyMail = new VeriFyMail();
             veriFyMail.setActionListenerForEnterButton(new clickForEntercodeButton());
             registerForm.setComponent(veriFyMail);
-            Random random = new Random();
-            code = random.nextInt(9000) + 1000;
-            SendMail( registerForm.getUser(),code);
         }
       }
     class clickForEntercodeButton implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e) {
+            try {
+                thrSendmail.join();
+            } catch (InterruptedException ex) {
+            }
             MailVerify(Integer.parseInt(veriFyMail.getVerifyCode()), code);
         }
     }

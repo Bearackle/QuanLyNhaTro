@@ -51,6 +51,8 @@ public class Post_Form extends javax.swing.JPanel {
         cmbCategory.setModel(new DefaultComboBoxModel(listCategory));
         cmbLocation.setLabeText("Địa chỉ");
         cmbCategory.setLabeText("Loại phòng");
+        cmbLocation.setSelectedIndex(-1);
+        cmbCategory.setSelectedIndex(-1);
         cmbCategory.setSelectedIndex(0);
         cmbLocation.setSelectedIndex(0);
     }

@@ -55,15 +55,14 @@ public class PostController {
     {
         switch (codePrice){  
             case 1 -> list.removeIf(r -> r.getPrices() > 2000000);    // code price 1
-            case 2 -> list.removeIf(r -> r.getPrices() < 2000000 && r.getPrices() > 4000000); // 2
-            case 3 -> list.removeIf(r -> r.getPrices() < 4000000 && r.getPrices() > 7000000); // 3
+            case 2 -> list.removeIf(r -> r.getPrices() < 2000000 || r.getPrices() > 4000000); // 2
+            case 3 -> list.removeIf(r -> r.getPrices() < 4000000 || r.getPrices() > 7000000); // 3
             case 4 -> list.removeIf(r -> r.getPrices() < 7000000); // 4
         }
     }
     public void filterLocation(List<Room> list, int codeLocation)
     {
         list.removeIf(r -> { 
-            System.out.println(r.getLocation().getDistrict());
             return r.getLocation().getDistrict().trim()
                     .equalsIgnoreCase(post.listLocation[codeLocation]);
                     });

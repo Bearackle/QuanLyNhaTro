@@ -21,7 +21,7 @@ public class VeriFyMail extends javax.swing.JPanel {
     }
     public String getVerifyCode()
     {
-        return String.valueOf(jTextField1.getText());
+        return String.valueOf(jTextField1.getText()).trim();
     }
     public void setActionListenerforSubmitButton(ActionListener listener)
     {

@@ -23,19 +23,25 @@ import view.admin.AdminMonitor;
 public class LoginController {
        private loginAndRegister logAndRegister;
        private AccountDAO accountDAO;
+       private User authenticatedUser;
        public LoginController(loginAndRegister logAndRegister)
        {
            this.logAndRegister = logAndRegister;
+           accountDAO = new AccountDAO();
            logAndRegister.setVisible(true);
            logAndRegister.setActionBtnLogin(new btnLogin());
            logAndRegister.setKeyListenerForthis(new EnterLogin());
            logAndRegister.setActionListenerforRegisterBtn(new btnNewRegister());
        }
-       public void getDataLogin()
+       public void getDataLogin() 
        {
-           accountDAO = new AccountDAO();
-           User authenticatedUser = logAndRegister.getDataInput();
-           authenticatedUser = accountDAO.Authentication(authenticatedUser);
+           Thread authen = new Thread(() -> {  authenticatedUser = accountDAO.Authentication(logAndRegister.getDataInput());});
+           authen.start();
+           try{
+               authen.join();
+           } catch(InterruptedException e){
+               e.printStackTrace();
+           }
            if (authenticatedUser == null)
                JOptionPane.showMessageDialog(logAndRegister, "Thông tin đăng nhập sai");
            else {
