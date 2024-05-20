@@ -34,40 +34,43 @@ public class PostController {
         post.setActionListenerforlblAllPrice(new clickForlblAllPrice());
         post.setMouseEventForJlist(new clickforItem());
         this.user = user;
-        renderList(0, "Tất cả", "Tất cả");
+        renderList(0, 0,0);
     }
     public Post_Form renderForm()
     {
         return post;
     }
-    private void renderList(int codePrice, String codeLocation,String codeCategory)
+    private void renderList(int codePrice, int codeLocation,int codeCategory)
     {
         allRoom = roomDAO.getAllRoom("TRỐNG");
         filterPrice(allRoom, codePrice);
-        filterCategory(allRoom, codeLocation);
+        filterLocation(allRoom, codeLocation);
         filterCategory(allRoom, codeCategory);
         post.initList(allRoom);
         post.initOverviewData(roomDAO.getDataRoom());
+        post.validate();
+        post.repaint();
     }
     public void filterPrice(List<Room> list, int codePrice)
     {
-        switch (codePrice){
-            case 1 -> list.removeIf(r -> r.getPrices() > 2000000);
-            case 2 -> list.removeIf(r -> r.getPrices() < 2000000 && r.getPrices() > 4000000);
-            case 3 -> list.removeIf(r -> r.getPrices() < 4000000 && r.getPrices() > 7000000);
-            case 4 -> list.removeIf(r -> r.getPrices() < 7000000);
-            default -> list.removeIf(r -> r.getPrices() < 0);
+        switch (codePrice){  
+            case 1 -> list.removeIf(r -> r.getPrices() > 2000000);    // code price 1
+            case 2 -> list.removeIf(r -> r.getPrices() < 2000000 && r.getPrices() > 4000000); // 2
+            case 3 -> list.removeIf(r -> r.getPrices() < 4000000 && r.getPrices() > 7000000); // 3
+            case 4 -> list.removeIf(r -> r.getPrices() < 7000000); // 4
         }
     }
-    public void filterLocation(List<Room> list, String codeLocation)
+    public void filterLocation(List<Room> list, int codeLocation)
     {
-        list.removeIf(r -> r.getLocation().getDistrict().equalsIgnoreCase(codeLocation));
+        list.removeIf(r -> { 
+            System.out.println(r.getLocation().getDistrict());
+            return r.getLocation().getDistrict().trim()
+                    .equalsIgnoreCase(post.listLocation[codeLocation]);
+                    });
     }
-    public void filterCategory(List<Room> list, String Category)
+    public void filterCategory(List<Room> list, int Category)
     {
-        list.removeIf(r -> {int temp = r.getCategoryId()/100;
-            return Category.contains(String.valueOf(temp));
-            });
+        list.removeIf(r -> Category*100==r.getCategoryId());
     }
     class clickforlbl2M implements ActionListener{
 
@@ -75,7 +78,7 @@ public class PostController {
         public void actionPerformed(ActionEvent e) {
            //
             post.addToFilter("2 Triệu");
-            
+            renderList(1, post.getSelectedCmbLocation(), post.getSelectedcmbCategory());
         }
     }
     class clickforlbl2to4 implements ActionListener
@@ -83,6 +86,7 @@ public class PostController {
         @Override
         public void actionPerformed(ActionEvent e) {
            post.addToFilter("2 - 4 Triệu");
+            renderList(2,post.getSelectedCmbLocation(), post.getSelectedcmbCategory());
         }
     }
     class clickforlbl4to7 implements ActionListener{
@@ -90,6 +94,7 @@ public class PostController {
         @Override
         public void actionPerformed(ActionEvent e) {
             post.addToFilter("4 - 7 Triệu");
+            renderList(3,post.getSelectedCmbLocation(), post.getSelectedcmbCategory());
         }
         
     }
@@ -98,14 +103,15 @@ public class PostController {
         @Override
         public void actionPerformed(ActionEvent e) {
             post.addToFilter("Trên 7 triệu");
+            renderList(4,post.getSelectedCmbLocation(), post.getSelectedcmbCategory());
         }
     }
     class clickForlblAllPrice implements ActionListener
     {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             post.addToFilter("Tất cả");
+            renderList(5,post.getSelectedCmbLocation(), post.getSelectedcmbCategory());
         }
     }
     class clickforItem extends MouseAdapter{

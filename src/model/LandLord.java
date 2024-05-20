@@ -22,9 +22,7 @@ public class LandLord extends User{
     public String getBankAccount() {
         return BankAccount;
     }
-
     public void setBankAccount(String BankAccount) {
         this.BankAccount = BankAccount;
     }
-     
 }
