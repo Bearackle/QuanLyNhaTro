@@ -39,7 +39,6 @@ public class SearchMatchController {
         userDAO = new AccountDAO();
         customerDAO = new CustomerDAO();
         searchMatch.setActionForSearchingButton( new ClickSearching());
-        searchMatch.setActionListenerForReportbtn(new ReportClick());
         searchMatch.setActionListenerForAddButton(new ClickAddBtn());
         searchMatch.setToggleBtnListener(new ClickPolicy());
         searchMatch.setBtnReport(new ClickReport());
@@ -75,13 +74,6 @@ public class SearchMatchController {
                 searchMatch.SetEmptyContent("Không tìm thấy người dùng, vui lòng nhập lại thông tin");
             }
         }   
-    }
-    class ReportClick implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //send notify to admin
-            JOptionPane.showMessageDialog(searchMatch, "Cảm ơn bạn đã báo cáo, Chúng tôi sẽ xem xét báo cáo của bạn");
-        }
     }
     class ClickPolicy implements ToggleListener{
         @Override

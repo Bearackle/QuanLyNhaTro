@@ -58,15 +58,10 @@ public class SearchMatch extends javax.swing.JPanel {
     public void initTable(ArrayList<Customer> list)
     {
         model = (DefaultTableModel) table.getModel();
-        table.getColumnModel().getColumn(2).setCellRenderer(new tableCellRenderForSearchMatch("icon/report.svg"));
         model.setRowCount(0);
         for (Customer cus : list){
             model.addRow(new Object[]{cus.getPhone(), cus.getName()});
         }
-    }
-    public void setActionListenerForReportbtn(ActionListener listener)
-    {
-        table.getColumnModel().getColumn(2).setCellEditor(new TableCellAction(listener,"icon/report.svg"));
     }
     public int getSelecteditem(){
         return table.getSelectedRow();
@@ -172,11 +167,11 @@ public class SearchMatch extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Số điện thoại", "Họ và tên", ""
+                "Số điện thoại", "Họ và tên"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
