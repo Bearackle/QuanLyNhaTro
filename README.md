@@ -1,6 +1,6 @@
 # Phần mềm quản lý nhà trọ
 
-![](src/icon/home3.svg)
+![](src/resource/welcompage.jpg)
 
 # Giới thiệu
 
