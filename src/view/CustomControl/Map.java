@@ -38,8 +38,6 @@ import org.jxmapviewer.input.PanMouseInputListener;
 import org.jxmapviewer.input.ZoomMouseWheelListenerCenter;
 import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
-
-
 /**
  *
  * @author Admin
@@ -94,7 +92,6 @@ public class Map extends JXMapViewer {
                 System.err.println("Error: " + response.statusCode() + " " + response.body());
             }
         } catch (IOException | InterruptedException | URISyntaxException e) {
-            e.printStackTrace();
         }
         return null;
     }
