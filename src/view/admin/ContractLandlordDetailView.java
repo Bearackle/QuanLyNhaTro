@@ -43,6 +43,9 @@ public class ContractLandlordDetailView extends javax.swing.JFrame {
         txtid.setText(String.valueOf(contract.getID()));
     }
       public void setBtnUpdate(ActionListener listener){
+        for(var act : btnUpdate.getActionListeners()){
+            btnUpdate.removeActionListener(act);
+        }
         btnUpdate.addActionListener(listener);
     }
        public Contract_Landlord getUpdateData(){

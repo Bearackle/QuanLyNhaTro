@@ -31,18 +31,22 @@ import view.CustomControl.StyledButtonUI;
  * @author Admin
  */
 public class RoomDetail extends javax.swing.JFrame {
+    private Thread thread;
     /**
      * Creates new form RoomDetail
      */
     public RoomDetail() {
         initComponents();
         this.setVisible(true);
-        initMap();
         jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         jPanel1.setLayout(new GridLayout(1,0,5,0));
     }
     public void initData(Room room)
     {
+        thread = new Thread(()->{
+              initMap(room.getLocation().toString());
+        });
+        thread.start();
         lblName.setText(String.valueOf(room.getName()));
         lblArea.setText(String.valueOf(room.getArea()+" M2"));
         lblDiachi.setText(room.getLocation().toString());
@@ -75,22 +79,27 @@ public class RoomDetail extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
         }
-    }   
-   private void initMap()
+    }
+
+   private void initMap(String address)
    {
-       TileFactoryInfo info = new OSMTileFactoryInfo();
-       DefaultTileFactory tileFactory = new DefaultTileFactory(info);
-       jXMapViewer1.setTileFactory(tileFactory);
-       GeoPosition geo = new GeoPosition(10.812938635137982, 106.69043641571405);
-       
-       jXMapViewer1.setAddressLocation(geo);
-       jXMapViewer1.setZoom(5);
-       // add event mouse 
-       
-       MouseInputListener listener = new PanMouseInputListener(jXMapViewer1);
-       jXMapViewer1.addMouseListener(listener);
-       jXMapViewer1.addMouseMotionListener(listener);
-       jXMapViewer1.addMouseWheelListener(new ZoomMouseWheelListenerCenter(jXMapViewer1));
+        view.CustomControl.Map map = new view.CustomControl.Map();
+        map.initMap(address);
+        maps.add(map);
+        maps.revalidate();
+        maps.repaint();
+//       TileFactoryInfo info = new OSMTileFactoryInfo();
+//       DefaultTileFactory tileFactory = new DefaultTileFactory(info);
+//       jXMapViewer1.setTileFactory(tileFactory);
+//       GeoPosition geo = new GeoPosition(10.812938635137982, 106.69043641571405);
+//       jXMapViewer1.setAddressLocation(geo);
+//       jXMapViewer1.setZoom(5);
+//       // add event mouse 
+//       
+//       MouseInputListener listener = new PanMouseInputListener(jXMapViewer1);
+//       jXMapViewer1.addMouseListener(listener);
+//       jXMapViewer1.addMouseMotionListener(listener);
+//       jXMapViewer1.addMouseWheelListener(new ZoomMouseWheelListenerCenter(jXMapViewer1));
    }
    public void setListenerForbtnThue(ActionListener listener){
        btnThue.addActionListener(listener);
@@ -125,7 +134,6 @@ public class RoomDetail extends javax.swing.JFrame {
         btnThue = new javax.swing.JButton();
         btnThue.setUI(new StyledButtonUI());
         maps = new javax.swing.JPanel();
-        jXMapViewer1 = new org.jxmapviewer.JXMapViewer();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -284,19 +292,6 @@ public class RoomDetail extends javax.swing.JFrame {
         maps.setBackground(new java.awt.Color(204, 255, 153));
         maps.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jXMapViewer1Layout = new javax.swing.GroupLayout(jXMapViewer1);
-        jXMapViewer1.setLayout(jXMapViewer1Layout);
-        jXMapViewer1Layout.setHorizontalGroup(
-            jXMapViewer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
-        );
-        jXMapViewer1Layout.setVerticalGroup(
-            jXMapViewer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
-        );
-
-        maps.add(jXMapViewer1, java.awt.BorderLayout.CENTER);
-
         jLayeredPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -380,7 +375,6 @@ public class RoomDetail extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private org.jxmapviewer.JXMapViewer jXMapViewer1;
     private javax.swing.JLabel lblArea;
     private javax.swing.JLabel lblDiachi;
     private javax.swing.JLabel lblName;

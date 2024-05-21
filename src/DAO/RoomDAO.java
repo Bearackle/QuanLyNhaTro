@@ -26,7 +26,7 @@ public class RoomDAO {
     public List<Room> getAllRoom(String status)
     {   
         List<Room> allRoom = new ArrayList<>();
-        String query = "SELECT * FROM ROOM WHERE STATUS=? OR ISALLOWMATCH='CÓ'";
+        String query = "SELECT * FROM ROOM WHERE STATUS=? OR (STATUS!='XÓA'AND ISALLOWMATCH='CÓ')";
         String query2 = "SELECT PATH FROM ROOMIMAGE WHERE ROOMID=? AND ROWNUM=1";
         try 
         {

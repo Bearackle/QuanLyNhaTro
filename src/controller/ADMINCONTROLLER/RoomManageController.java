@@ -83,7 +83,7 @@ public class RoomManageController {
         @Override
         public void actionPerformed(ActionEvent e) {
              boolean result = DAO.updateDataRoom(roomdetail.UpdateData());
-             if(result) JOptionPane.showMessageDialog(roomdetail, "Đã cập nhật thành công");
+             if(result) JOptionPane.showMessageDialog(roomdetail, "Đã cập nhật thông tin phòng thành công");
              else JOptionPane.showMessageDialog(roomdetail, "Cập nhật thất bại, vui lòng thử lại sau !!");
              roomdetail.dispose();
         }
