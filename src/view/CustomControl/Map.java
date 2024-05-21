@@ -22,7 +22,6 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.event.MouseInputListener;
 import java.io.IOException;
@@ -81,7 +80,6 @@ public class Map extends JXMapViewer {
                     .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0")
                     .GET()
                     .build();
-
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
                 ObjectMapper mapper = new ObjectMapper();
