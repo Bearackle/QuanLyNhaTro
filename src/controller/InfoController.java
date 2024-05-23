@@ -83,7 +83,6 @@ public class InfoController {
         return roomDAO.getRoomInfoWithId(id);  
     }
     class clickUpdateBtn implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
              
@@ -103,7 +102,6 @@ public class InfoController {
         }     
     }
     class clickLandlord implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             newCustomer = new NewCustomer(user);

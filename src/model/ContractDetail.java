@@ -4,16 +4,15 @@
  */
 package model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 /**
  *
  * @author Admin
  */
 public class ContractDetail {
-    private Date Sign_date;
+    private LocalDate Sign_date;
     private Long Customer_ID;
-    private Date BirthDay;
+    private LocalDate BirthDay;
     private String permanent_resident;
     private String Phone;
     private Location location;
@@ -21,7 +20,7 @@ public class ContractDetail {
     private int ElectricPrice;
     private int WaterPrice;
     private int Deposit;
-    private Date Enter_date;
+    private LocalDate Enter_date;
     private String Customer_Name;
     private int Duration;
     public int getDuration() {
@@ -40,11 +39,11 @@ public class ContractDetail {
         this.Customer_Name = Customer_Name;
     }
     
-    public Date getSign_date() {
+    public LocalDate getSign_date() {
         return Sign_date;
     }
 
-    public void setSign_date(Date Sign_date) {
+    public void setSign_date(LocalDate Sign_date) {
         this.Sign_date = Sign_date;
     }
 
@@ -56,11 +55,11 @@ public class ContractDetail {
         this.Customer_ID = Customer_ID;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthDay() {
         return BirthDay;
     }
 
-    public void setBirthDay(Date BirthDay) {
+    public void setBirthDay(LocalDate BirthDay) {
         this.BirthDay = BirthDay;
     }
 
@@ -120,11 +119,11 @@ public class ContractDetail {
         this.Deposit = Deposit;
     }
 
-    public Date getEnter_date() {
+    public LocalDate getEnter_date() {
         return Enter_date;
     }
 
-    public void setEnter_date(Date Enter_date) {
+    public void setEnter_date(LocalDate Enter_date) {
         this.Enter_date = Enter_date;
     }
     

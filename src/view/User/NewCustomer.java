@@ -9,6 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import model.Customer;
 import model.LandLord;
 import model.User;
@@ -25,6 +27,7 @@ public class NewCustomer extends javax.swing.JFrame {
      */
     public NewCustomer(User user) {
         initComponents();
+        initData(user);
     }
     private void initData(User user)
     {
@@ -36,6 +39,8 @@ public class NewCustomer extends javax.swing.JFrame {
         txtPhone.setLabelText("Nhập số điện thoại");
         txtRelativeName.setLabelText("Nhập tên người thân");
         txtRelativePhone.setText("Nhập Số điện thoại người thân");
+        cmbGender.setLabeText("Giới tính");
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Nam","Nữ"}));
     }
     public void setActionListenerForBtn(ActionListener listener)
     {

@@ -139,11 +139,5 @@ public class Contract {
     public void setDeposit(int Deposit) {
         this.Deposit = Deposit;
     }
-    public static Calendar getCalendar(Date date)
-     {
-         Calendar calendar = Calendar.getInstance();
-         calendar.setTime(date);
-         return calendar;
-     }
 }
 

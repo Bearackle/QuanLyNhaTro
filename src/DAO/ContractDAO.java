@@ -6,7 +6,6 @@ package DAO;
 
 import java.util.List;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Contract;
@@ -101,8 +100,8 @@ public class ContractDAO {
            while (resultSet.next())
            {
                contractDetail.setCustomer_ID(resultSet.getLong("CCCD"));
-               contractDetail.setSign_date(resultSet.getDate("SIGN_DATE"));
-               contractDetail.setBirthDay(resultSet.getDate("BIRTHDAY"));
+               contractDetail.setSign_date(resultSet.getDate("SIGN_DATE").toLocalDate());
+               contractDetail.setBirthDay(resultSet.getDate("BIRTHDAY").toLocalDate());
                contractDetail.setPermanent_resident(resultSet.getString("permanent_resident"));
                contractDetail.setPhone(resultSet.getString("PHONE"));
                String[] location = resultSet.getString("LOCATION").split(",");

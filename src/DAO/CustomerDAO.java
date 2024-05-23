@@ -53,8 +53,10 @@ public class CustomerDAO {
     }
     public void CreeateNewCustomer(Customer customer){
          String query = "INSERT INTO CUSTOMER VALUES (?,?,?,?,?,?,?,?,?)";
+         String query2= "INSERT INTO RESIDENT_REGISTRATION VALUES(?,?,?,?,?)";
          try {
              PreparedStatement ps = connection.prepareStatement(query);
+             PreparedStatement ps2 = connection.prepareStatement(query2);
              ps.setLong(1,customer.getCCCD());
              ps.setString(2, customer.getName());
              ps.setString(3, customer.getPhone());
@@ -64,7 +66,13 @@ public class CustomerDAO {
              ps.setString(7, customer.getRelativeName());
              ps.setString(8, customer.getRelativeNumber());
              ps.setNull(9,Types.INTEGER);
+             ps2.setLong(1, customer.getCCCD());
+             ps2.setNull(2, Types.VARCHAR);
+             ps2.setNull(3, Types.VARCHAR);
+             ps2.setNull(4, Types.VARCHAR);
+             ps2.setNull(5,Types.VARCHAR);
              ps.executeUpdate();
+             ps2.executeUpdate();
          } catch (SQLException e)
          {
              e.printStackTrace();

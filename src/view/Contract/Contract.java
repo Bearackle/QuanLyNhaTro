@@ -79,14 +79,14 @@ public class Contract extends javax.swing.JPanel {
         <p>Hợp đồng có giá trị %d tháng kể từ ngày ký</p>                
         <p>Tiền đặt cọc: %d (vnd)<p>
         </body>
-        </html>""".formatted(model.Contract.getCalendar(contract.getSign_date()).get(Calendar.DAY_OF_MONTH),
-                model.Contract.getCalendar(contract.getSign_date()).get(Calendar.MONTH),
-                model.Contract.getCalendar(contract.getSign_date()).get(Calendar.YEAR),
+        </html>""".formatted(contract.getSign_date().getDayOfMonth(),
+                contract.getSign_date().getMonthValue(),
+                contract.getSign_date().getYear(),
                 contract.getLocation(), 
                 contract.getCustomer_Name(),
-                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.DAY_OF_MONTH),
-                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.MONTH),
-                model.Contract.getCalendar(contract.getBirthDay()).get(Calendar.YEAR),
+                contract.getBirthDay().getDayOfMonth(),
+                contract.getBirthDay().getMonthValue(),
+                contract.getBirthDay().getYear(),
                 contract.getPermanent_resident(), String.valueOf(contract.getCustomer_ID()),contract.getPhone(),contract.getLocation(),
                 contract.getPrice(),contract.getElectricPrice(),
                 contract.getWaterPrice(), contract.getDuration(),

@@ -34,7 +34,6 @@ public class ContractController {
         if (contractDAO.getAvailableContractByCustomerID(customer.getCCCD()) == null) {
              return;
         }
-           
         contractView.LoadContract(contractDAO.contractDetailCustomer(customer.getCCCD()));
     }
     public void RenderContractNoInfo()
